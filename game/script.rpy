@@ -5,18 +5,26 @@
 
 define e = Character("Eileen")
 
+# maake a date character template
+define date = Character()
+
+
 define gb = Character("Gabriel")
 define mama = Character("mama!!!!")
 define ash = Character("Ash")
+define lb = Character("Ladybird")
+define qt = Character("Sephirah")
+define dg = Character("Dragon")
 
 #change the args on this to make it a subtitle chant that auto advances
-define chant = Character("also gabe")
+define chant = Character("gabriel")
 
 python:
     name = renpy.input("Your name?")
     name = name.strip() or "Kevin"
 
 define mc = Character("tony")
+define mc_polite = Character()
 
 
 # The game starts here.
@@ -36,7 +44,7 @@ label start:
     show eileen happy
 
     e "TIME JUMP!!"
-    jump gabeintro
+    jump qdate
 
     # These display lines of dialogue.
 
@@ -99,33 +107,188 @@ label gabeintro:
     "oh."
     "he vanished."
 
+    jump ash
+
     return
 
+#region Gabriel interludes
+label afterq:
+    gb "What happened?"
+    mc "__ lost __ pronouns."
+    gb "Oh wow."
+    gb "That must be so tough for __."
+    mc "__ can't even refer to __ in the first person."
+    gb "Damn that fucking sucks."
+
+
+    return
+
+label afterlb:
+
+    gb "Ha!"
+    gb "Nice try."
+
+    return
+
+
+#endregion Gabriel interludes
+
+
+#region Dates
+
+label ladybird:
+    mc "And for the LAST time, I'm onlty looking to date GIRLS!! NOT men."
+    lb "Can I be included in that designation?"
+    lb "Girls and Ladybird, if it's not too much trouble."
+
+    return
+
+label qdate:
+    qt "Ok. First question:"
+    qt "What are your pronouns?"
+    "gabes really resting my pasticence with all ofthe curveballs hes throwing me."
+    "first analie,n. now a LIBERAL"
+    "But i geuss I'll jsut humor her for now."
+    mc "I don't {i}do{/i} pronouns."
+    qt "No pronouns?"
+    mc "No."
+    qt "So if I were to use he/him for you, that would be misgendering..."
+    mc "um {nw=0.5}"
+    qt "No pronouns..."
+    mc "wait a minute-{nw=0.5}"
+    $ renpy.notify("Pronouns lost!")
+    qt "...got it."
+
+    qt "Alright, second question."
+    qt "Hypothetically." 
+    qt "If __ girlfriend were a worm, would __ still love her?"
+    mc "What?"
+    qt "If __ girlfriend were a worm,"
+    qt "would __ still love her?"
+    mc "Would who still love her?"
+    qt "__, Tony! __!!"
+    mc "HOW are you doing that with your mouth???"
+    qt "__ didn't answer my question."
+    mc "Well of course __ would love __ hypothetical girlfriend"
+    "..."
+    "hold on"
+    mc "__ would love __ hypothetical girlfriend"
+    mc "what is goin g on"
+    qt "Oh, __ said __ didn't do pronouns."
+    qt "So I took em."
+    qt "Not my fault __ don't know what a pronoun is."
+    
+
+    qt "Okay. Last question."
+    qt "If __ were put in an elementary school and __ couldn't escape, how many fifth graders do __ think __ could take out before dying?"
+    mc "{w=0.9}Like in CoD zombies?"
+    qt "Yeah"
+    mc "Easily 300 rounds."
+    qt "Really?????"
+    mc "Yeah. Like __ easily got 300 rounds in blops 3 zombies. on every map"
+    qt "Oh wow! Isn't that world record?"
+    qt "Wait I'm looking that up right now..."
+    "whats she doing"
+    mc "jsyk __ records orent on thwe leaderboards yet tho hteyre still beeing verified"
+    qt "Says highest possible round is 255..."
+    mc "yeah but"
+    qt "Higher rounds aren't possible without mods..."
+    qt "Yeah gonna have to doubt on the fifth graders question :/"
+    mc "__ could do it!"
+    qt "Excuse me, are __ modding my fifth graders question?"
+    mc ""
+
+    qt "anyway."
+    qt "Still can't believe the whole \"no pronouns\" thing."
+    qt "Me personally, my pronouns are just she cuz I can't be her"
+    qt "(Her is my girlfriend)"
+    mc "You have a GIRLFRIEND?"
+    qt "Oh yeah I do"
+    qt "We're not really looking for a third, though."
+    mc "So why are you here?"
+    qt "Oh I just thought it'd be funny lol"
+    mc "So you're g-"
+    #q fades away
+
+
+
+    return
+
+#region Just Ash...
 label ash:
     $ fav_soda = ""
 
+    "The next date should be arriveing soon... she better be good."
+    ash "Oh hey! Are you Tony?"
+    mc "That's my name, dont' wear it out."
+    ash "Ooookay."
+    ash "How are ya?"
+
+    ash "I mean you seem pretty cool! Maybe next time we could play some games at my place."
+    mc "You mean you're a... a... a gamer...?"
+    ash "Yes...?"
+    mc "A REAL girl gamer?"
+    ash "I'm an adult but yeah"
+    "heh... I'll be the judge of thar."
+    mc "I jsut have a couple quesions for you.. since you SAY you're a gamer."
+    ash "This better not be one of theose nerrd cred questionnaires where I have to answer trivia about 90s-era SNES games."
+    "gah! how'd she knnow..."
+    mc "q-question number one!"
+    mc ""
+    mc "What are your favorite positions and are you wearing a bra?"
+    ash "I always wear a bra and I'm a striker"
+    mc "what?"
+    ash "oh you meant like. {w=1.0}sex positions?"
+    ash "Well to be honest I could really do without sex." # protagonist jaw drop. hes heartbroken
+    ash "...but that damn Dr Pepper a whole different story... "
+    ash "Elixir of the GODS, yo!"
+    ash "Wanna see my favorite sodas?"
+    menu:
+        "Yes":
+            pass
+        "No":
+            pass
+    
+    # the soda cutscene, which is a recorded twitch vod of maru (as ash) rating every soda while being heckled by chat
+
+
+
     #the date branches to give you a different ending based on whether or not you like PiBB Xtra
-    menu soda:
+    menu yoursoda:
         "What's your favorite kind of soda?"
         "Dr Pepper":
+            $ fav_soda = "pepper"
             ash "Oh, great! Glad you agree."
-            call why_gamer
+            jump why_gamer
         "PiBB Xtra":
             $ fav_soda = "pibb"
-            call why_pibb
-            return
+            jump why_pibb
+            
+    jump endingcheck
     return
 
+
 label why_gamer:
-    mc "I mean, I SUPPOSE I could put up with you bieng a {i}gamer{/i}..."
+
+    "This is a tough decision."
+    "ON one hand she is atually very nice and sweet and cool and firendly."
+    "On the other, hwer friendlyness reminfs me of a male friend, and not a woman..."
+    "on ONE hand she is a strange animal furry mammal person..."
+    "one the other, hot damn she"
+    $ renpy.notify("We've censored Tony's remarks for the sake of decency.")
+    mc_polite "Tony finds Ash very beautiful and aesthetically pleasing."
+
     mc "Let's make plans for another date."
-    ash "Huh? Hell nah lmfao you broke asf taking me to this janky ass McDonald's 😂"
+    ash "Hell nah lmfao you broke asf taking me to this janky ass McDonald's 😂"
     ash "Thanks for the meal tho"
     "What!? She left?"
     "And after all I DID for her? Women are so ungrateful... grrrrr"
+    jump endingcheck
+    # replace ending check with next date
     return
 
 label why_pibb:
+
     ash "What the..."
     ash "Why would you drink a PiBB Xtra when Dr Pepper is right there...?"
     mc "it's a cherry coola that was meant to compete with but not taste exactly like dr pepper"
@@ -140,12 +303,39 @@ label why_pibb:
     ash "If I wanted to drink a cherry cola from the Coca-Cola company, I would just drink a Cherry Coke!"
     mc "It's NOT a cherry cola it is a SPICED cherry cola, there's a whole WORLD of difference!"
     mc "But that may be a bit too nuanced for your female brain..."
+    ash "Oh, misogyny. I'm out"
+    "No way she left!"
+    "That wasn't misogyny it was just a keen observation from my large brain! What!?"
+    jump endingcheck
+    # replace ending check with next date
     return
+#endregion Just Ash...
+
+label dragon:
+    "I'm hoping the next one is a REAL catch this time."
+    "Oh, she's almost here."
+    dg "Hello!"
+
+
+    mc "*sight*"
+    mc "all right"
+    mc "what's the catch."
+    dg "Oh, no catch!"
+    dg "But I am technically a dragon."
+    "So many women, and not a single one dateable."
+    dg "I'm sensing some racial bias here."
+    mc "Racial bias!? But I never said anything about black people!"
+    dg "Oh, neither did I! I'm talking about the way you're looking at me now that I said I'm a dragon."
+    mc "well maybe this might be weird to you, but I prefer to date and f"
+
+    return
+
+#endregion Dates
 
 
 #region Endings
 
-label killing_chant
+label killing_chant:
     chant "The divine power vested in me must only be used for good, for justice, to strike down evil."
     chant "The title Mother was bestowed upon me and may be retracted at any time."
     chant "I must at all times serve and be in servitude of the common man, for the good of humanity."
@@ -160,22 +350,38 @@ label endingcheck:
 
     mc "Oh thank goodness you're here gabe. It was TERRIBLE,."
     mc "those girls... they were so WEIRD! "
-    gb "So you're telling me you fumbled all of them."
-    gb "All seven women, in a row."
-    mc "How could I fumble if I'm the prize?"
+    mc "And some of them weren't even girls!"
+    mc "I TRUSTED you to bring me girls!!"
+    gb "\"Girls?\" Like, children?"
+    mc "Gabe!!! Obviously by \"girls,\" the English word for female children, I meant \"adult women.\""
+    mc "EVERYONE knows tha.t"
+    gb "Uh-huh."
+    gb "You are not permitted to call me \"Gabe,\" by the way."
+    gb "So have you decided on who you'd like to continue pursuing?"
+    mc "Nah, you gotta set up some more dates. They all left and I can't figure out why :/"
+    gb "You-"
+    gb "You're telling me you fumbled all of them?"
+    gb "All of them, in a row?"
+    mc "I didn't fumble; I'm the prize!"
     #gabriel grimaces with his eyes wide.
 
     if fav_soda == "pibb":
-        jump regularending
-    elif fav_soda == "pepper":
         jump sodaending
+    elif fav_soda == "pepper":
+        jump regularending
     else:
+        jump failsafeending
         #block of code to run
     return
 
 label regularending:
+    gb "*breathes in*"
+    call killing_chant
+    mc "What?"
+    gb "You're going to hell."
+    gb "Goodbye."
+    #you died :(
 
-    
     return
 
 label failsafeending:
@@ -189,7 +395,7 @@ label failsafeending:
 label sodaending:
 
     gb "ok who the FUCK drinks mr pibb"
-    mc "it's called PiBB Xtra and it's a spiced cherry cola thats"
+    mc "it is no longer called MISTRE PIBB it's called PiBB Xtra and it's a spiced cherry cola thats"
     gb "I'm killing you. {w=0.4} I'm killing you"
 
     #you died :(
