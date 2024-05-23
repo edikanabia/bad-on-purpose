@@ -111,6 +111,24 @@ label gabeintro:
 
     return
 
+label where_to:
+    menu:
+        "Where should I take my date to?"
+        "Fancy restaurant":
+            "Yes, yes! The fanciest restaurant I can think of!"
+        "Coffee shop":
+            "Of course! What better coffee shop than McCafe!"
+        "Beach":
+            "The beach...?"
+            "Ehh... but I hate sweating."
+            "I'm sure my date will appreciate a meal from the greatest American restaurant---"
+            "that's McDonald's, of course---"
+            "MUCH more than sweating on some sandy beach."
+            "I'm a GENIUS!"
+    
+    "I should take everyone to this venue!"
+    return
+
 #region Gabriel interludes
 label afterq:
     gb "What happened?"
@@ -148,12 +166,12 @@ label qdate:
     qt "What are your pronouns?"
     "gabes really resting my pasticence with all ofthe curveballs hes throwing me."
     "first analie,n. now a LIBERAL"
-    "But i geuss I'll jsut humor her for now."
+    "I HAVE TO STAND MY GROUND."
     mc "I don't {i}do{/i} pronouns."
     qt "No pronouns?"
     mc "No."
     qt "So if I were to use he/him for you, that would be misgendering..."
-    mc "um {nw=0.5}"
+    mc "No, it- {nw=0.5}"
     qt "No pronouns..."
     mc "wait a minute-{nw=0.5}"
     $ renpy.notify("Pronouns lost!")
@@ -175,9 +193,8 @@ label qdate:
     mc "__ would love __ hypothetical girlfriend"
     mc "what is goin g on"
     qt "Oh, __ said __ didn't do pronouns."
-    qt "So I took em."
-    qt "Not my fault __ don't know what a pronoun is."
-    
+    qt "So I took em. {w}No pronouns for __!"
+    #tony D:    
 
     qt "Okay. Last question."
     qt "If __ were put in an elementary school and __ couldn't escape, how many fifth graders do __ think __ could take out before dying?"
@@ -223,26 +240,63 @@ label ash:
     mc "That's my name, dont' wear it out."
     ash "Ooookay."
     ash "How are ya?"
-
-    ash "I mean you seem pretty cool! Maybe next time we could play some games at my place."
-    mc "You mean you're a... a... a gamer...?"
+    mc "I'm fine, thanks for asking."
+    ash ""
+    mc ""
+    ash "(is he not gonna ask how i'm doing...?)"
+    ash "So what do you do for fun?"
+    mc "mmm, cna't flex too hard or I\"ll scare her away... keep it humble..."
+    mc "Eh, nothing too flashy, just flexing my intellectual muscles pondering the meaning of life while benchinig 450lbs with one arm..."
+    "nailed it"
+    ash "You work out, huh?"
+    mc "Yep. If you need some tips, just hit me up{nw=0.5}"
+    ash "It doesn't look like you work out!"
+    ash "Ah, let me not judge."
+    ash "Personally, I'm super into sports, but on the weekends I like to chill and play video games for a few hours."
+    mc "You mean you're a... {w=0.3}a...{w=0.3} a gamer...?"
     ash "Yes...?"
     mc "A REAL girl gamer?"
-    ash "I'm an adult but yeah"
+    ash "I'm an adult but yeah. I guess you could call me a gamer."
     "heh... I'll be the judge of thar."
     mc "I jsut have a couple quesions for you.. since you SAY you're a gamer."
-    ash "This better not be one of theose nerrd cred questionnaires where I have to answer trivia about 90s-era SNES games."
-    "gah! how'd she knnow..."
-    mc "q-question number one!"
+    ash "You're not gonna do one of theose nerrd cred questionnaires where I have to answer trivia about 80s- and 90s-era video games,"
+    ash "are you?"
     mc ""
+    mc "well"
+    mc "say"
+    mc "for the sake of argument,"
+    ash "*sigh*"
+    ash "Super Mario Bros. was released in 1985"
+    ash "The player character in the Legend of Zelda is named Link (although in most games you can rename him)"
+    ash "And in all other territories the SEGA Genesis is called the Mega Drive."
+    ash "That do it?"
+    "how'd she even know..."
+    "Wowza... she's good."
+    ash "Do you need more time to come up with different riddles?"
+    mc "I'm just... honestly, milady..."
+    ash "\"Milady.\""
+    mc "True gamer girls, such as yourself, are a rare treat in the landscape of fakes."
+    mc "Those unscrupulous fake girl gamers have always attempted to seduce us REAL gamers with their siren songs and cleavage..."
+    ash "huh"
+    mc "But an honest gamer girl as yourself is truly invested in the beauty of games...!"
+    ash "Do you think games are art?"
+    mc "no"
+    ash ""
+    ash "So."
+    ash "Have you come up with that new quesiton yet...?"
+    mc "As a matter facy, I have."
+    mc "Ahem."
     mc "What are your favorite positions and are you wearing a bra?"
-    ash "I always wear a bra and I'm a striker"
-    mc "what?"
+    ash "?"
+    ash "I always wear a bra and I'm a striker."
+    mc "" # uh
     ash "oh you meant like. {w=1.0}sex positions?"
-    ash "Well to be honest I could really do without sex." # protagonist jaw drop. hes heartbroken
+    ash "Well to be honest I could really do without sex." 
     ash "...but that damn Dr Pepper a whole different story... "
     ash "Elixir of the GODS, yo!"
     ash "Wanna see my favorite sodas?"
+
+    #menu is timed
     menu:
         "Yes":
             pass
@@ -259,7 +313,7 @@ label ash:
         "Dr Pepper":
             $ fav_soda = "pepper"
             ash "Oh, great! Glad you agree."
-            jump why_gamer
+            jump ashend
         "PiBB Xtra":
             $ fav_soda = "pibb"
             jump why_pibb
@@ -268,8 +322,9 @@ label ash:
     return
 
 
-label why_gamer:
+label ashend:
 
+    "She's salmost doen with her meal. I have to make a decision soon..."
     "This is a tough decision."
     "ON one hand she is atually very nice and sweet and cool and firendly."
     "On the other, hwer friendlyness reminfs me of a male friend, and not a woman..."
@@ -277,11 +332,16 @@ label why_gamer:
     "one the other, hot damn she"
     $ renpy.notify("We've censored Tony's remarks for the sake of decency.")
     mc_polite "Tony finds Ash very beautiful and aesthetically pleasing."
-
+    "I can't possibly turn up my nose at a real life girl gamer!"
+    "I think sh'ell make a fine gf."
+    "why's she getting up"
+    mc "Where are you going?"
+    ash "I gotta get home. It's late"
+    mc "Wait!"
     mc "Let's make plans for another date."
+    ash "Huh?"
     ash "Hell nah lmfao you broke asf taking me to this janky ass McDonald's 😂"
     ash "Thanks for the meal tho"
-    "What!? She left?"
     "And after all I DID for her? Women are so ungrateful... grrrrr"
     jump endingcheck
     # replace ending check with next date
@@ -305,7 +365,7 @@ label why_pibb:
     mc "But that may be a bit too nuanced for your female brain..."
     ash "Oh, misogyny. I'm out"
     "No way she left!"
-    "That wasn't misogyny it was just a keen observation from my large brain! What!?"
+    "That wasn't misogyny it was just a keen observation from my large brain! grrr....."
     jump endingcheck
     # replace ending check with next date
     return
@@ -323,10 +383,7 @@ label dragon:
     dg "Oh, no catch!"
     dg "But I am technically a dragon."
     "So many women, and not a single one dateable."
-    dg "I'm sensing some racial bias here."
-    mc "Racial bias!? But I never said anything about black people!"
-    dg "Oh, neither did I! I'm talking about the way you're looking at me now that I said I'm a dragon."
-    mc "well maybe this might be weird to you, but I prefer to date and f"
+
 
     return
 
