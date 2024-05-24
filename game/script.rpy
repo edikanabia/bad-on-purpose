@@ -10,11 +10,14 @@ define date = Character()
 
 
 define gb = Character("Gabriel")
+define nc = Character("Niecy")
 define mama = Character("mama!!!!")
 define ash = Character("Ash")
 define lb = Character("Ladybird")
 define qt = Character("Sephirah")
 define dg = Character("Dragon")
+define jl = Character("Jules")
+define ox = Character("Onyx")
 
 #change the args on this to make it a subtitle chant that auto advances
 define chant = Character("gabriel")
@@ -31,6 +34,8 @@ define mc_polite = Character()
 
 label start:
 
+    $ normal_points = 0
+
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
@@ -44,7 +49,7 @@ label start:
     show eileen happy
 
     e "TIME JUMP!!"
-    jump qdate
+    jump interlude
 
     # These display lines of dialogue.
 
@@ -67,8 +72,8 @@ label gabeintro:
     "so where is he?"
     "all I see is a really tall woman wlaiking toward me..."
     gb "Hi. I'm Gabriel."
-    "SE-{nw=0.3}"
-    gb "Is there... something you would like to say to me...?"
+    "SEPH-{nw=0.3}"
+    gb "Is something wrong...?"
     mc "Oh osorry... it's just that.. you remind me of this guy from this video game."
     gb "I get that a lot."
     mc "are you a \[KEYWORD\] parody?"
@@ -96,22 +101,35 @@ label gabeintro:
     "kowai desu ne :("
     gb "Of course, there will be no need for justice if you simply do the right thing from the start!"
     mc "which is?"
-    gb "Before you are seven beautiful women."
+    gb "Before you are several beautiful women. My assistant gathered them."
     "Hot damn! I'm excited!!!!!"
     gb "Your mission is to be normal around them. {w=0.3} Can you handle that?"
     mc "Course I can! I'm the normalest guy there is, {nw=0.2}" 
     mc "I'm so normal they used to call me Average Joe and I got the superlative for Most Normalest Guy in the yearbook {nw=0.2}"
     gb "SHut the fuck up"
     gb "Please."
+    mc "ok."
+    mc "*raises hand*"
+    gb "What."
+    mc "Is my mission just to be normal because to be honest I\"m really tryna fuck so{nw=0.5}"
+    gb "Listen. Tony."
+    gb "As a recovering misogynist myself, no one wants to hear you say that."
+    gb "But to answer your question, these are actually functions of the same thing."
+    mc "Man if it's  easy I wouldev had a gf alaready... i feel like you're lying."
+    gb "Because you're so normal?"
+    mc "Yeah!"
+    gb "Yeah we'll see about that."
     #gabriel fades away
     "oh."
     "he vanished."
+    "well!"
 
-    jump ash
+    jump where_to
 
     return
 
 label where_to:
+    "I'vev got a long week ahead of me. But first I have to make an important decision!"
     menu:
         "Where should I take my date to?"
         "Fancy restaurant":
@@ -130,23 +148,91 @@ label where_to:
     return
 
 #region Gabriel interludes
+
+label interlude:
+
+    nc "Hello white man!"
+    gb "How goes it?"
+    mc "Tbh, I'm trying to keep faith in your guys' choices of girl, but these ppl arenn't my thing at all!"
+    mc "I was so miffed from that first one I actually called over another girl."
+    gb "Well look at you, coming out of your shell."
+    mc "Yeah, she was happy to date m e but I got closer and she was kinda fat and old so I had to tell her no"
+    gb "Fumble."
+    nc "Yo send her my way!"
+    #gabriel niecy high five
+    mc "Now that i think about it, she kinda looked like you Gabe!"
+    mc "White hair, purple eyes, everything."
+    gb "Huh? A woman who looked like me? who's chubby and old?"
+    gb "You met my landscaper?"
+    nc "But she doesn't look anything like you, does she? Besides the white hair and purple eyes."
+    gb "Yeah lot's of people have white hair and purple eyes, Tony." 
+    gb "You'll have to be more specific than that."
+    mc "She had white hair and purple eyes, but curly hair instead of straight, and she was a bit tan...."
+    nc "Well, Orion has curly hair, but she's not short or fat..."
+    gb "She's short to me." 
+    gb "But that's because I'm 6'6 :)"
+    gb "I can't think of a single person who matches that description."
+    nc "..."
+    nc "Gabriel, doesn't that sound like... like it could be..."
+    gb "..."
+
+    gb "Tony..." 
+    gb "Be honest."
+    gb "What did you really say to her?"
+    menu:
+        "Answer":
+            nc "Tony don't answer that!"
+            menu:
+                "Listen to Niecy and shut your yap":
+                    pass
+
+                "Double down":
+                    nc "Gabriel stop him! Save him!!"
+                    gb "From himself?"
+                    gb "Hahaha..."
+                    gb "Go ahead and finish."
+                    menu:
+                        "Tell Gabriel what you said despite the ominous laugh":
+                            jump earlyend
+                        "Cede the battle to Niecy and sit this one out":
+                            pass
+
+        "Do not":
+            pass
+    
+    mc "Uh you know uh normal stuff."
+    mc "I didn't say anything mean."
+    mc "I was, like, super nice to her. And stuff."
+    gb "Hmph."
+    nc "Yeah, he's livid."
+    nc "I'm more curious as to why you passed up on the opportunity to fuck his mom."
+    nc "Even if you weren't interested."
+    gb "You win some, you lose some, I guess."
+    gb "You've still got more dates lined up, so don't-"
+    gb "Don't fuck it up."
+    gb "I was going to say \"don't count yourself out just yet,\" but."
+    gb "I have  no reason to say that."
+    nc "That's not really your style, anyway."
+    gb "No, no it isn't. You're right, Niecy! You always are <3"
+
+
+    return
+
 label afterq:
     gb "What happened?"
     mc "__ lost __ pronouns."
     gb "Oh wow."
     gb "That must be so tough for __."
-    mc "__ can't even refer to __ in the first person."
-    gb "Damn that fucking sucks."
+    mc "__ know, right? __ can't even refer to __ in the first person."
+    mc "Why is that????"
+    gb "It's a mystery."
+    mc "Man Gabe,"
+    gb "You are not permitted to call me that."
+    mc ""
 
 
     return
 
-label afterlb:
-
-    gb "Ha!"
-    gb "Nice try."
-
-    return
 
 
 #endregion Gabriel interludes
@@ -154,80 +240,11 @@ label afterlb:
 
 #region Dates
 
-label ladybird:
-    mc "And for the LAST time, I'm onlty looking to date GIRLS!! NOT men."
-    lb "Can I be included in that designation?"
-    lb "Girls and Ladybird, if it's not too much trouble."
+label jules:
 
     return
 
-label qdate:
-    qt "Ok. First question:"
-    qt "What are your pronouns?"
-    "gabes really resting my pasticence with all ofthe curveballs hes throwing me."
-    "first analie,n. now a LIBERAL"
-    "I HAVE TO STAND MY GROUND."
-    mc "I don't {i}do{/i} pronouns."
-    qt "No pronouns?"
-    mc "No."
-    qt "So if I were to use he/him for you, that would be misgendering..."
-    mc "No, it- {nw=0.5}"
-    qt "No pronouns..."
-    mc "wait a minute-{nw=0.5}"
-    $ renpy.notify("Pronouns lost!")
-    qt "...got it."
-
-    qt "Alright, second question."
-    qt "Hypothetically." 
-    qt "If __ girlfriend were a worm, would __ still love her?"
-    mc "What?"
-    qt "If __ girlfriend were a worm,"
-    qt "would __ still love her?"
-    mc "Would who still love her?"
-    qt "__, Tony! __!!"
-    mc "HOW are you doing that with your mouth???"
-    qt "__ didn't answer my question."
-    mc "Well of course __ would love __ hypothetical girlfriend"
-    "..."
-    "hold on"
-    mc "__ would love __ hypothetical girlfriend"
-    mc "what is goin g on"
-    qt "Oh, __ said __ didn't do pronouns."
-    qt "So I took em. {w}No pronouns for __!"
-    #tony D:    
-
-    qt "Okay. Last question."
-    qt "If __ were put in an elementary school and __ couldn't escape, how many fifth graders do __ think __ could take out before dying?"
-    mc "{w=0.9}Like in CoD zombies?"
-    qt "Yeah"
-    mc "Easily 300 rounds."
-    qt "Really?????"
-    mc "Yeah. Like __ easily got 300 rounds in blops 3 zombies. on every map"
-    qt "Oh wow! Isn't that world record?"
-    qt "Wait I'm looking that up right now..."
-    "whats she doing"
-    mc "jsyk __ records orent on thwe leaderboards yet tho hteyre still beeing verified"
-    qt "Says highest possible round is 255..."
-    mc "yeah but"
-    qt "Higher rounds aren't possible without mods..."
-    qt "Yeah gonna have to doubt on the fifth graders question :/"
-    mc "__ could do it!"
-    qt "Excuse me, are __ modding my fifth graders question?"
-    mc ""
-
-    qt "anyway."
-    qt "Still can't believe the whole \"no pronouns\" thing."
-    qt "Me personally, my pronouns are just she cuz I can't be her"
-    qt "(Her is my girlfriend)"
-    mc "You have a GIRLFRIEND?"
-    qt "Oh yeah I do"
-    qt "We're not really looking for a third, though."
-    mc "So why are you here?"
-    qt "Oh I just thought it'd be funny lol"
-    mc "So you're g-"
-    #q fades away
-
-
+label mamad:
 
     return
 
@@ -334,8 +351,7 @@ label ashend:
     mc_polite "Tony finds Ash very beautiful and aesthetically pleasing."
     "I can't possibly turn up my nose at a real life girl gamer!"
     "I think sh'ell make a fine gf."
-    "why's she getting up"
-    mc "Where are you going?"
+    mc "Wait,where are you going?"
     ash "I gotta get home. It's late"
     mc "Wait!"
     mc "Let's make plans for another date."
@@ -370,6 +386,92 @@ label why_pibb:
     # replace ending check with next date
     return
 #endregion Just Ash...
+
+
+label ladybird:
+    mc "And for the LAST time, I'm onlty looking to date GIRLS!! NOT men."
+    lb "Can I be included in that designation?"
+    lb "Girls and Ladybird, if it's not too much trouble."
+
+
+    return
+
+# gabriel interrupts here to ask how it's going so far
+
+
+label qdate:
+    qt "Ok. First question:"
+    qt "What are your pronouns?"
+    "gabes really resting my pasticence with all ofthe curveballs hes throwing me."
+    "first analie,n. now a LIBERAL"
+    "I HAVE TO STAND MY GROUND."
+    mc "I don't {i}do{/i} pronouns."
+    qt "No pronouns?"
+    mc "No."
+    qt "So if I were to use he/him for you, that would be misgendering..."
+    mc "No, it- {nw=0.5}"
+    qt "No pronouns..."
+    mc "wait a minute-{nw=0.5}"
+    $ renpy.notify("Pronouns lost!")
+    qt "...got it."
+
+    qt "Alright, second question."
+    qt "Hypothetically." 
+    qt "If __ girlfriend were a worm, would __ still love her?"
+    mc "What?"
+    qt "If __ girlfriend were a worm,"
+    qt "would __ still love her?"
+    mc "Would who still love her?"
+    qt "__, Tony! __!!"
+    mc "HOW are you doing that with your mouth???"
+    qt "__ didn't answer my question."
+    mc "Well of course __ would love __ hypothetical girlfriend"
+    "..."
+    "hold on"
+    mc "__ would love __ hypothetical girlfriend"
+    mc "what is goin g on"
+    qt "Oh, __ said __ didn't do pronouns."
+    qt "So I took em. {w}No pronouns for __!"
+    #tony D:    
+
+    qt "Okay. Last question."
+    qt "If __ were put in an elementary school and __ couldn't escape, how many fifth graders do __ think __ could take out before dying?"
+    mc "{w=0.9}Like in CoD zombies?"
+    qt "Yeah"
+    mc "Easily 300 rounds."
+    qt "Really?????"
+    mc "Yeah. Like __ easily got 300 rounds in blops 3 zombies. on every map"
+    qt "Oh wow! Isn't that world record?"
+    qt "Wait I'm looking that up right now..."
+    "whats she doing"
+    mc "jsyk __ records orent on thwe leaderboards yet tho hteyre still beeing verified"
+    qt "Says highest possible round is 255..."
+    mc "yeah but"
+    qt "Higher rounds aren't possible without mods..."
+    qt "Yeah gonna have to doubt on the fifth graders question :/"
+    mc "__ could do it!"
+    qt "Excuse me, are __ modding my fifth graders question?"
+    mc ""
+
+    qt "anyway."
+    qt "Still can't believe the whole \"no pronouns\" thing."
+    qt "Me personally, my pronouns are just she cuz I can't be her"
+    qt "(Her is my girlfriend)"
+    mc "You have a GIRLFRIEND?"
+    qt "Oh yeah I do"
+    qt "We're not really looking for a third, though."
+    mc "So why are you here?"
+    qt "Oh I just thought it'd be funny lol"
+    mc "So you're g-"
+    #q fades away
+
+
+
+    return
+
+label onyx:
+
+    return
 
 label dragon:
     "I'm hoping the next one is a REAL catch this time."
@@ -413,12 +515,11 @@ label endingcheck:
     mc "Gabe!!! Obviously by \"girls,\" the English word for female children, I meant \"adult women.\""
     mc "EVERYONE knows tha.t"
     gb "Uh-huh."
-    gb "You are not permitted to call me \"Gabe,\" by the way."
     gb "So have you decided on who you'd like to continue pursuing?"
     mc "Nah, you gotta set up some more dates. They all left and I can't figure out why :/"
-    gb "You-"
     gb "You're telling me you fumbled all of them?"
     gb "All of them, in a row?"
+    gb "Every single one?"
     mc "I didn't fumble; I'm the prize!"
     #gabriel grimaces with his eyes wide.
 
@@ -432,7 +533,8 @@ label endingcheck:
     return
 
 label regularending:
-    gb "*breathes in*"
+    gb "Tony."
+    gb ""
     call killing_chant
     mc "What?"
     gb "You're going to hell."
@@ -447,6 +549,25 @@ label failsafeending:
     gb "um..."
     jump regularending
     #ending continues as normal. should be unreachable by the player
+    return
+
+label earlyend:
+    nc "Nooooooo!!"
+    mc "Can you stop SCREAAMING and let me finish?"
+    mc "Jeez woman."
+    mc "So like I said, I was already kinda put off by her being old and fat."
+    mc "But when she transformed into a wing monster, I just couldn't deal."
+    mc "So I told her,"
+    mc_polite "*slurs*"
+    mc "I don't know WHAT she was thinking goin out in public like that."
+    gb "Wow! I'm so impressed!"
+    mc "Are you!"
+    gb "Yeah!"
+    gb "You really showed my mother who's boss!"
+    mc ""
+    mc "that was your mom?" #tiny
+    nc "You're really in it now..."
+    #you died
     return
 
 label sodaending:
