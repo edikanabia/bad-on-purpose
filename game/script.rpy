@@ -11,7 +11,7 @@ define date = Character()
 
 define gb = Character("Gabriel")
 define nc = Character("Niecy")
-define mama = Character("mama!!!!")
+define mama = Character("mama")
 define ash = Character("Ash")
 define lb = Character("Ladybird")
 define qt = Character("Sephirah")
@@ -33,6 +33,9 @@ define mc_polite = Character()
 # The game starts here.
 
 label start:
+
+    $ flash_on = false
+    #show a menu that toggles the flash at the end of the story (the lightning)
 
     $ normal_points = 0
 
@@ -64,6 +67,7 @@ label notifytest:
     $ renpy.notify("Hunting license revoked.")
 
     mc "wtf"
+    mc "My hunting license"
     return
 
 label gabeintro:
@@ -115,7 +119,7 @@ label gabeintro:
     gb "Listen. Tony."
     gb "As a recovering misogynist myself, no one wants to hear you say that."
     gb "But to answer your question, these are actually functions of the same thing."
-    mc "Man if it's  easy I wouldev had a gf alaready... i feel like you're lying."
+    mc "Man if it's theat easy I wouldev had a gf alaready... i feel like you're lying."
     gb "Because you're so normal?"
     mc "Yeah!"
     gb "Yeah we'll see about that."
@@ -145,6 +149,7 @@ label where_to:
             "I'm a GENIUS!"
     
     "I should take everyone to this venue!"
+
     return
 
 #region Gabriel interludes
@@ -152,14 +157,24 @@ label where_to:
 label interlude:
 
     nc "Hello white man!"
+    mc "Who's this?"
+    gb "My assistant, Niecy."
+    nc "Nice to meet you!"
+    mc "Okay."
+    nc "(\"Okay?\" Not \"The pleasure's all mine\" or \"Nice to meet you too?\")"
+    gb "(I told you you wouldn't like him.)"
     gb "How goes it?"
     mc "Tbh, I'm trying to keep faith in your guys' choices of girl, but these ppl arenn't my thing at all!"
-    mc "I was so miffed from that first one I actually called over another girl."
+    nc "I'm so sorry!!"
+    nc "I really tried my hardest to find as many women with unmatched beauty and attractive personalities as I could."
+    mc "Well you're not doing a very good job!"
+    mc "I was so miffed from that first one I actually called over another girl to finish out the night."
     gb "Well look at you, coming out of your shell."
-    mc "Yeah, she was happy to date m e but I got closer and she was kinda fat and old so I had to tell her no"
+    mc "Yeah, she was happy to date m e but I got closer and she was kinda fat and old so I had to tell her no. Just my luck huh"
     gb "Fumble."
     nc "Yo send her my way!"
     #gabriel niecy high five
+
     mc "Now that i think about it, she kinda looked like you Gabe!"
     mc "White hair, purple eyes, everything."
     gb "Huh? A woman who looked like me? who's chubby and old?"
@@ -203,19 +218,22 @@ label interlude:
     mc "Uh you know uh normal stuff."
     mc "I didn't say anything mean."
     mc "I was, like, super nice to her. And stuff."
-    gb "Hmph."
-    nc "Yeah, he's livid."
+    gb "You hurt her feelings."
     nc "I'm more curious as to why you passed up on the opportunity to fuck his mom."
     nc "Even if you weren't interested."
     gb "You win some, you lose some, I guess."
+    mc "wait"
+    mc "THat was your MOM?"
+
     gb "You've still got more dates lined up, so don't-"
     gb "Don't fuck it up."
     gb "I was going to say \"don't count yourself out just yet,\" but."
     gb "I have  no reason to say that."
     nc "That's not really your style, anyway."
     gb "No, no it isn't. You're right, Niecy! You always are <3"
+    gb "Now GET OUT OF MY SIGHT!"
 
-
+    #and scene!
     return
 
 label afterq:
@@ -225,11 +243,18 @@ label afterq:
     gb "That must be so tough for __."
     mc "__ know, right? __ can't even refer to __ in the first person."
     mc "Why is that????"
+    #gabriel stares at the camera
     gb "It's a mystery."
     mc "Man Gabe,"
-    gb "You are not permitted to call me that."
-    mc ""
-
+    gb "__ are not permitted to call me that, by the way."
+    gb "I neglected correct __ earlier. But I should have."
+    mc "Man Gabriel, this date stuff is annoying."
+    mc "Is it easier to date men?"
+    gb "Shouldn't you have asked yourself that when you on a date with a man?"
+    mc "Well maybe I didn't realize it then!"
+    mc "...you're pretty."
+    gb "I'm married."
+    mc "Dammit!"
 
     return
 
@@ -237,14 +262,108 @@ label afterq:
 
 #endregion Gabriel interludes
 
+#region Days
+label night_one:
+
+    return
+
+
+label day_two:
+
+    return
+
+
+#endregion Days
 
 #region Dates
 
 label jules:
 
+    
+    jl "Hey!"
+    mc "Hello."
+    jl "Sorry I'm late! How are ya?"
+    mc "I'm pretty good."
+    jl "Cool!"
+    #silence
+    jl "So um, what do you for fun!"
+    mc "Read a book for the first time."
+    jl "Oh, I totally get you. I've been so distracted with everything going on, I barely have time to read either."
+    jl "I haven't finished a good book in so long."
+    jl "..."
+    jl "I'm sorry, did you say you read a book for the first time?"
+    mc "Yeah"
+    jl "Like ever?"
+    mc "Yeah, it was tough but I got through it."
+    jl "You've never read a book before?"
+    mc "No, is that weird?"
+    jl "It's a little weird, yeah."
+    jl "I don't wanna judge or anything, though."
+    jl "What book was it?"
+    mc "Cat in the Hat"
+    jl "{w=0.7}Dr. Seuss?"
+    mc "Yeah"
+    jl "How did you find the {w=0.6}you know, {w=0.4}the experience?"
+    mc "was alright. I liekd the pictures"
+    jl "he's, yanno. he's a good artist"
+    mc "Eh honestly in my opinion "
+
+
+    jl "I don't love this place, actually."
+
+    jump mamad
+    
     return
 
 label mamad:
+    #mama from a distance cg
+    $ leave_early = false
+
+    mc "Hello? Hello? Hello beautiful woman?"
+    "???" "Are you referring to me as a beautiful woman!?"
+    mc "You wanna come over here?"
+    "???" "WEll I must approach, if I am being summoned..."
+    "..."
+    "Now that Im up cloase n personal..."
+    $ renpy.notify("She's literally stunning.")
+    "Shes... not that hot."
+    mc "How old are you mama?"
+    mama "The destruction of your pplanet predates me!"
+    mama "Yet, I outrank every member of your species!"
+    mama "In terms of the numbers, I am ranked the highest at 6,689,243rd!"
+    mc "How are you ranked that low?"
+    mama "On the contrary! It's the highest in the world!"
+    mc "But there aren't even that many players om WoW Classic."
+    mama "I beg your pardon?"
+    mc "WoW Classic."
+    mama ":3?"
+    mc "The video game????"
+    mama "I am confused as to why you brought up video games seeing as you asked me how old I am!"
+    mama "I was borne from a thought around six million years ago, eight billion years in the future!"
+    mc "Damn!!"
+    mama "Is that, a turn-off...?"
+    menu:
+        "Yeah":
+            #premature date end
+            mc "It totally is."
+            mc "Man. I'm goin home."
+            $ leave_early = true
+            jump night_one
+        "Nah":
+            $ normal_points = normal_points + 1
+            pass
+
+    mc "where ar eyou from?"
+    mama "I am from the mass of deepspace that obstructs the corners of the universe!"
+    mama "I was cursed to live on Earth! But Earth is no curse at all! Not to me!!"
+    mama "I traveled the universe in search of love..."
+    mama "You called me over, and it must be because you love me!"
+    mama "Show me some love!! Yes, let us create love!!"
+    "WOAH."
+    "Back off, lady. You're a 6. at best"
+    "Man. It's always the ugly girls that are so forward..."
+
+
 
     return
 
@@ -254,6 +373,10 @@ label ash:
 
     "The next date should be arriveing soon... she better be good."
     ash "Oh hey! Are you Tony?"
+    mc "Wh- you're not even human!"
+    ash "Get over it"
+    mc "ok."
+    mc "Yeah. I'm Tony."
     mc "That's my name, dont' wear it out."
     ash "Ooookay."
     ash "How are ya?"
@@ -262,7 +385,7 @@ label ash:
     mc ""
     ash "(is he not gonna ask how i'm doing...?)"
     ash "So what do you do for fun?"
-    mc "mmm, cna't flex too hard or I\"ll scare her away... keep it humble..."
+    "mmm, cna't flex too hard or I\"ll scare her away... gotta keep it humble..."
     mc "Eh, nothing too flashy, just flexing my intellectual muscles pondering the meaning of life while benchinig 450lbs with one arm..."
     "nailed it"
     ash "You work out, huh?"
@@ -323,10 +446,10 @@ label ash:
     # the soda cutscene, which is a recorded twitch vod of maru (as ash) rating every soda while being heckled by chat
 
 
-
+    ash "And that's pretty much it."
     #the date branches to give you a different ending based on whether or not you like PiBB Xtra
     menu yoursoda:
-        "What's your favorite kind of soda?"
+        ash "What's your favorite kind of soda?"
         "Dr Pepper":
             $ fav_soda = "pepper"
             ash "Oh, great! Glad you agree."
@@ -389,9 +512,10 @@ label why_pibb:
 
 
 label ladybird:
-    mc "And for the LAST time, I'm onlty looking to date GIRLS!! NOT men."
-    lb "Can I be included in that designation?"
-    lb "Girls and Ladybird, if it's not too much trouble."
+    #ladybird (sier) is expecting a proper date
+    #step 1: pick him up at his house
+    lb "I am excited to be a passenger in one of those earthly machines... what were they called..."
+    lb "Automobiles."
 
 
     return
@@ -408,6 +532,9 @@ label qdate:
     mc "I don't {i}do{/i} pronouns."
     qt "No pronouns?"
     mc "No."
+    qt "Only your name?"
+    mc "Yeah."
+    mc "wait,"
     qt "So if I were to use he/him for you, that would be misgendering..."
     mc "No, it- {nw=0.5}"
     qt "No pronouns..."
@@ -431,7 +558,7 @@ label qdate:
     mc "__ would love __ hypothetical girlfriend"
     mc "what is goin g on"
     qt "Oh, __ said __ didn't do pronouns."
-    qt "So I took em. {w}No pronouns for __!"
+    qt "So I took em. {w}Don't need those anymore!"
     #tony D:    
 
     qt "Okay. Last question."
@@ -465,7 +592,9 @@ label qdate:
     mc "So you're g-"
     #q fades away
 
-
+    if normal_points >3:
+        call afterq
+    
 
     return
 
@@ -474,9 +603,24 @@ label onyx:
     return
 
 label dragon:
+    "It's the last date."
+    "So dar that ASS-istant Niecy has been setting me up to FAIL."
+    "Sending me a beautiful woman and there's alwasy somme trick..."
     "I'm hoping the next one is a REAL catch this time."
-    "Oh, she's almost here."
+    "Oh, that must be her."
     dg "Hello!"
+    mc "Hello beautiful woman."
+    dg "How are __?"
+    dg "*gasp* __ pronouns!"
+    mc "What about them?"
+    dg "They're gone!"
+    dg "Hold on, I'll fix this:"
+    #thunderclap with white flash
+    $ renpy.notify("Pronouns restored.")
+    dg "That should do it."
+    dg "It's such a beautiful evening! Why are we cramped indoors?"
+    mc "Eh, I don't like the outdoors."
+    dg ""
 
 
     mc "*sight*"
@@ -484,6 +628,7 @@ label dragon:
     mc "what's the catch."
     dg "Oh, no catch!"
     dg "But I am technically a dragon."
+    #hard cut.
     "So many women, and not a single one dateable."
 
 
