@@ -325,7 +325,7 @@ label jules:
 
 label mamad:
     #mama from a distance cg
-    $ leave_early = false
+    $ leave_early = False
 
     mc "Hello? Hello? Hello beautiful woman?"
     "???" "Are you referring to me as a beautiful woman!?"
