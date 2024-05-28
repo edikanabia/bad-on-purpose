@@ -34,7 +34,7 @@ define mc_polite = Character()
 
 label start:
 
-    $ flash_on = false
+    $ flash_on = False
     #show a menu that toggles the flash at the end of the story (the lightning)
 
     $ normal_points = 0
@@ -52,7 +52,7 @@ label start:
     show eileen happy
 
     e "TIME JUMP!! w"
-    jump interlude
+    jump onyx
 
     # These display lines of dialogue.
 
@@ -605,6 +605,62 @@ label qdate:
 
 
 label onyx:
+
+    mc "Huh.. wait _ still can't talk about __self!"
+    mc "fuck..."
+
+    "guess __ stuck like this for a while."
+    "_ still got another date, hopefully the next frew girls 
+    dont mind not being able to say anything about __ pronouns"
+    "Feels like Gabriel did this just to watch __ suffer more than he knows _ already have."
+    "Yeah... definitely set up by... THEM huh.."
+    "_ swear... ___ definitly get __ revenge after this is all ov-"
+    
+    ox "um... __ wouldn't happen to be Tony correct??"
+    mc "oh uh yeah"
+    mc "that's... __"
+    ox "how are ___ doing that with ___ mouth?"
+    #onxy looks concerned never | experienced anything like this
+
+    mc "she took __ pronouns."
+    ox "Who's pronouns?"
+    mc "__ pronouns"
+    ox "Pronouns?"
+    mc "__ Pronouns"
+    ox "But.. who took who's pronouns?"
+    mc "she took __ pronouns"
+    ox "she took pronouns?"
+    mc "yes"
+    ox "So.. ___ pronouns are she/her"
+    mc "no, __ pronouns are not she/her"
+    ox "then what are pronouns then?"
+    mc "__ pronouns are ___/__"
+    ox "...well?"
+    mc "__/___"
+    ox "so pronouns are.. nothing?"
+    ox "___ dont know what pronouns are?"
+    mc "_ KNOW WHAT PRONOUNS ARE"
+    ox "Then which pronouns do ___ use?!"
+    mc "oooooh... _ see what the problem is."
+    ox "What is the problem?"
+    mc "YOU cant understand __!"
+    ox "...what am i not getting then???"
+    mc "__ pronouns!"
+    ox "i think ___ are the one who doesn't get pronouns Tony..."
+    "god help __"
+    mc "no you misunderstand!"
+    ox "i don't think i do..."
+    mc "NO, ITS __ PRONOUNS... THEY'RE GONE!"
+    ox "I'm pretty sure we still use pronouns everyday."
+    mc "_ REALIZE THAT NOW"
+    ox "umm... i did??? 🤔"
+    mc "No... _... uhg.."
+    ox "...well since ___ clearly don't understand"
+    ox "Im just gonna say that MY pronouns are he/him"
+    mc "{w=0.9}w h a t"
+    ox "My pronouns are He/Him"
+    mc "Your pronouns are he/him?! _ can't believe this!"
+    ox "OH! GOOD! I UNDERSTOOD THAT ONE!"
 
 
     if normal_points >3:
