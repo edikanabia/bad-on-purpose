@@ -224,7 +224,7 @@ label interlude:
     gb "You win some, you lose some, I guess."
     mc "wait"
     mc "THat was your MOM?"
-
+    nc "" #skull emoji
     gb "You've still got more dates lined up, so don't-"
     gb "Don't fuck it up."
     gb "I was going to say \"don't count yourself out just yet,\" but."
@@ -250,12 +250,12 @@ label afterq:
     gb "I neglected correct __ earlier. But I should have."
     mc "Man Gabriel, this date stuff is annoying."
     mc "Is it easier to date men?"
-    gb "Shouldn't you have asked yourself that when you on a date with a man?"
-    mc "Well maybe I didn't realize it then!"
-    mc "...you're pretty."
-    gb "I'm married."
-    mc "Dammit!"
-
+    gb "Shouldn't __ have asked __ that when __ went on a date with a man?"
+    mc "Well __ didn't realize it then!"
+    gb "Realize what?"
+    mc "That... that __ could ever be with a man."
+    gb "Tony..."
+    gb "__'ve been terrible so far. Don't go developing on me {i}now.{/i}"
     return
 
 
@@ -522,12 +522,11 @@ label ladybird:
 
 # gabriel interrupts here to ask how it's going so far
 
-
 label qdate:
     qt "Ok. First question:"
     qt "What are your pronouns?"
     "gabes really resting my pasticence with all ofthe curveballs hes throwing me."
-    "first analie,n. now a LIBERAL"
+    "first a man. now a LIBERAL"
     "I HAVE TO STAND MY GROUND."
     mc "I don't {i}do{/i} pronouns."
     qt "No pronouns?"
@@ -592,15 +591,22 @@ label qdate:
     mc "So you're g-"
     #q fades away
 
-    if normal_points >3:
-        call afterq
-    
+
 
     return
+
 
 label onyx:
 
+
+    if normal_points >3:
+        call afterq
+    
+    
     return
+
+
+
 
 label dragon:
     "It's the last date."
@@ -628,7 +634,7 @@ label dragon:
     mc "what's the catch."
     dg "Oh, no catch!"
     dg "But I am technically a dragon."
-    #hard cut.
+    #hard cut to him in his room.
     "So many women, and not a single one dateable."
 
 
