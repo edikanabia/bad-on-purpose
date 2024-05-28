@@ -20,24 +20,35 @@ define jl = Character("Jules")
 define ox = Character("Onyx")
 
 #change the args on this to make it a subtitle chant that auto advances
-define chant = Character("gabriel")
+define chant = Character("Gabriel")
 
-python:
-    name = renpy.input("Your name?")
-    name = name.strip() or "Kevin"
 
 define mc = Character("tony")
 define mc_polite = Character()
+
+#all flags
+define bird_fail = True
+define normal_points = 0
 
 
 # The game starts here.
 
 label start:
 
+
+
     $ flash_on = False
     #show a menu that toggles the flash at the end of the story (the lightning)
 
-    $ normal_points = 0
+
+    python:
+        name = renpy.input("Name the protagonist! (We recommend not giving him the name of someone or something you like.)")
+        name = name.strip() or "Kevin"
+        
+
+    "sys" "Looks like your name issssssssssss"
+    "sys" "[mc]"
+    "sys" "aren't you glad we saved you the trouble?"
 
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
@@ -51,8 +62,10 @@ label start:
 
     show eileen happy
 
+
+
     e "TIME JUMP!! w"
-    jump onyx
+    jump gabeintro
 
     # These display lines of dialogue.
 
@@ -71,6 +84,7 @@ label notifytest:
     return
 
 label gabeintro:
+    #scene: Gabriel's room
 
     "I did agree to meet thiss gabriel guy to set up these dates."
     "so where is he?"
@@ -128,18 +142,22 @@ label gabeintro:
     "he vanished."
     "well!"
 
-    jump where_to
+
+    jump day_one
 
     return
 
 label where_to:
     "I'vev got a long week ahead of me. But first I have to make an important decision!"
+    $ where = ""
     menu:
         "Where should I take my date to?"
         "Fancy restaurant":
             "Yes, yes! The fanciest restaurant I can think of!"
+            $ where = "fancy restaurant"
         "Coffee shop":
             "Of course! What better coffee shop than McCafe!"
+            $ where = "coffee shop"
         "Beach":
             "The beach...?"
             "Ehh... but I hate sweating."
@@ -155,7 +173,9 @@ label where_to:
 #region Gabriel interludes
 
 label interlude:
+    #scene: gabriel room
 
+    mc "Gabriel!"
     nc "Hello white man!"
     mc "Who's this?"
     gb "My assistant, Niecy."
@@ -164,15 +184,29 @@ label interlude:
     nc "(\"Okay?\" Not \"The pleasure's all mine\" or \"Nice to meet you too?\")"
     gb "(I told you you wouldn't like him.)"
     gb "How goes it?"
+    mc "Not great!"
+    mc "How comes, yesterday, you had me do all that only for the lady to turn out to be a dude!?"
+    nc "What? I thought men were okay!" 
+    nc "You had the text in your bio that said,\"I have a soft spot for pretty men.\""
+    mc "Whhaaaaaaaaaaat who put that there?"
+    if bird_fail == False:
+        gb "And we told you ahead of time... that Ladybird is a man."
+        "...it's true. it was on my phone. they texted me"
+        mc "Well he wasn't cool anyway!"
+    else:
+        gb "Well we all saw how you treated him."
+        gb "No need to complain after the fact. You got your point across."
+    nc "It usually takes a couple dates to find someone you click with."
+    nc "We'll find someone for you! Don't worry too much."
     mc "Tbh, I'm trying to keep faith in your guys' choices of girl, but these ppl arenn't my thing at all!"
     nc "I'm so sorry!!"
     nc "I really tried my hardest to find as many women with unmatched beauty and attractive personalities as I could."
+    nc "Just like you put in your description..."
     mc "Well you're not doing a very good job!"
     mc "I was so miffed from that first one I actually called over another girl to finish out the night."
     gb "Well look at you, coming out of your shell."
     mc "Yeah, she was happy to date m e but I got closer and she was kinda fat and old so I had to tell her no. Just my luck huh"
-    gb "Fumble."
-    nc "Yo send her my way!"
+    nc "Fat and old!? Yo send her my way!"
     #gabriel niecy high five
 
     mc "Now that i think about it, she kinda looked like you Gabe!"
@@ -193,7 +227,7 @@ label interlude:
 
     gb "Tony..." 
     gb "Be honest."
-    gb "What did you really say to her?"
+    gb "What did you really say to her?" #gabriel's really close to the screen now.
     menu:
         "Answer":
             nc "Tony don't answer that!"
@@ -232,7 +266,8 @@ label interlude:
     nc "That's not really your style, anyway."
     gb "No, no it isn't. You're right, Niecy! You always are <3"
     gb "Now GET OUT OF MY SIGHT!"
-
+    
+    jump ash
     #and scene!
     return
 
@@ -321,14 +356,58 @@ label afterq:
 
 #endregion Gabriel interludes
 
-#region Days
-label night_one:
+#region Days 
+#all of the days are in tony's room.
+label day_one:
+    #scene: tony's room
+    call where_to
+    jump jules
+    return
 
+label night_one:
+    "man..."
+    "tonight was CRAZY."
+    ""
+    jump day_two
     return
 
 
 label day_two:
+    #it's the next day and tony's up bright and early because gabe 
+    #said he has to show out and be gentle for the next date.
+    "Another day?"
+    "Another HAWT BABE! woohoo!"
+    "Gabriel said for this one that I have to have to treat this next one with \"gentleness and care.\""
+    "No need ot remind me, Im' the gentlest gy there is."
+    "I evemm have my yearbook superlative for gentlest guy..."
+    "Of cours,e I mean my middle shchool yearbook."
+    jump ladybird
+    return
 
+label night_two:
+    #tony's gonna plan to show up at gabriel's room angry, feeling set up.
+    "Tuh. a MAN named LADYbird? riDICKulous."
+    "Tomorrow morning I'm gonna show Gabriel a pizza my mind."
+    jump interlude
+
+    return
+
+label night_three:
+    #return here after onyx. last time's a charm.
+    "Another resounding... failuer."
+    "The girl could be cute, and I'll JUST start to overlook her flaws..."
+    "And then there's always a catch!"
+    "The Universe is so CRUEL to me!!"
+    "guess i'll just go to bed and try to prepare for tomorrow..."
+    jump dragon
+    return
+
+label night_four:
+    "So many women and not a single one of them dateable."
+    "Damn."
+    "I guess tomorrow I'm gonna have to tell Gabriel to send some more myway."
+    "And to tell his assistant to stop ffffmucking it up for me..."
+    jump endingcheck
     return
 
 
@@ -422,14 +501,84 @@ label mamad:
     "Back off, lady. You're a 6. at best"
     "Man. It's always the ugly girls that are so forward..."
 
+    call notifytest
 
+    jump night_one
 
     return
+
+label ladybird:
+
+    #ladybird (sier) is expecting a proper date
+    #step 1: pick him up at his house
+    #scene: all black
+    "*knock* *knock* *knock"
+
+    lb "I am excited to be a passenger in one of those earthly machines... what were they called..."
+    lb "Automobiles."
+    mc "About that..."
+    mc "I don't have a car?"
+
+    #copy over Janay's scene
+    #scene: mcdonalds
+
+    mc "Wait. You're a man?"
+    lb "I think so!"
+    mc "I thought you were a girl!!"
+    lb "Oh, no. I'm not educated enough to be a girl, yet."
+    lb "But I'm working toward my BFA (Bachelor of Femme Arts)"
+    mc "Huh!? I thought... with a name like {i}Lady{/i}bird..."
+    lb "You might not believe this, but my mononym penname is not, in fact, my true name!"
+
+    
+
+    jump night_two
+
+    return
+
+label ladybird_fail:
+    $ bird_fail = True
+    #CG: niecy and gabriel in the bushes
+    nc "Uh oh. Looks likek it's going south..."
+    gb "I will intervene. Worry not."
+    #scene: McDonald's
+    gb "Excuse me, for a moment!"
+    lb "Oh...! Tiny, your compatriot."
+    gb "TONY!! WHAT are you DOING!"
+    mc "Just being honest!!!"
+    gb "I TOLD YOU-"
+    #ladybird looks at him funny
+    gb "Have you no tact? I told you, gentleness and care!"
+    mc "I was being gentle! I got this I promise!"
+    gb "I'll be \"gentle\" when I tear you limb from limb if you don't scurry your sorry lil white ass home you paper pale worthless pile of sawdust."
+    gb "I swear to god."
+    #tony skidaddles
+    gb "He wasn't too mean to you, was he?"
+    lb "I mean, people have been cruel to me before."
+    gb "Don't worry."
+    gb "I'll treat you right."
+    #so if you fail ladybird he isn't going to talk to you, and it should lock you out of Gaybriel too.
+
+
+    jump night_two
+
+    return
+
+# gabriel interrupts here to ask how it's going so far
 
 #region Just Ash...
 label ash:
     $ fav_soda = ""
-
+    "I don't believe gabriel whe he says the dates falling thru are my fautl."
+    if where != "":
+        "I've beeen taking my dates to the greatest [where] in the world..."
+    else:
+        "I've been saving them from the horrors of going to the beach...outside..."
+        "where it's hot and dangerous..."
+    
+    "I've been showing them kindness by being honest..."
+    "And they're just walking out on me left and right."
+    "It makes no sense!"
     "The next date should be arriveing soon... she better be good."
     ash "Oh hey! Are you Tony?"
     mc "Wh- you're not even human!"
@@ -503,7 +652,10 @@ label ash:
             pass
     
     # the soda cutscene, which is a recorded twitch vod of maru (as ash) rating every soda while being heckled by chat
-
+    #OR: show the tier list
+    ash "So tbh imo ginger ale and rootbeer are kinda a particular flavor profile for me."
+    ash "They're like spicy in all the right ways, you know?"
+    #she just yaps here
 
     ash "And that's pretty much it."
     #the date branches to give you a different ending based on whether or not you like PiBB Xtra
@@ -517,7 +669,6 @@ label ash:
             $ fav_soda = "pibb"
             jump why_pibb
             
-    jump endingcheck
     return
 
 
@@ -541,7 +692,7 @@ label ashend:
     ash "Hell nah lmfao you broke asf taking me to this janky ass McDonald's 😂"
     ash "Thanks for the meal tho"
     "And after all I DID for her? Women are so ungrateful... grrrrr"
-    jump endingcheck
+    jump qdate
     # replace ending check with next date
     return
 
@@ -564,24 +715,29 @@ label why_pibb:
     ash "Oh, misogyny. I'm out"
     "No way she left!"
     "That wasn't misogyny it was just a keen observation from my large brain! grrr....."
-    jump endingcheck
+    "I'm so angry I could..."
+    "couldd..."
+    "..."
+    "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+    jump qdate
     # replace ending check with next date
     return
 #endregion Just Ash...
 
 
-label ladybird:
-    #ladybird (sier) is expecting a proper date
-    #step 1: pick him up at his house
-    lb "I am excited to be a passenger in one of those earthly machines... what were they called..."
-    lb "Automobiles."
 
-
-    return
-
-# gabriel interrupts here to ask how it's going so far
 
 label qdate:
+    #black screen. he fell asleep.
+    "???" "..hello..."
+    "???" "Hello?"
+    "huh?"
+    "who goes there!?"
+    #when he wakes up the mcdonald's looks a little strange.
+    #Q stands in front of him, and it's a date?
+    qt "you seem chill. lets hang out"
+    mc "Are you my *yaaaaawn* date?"
+    qt "uhhhh sure."
     qt "Ok. First question:"
     qt "What are your pronouns?"
     "gabes really resting my pasticence with all ofthe curveballs hes throwing me."
@@ -648,8 +804,14 @@ label qdate:
     mc "So why are you here?"
     qt "Oh I just thought it'd be funny lol"
     mc "So you're g-"
-    #q fades away
+    #q fades away and the mcdonald's turns back to normal
 
+    #normal points check
+    if normal_points > 3:
+        call afterq
+    else:
+        pass
+    jump onyx
 
 
     return
@@ -657,6 +819,7 @@ label qdate:
 
 label onyx:
 
+    #some of this is hidden if he meets gabriel after q
     mc "Huh.. wait _ still can't talk about __self!"
     mc "fuck..."
 
@@ -713,10 +876,7 @@ label onyx:
     mc "Your pronouns are he/him?! _ can't believe this!"
     ox "OH! GOOD! I UNDERSTOOD THAT ONE!"
 
-
-    if normal_points >3:
-        call afterq
-    
+    jump night_three
 
     return
 
@@ -749,8 +909,8 @@ label dragon:
     mc "what's the catch."
     dg "Oh, no catch!"
     dg "But I am technically a dragon."
-    #hard cut to him in his room.
-    "So many women, and not a single one dateable."
+
+    jump night_four
 
 
     return
@@ -805,6 +965,11 @@ label regularending:
     mc "What?"
     gb "You're going to hell."
     gb "Goodbye."
+
+    if normal_points >6:
+        pass
+    else:
+        pass
     #you died :(
 
     return
