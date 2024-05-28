@@ -51,7 +51,7 @@ label start:
 
     show eileen happy
 
-    e "TIME JUMP!!"
+    e "TIME JUMP!! w"
     jump interlude
 
     # These display lines of dialogue.
