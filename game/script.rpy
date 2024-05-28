@@ -253,9 +253,17 @@ label afterq:
     gb "Shouldn't __ have asked __ that when __ went on a date with a man?"
     mc "Well __ didn't realize it then!"
     gb "Realize what?"
-    mc "That... that __ could ever be with a man."
-    gb "Tony..."
-    gb "__'ve been terrible so far. Don't go developing on me {i}now.{/i}"
+    mc "Could __ ever be with a man?"
+    gb "I can't answer that for __."
+    mc "...could __ be with you?"
+    gb "I'm married."
+    mc "you-"
+    "here's how Tony can still win."
+    mc "Is your marriage open"
+    gb "Why, __ wanna watch?"
+
+
+
     return
 
 
@@ -602,7 +610,7 @@ label onyx:
     if normal_points >3:
         call afterq
     
-    
+
     return
 
 
