@@ -236,7 +236,10 @@ label interlude:
     #and scene!
     return
 
+
+#activates after gaining a certain amount of normal points
 label afterq:
+
     gb "What happened?"
     mc "__ lost __ pronouns."
     gb "Oh wow."
@@ -245,23 +248,71 @@ label afterq:
     mc "Why is that????"
     #gabriel stares at the camera
     gb "It's a mystery."
+    mc "YOu set me up."
+    gb "I didn't plan that."
     mc "Man Gabe,"
     gb "__ are not permitted to call me that, by the way."
     gb "I neglected correct __ earlier. But I should have."
     mc "Man Gabriel, this date stuff is annoying."
     mc "Is it easier to date men?"
-    gb "Shouldn't __ have asked __ that when __ went on a date with a man?"
+    gb "Shouldn't __ have asked __ that when __ went on the dates with men?"
     mc "Well __ didn't realize it then!"
     gb "Realize what?"
-    mc "Could __ ever be with a man?"
+    mc "...you're pwetty."
+    mc "I don't care that you're a man."
+    gb "Don't go developing on me {i}now,{/i} __'ve been so terrible so far..."
+    mc "Gabe- um- Gabriel?"
+    mc "Do you think __ could ever be with a man?"
     gb "I can't answer that for __."
     mc "...could __ be with you?"
     gb "I'm married."
-    mc "you-"
-    "here's how Tony can still win."
+    "here's how tony can still win:" #I need like death note copycat music here
     mc "Is your marriage open"
-    gb "Why, __ wanna watch?"
+    mc "cuz you seem like an open marriage guy."
+    mc "I'm not against being the third."
+    gb "(...This isn't good.)"
+    gb "(If he comes out as bisexual now, we'll never be taken seriously again...)"
+    gb "(Think of what this will do to the community...!)"
+    gb "My marriage is only open to women."
+    gb "Extra men aren't partners... they're accessories."
+    "Guh...! That objectifying gaze...! It's almost too much to bear!"
+    "__ can feel him queering my gender!"
+    "Wait... if __ play my cards right, __ can clutch this counter and live with a sliver of health...!"
+    mc "__ LIKE WHEN WOMEN ARE MEAN TO __!!"
+    gb "*snort*"
+    gb "__ don't mean that."
+    menu:
+        "I don't":
+            gb "Thought so."
+            "That was a close one. __ could have died."
+            "__'m not ready to be bisexual..."
+            gb "(Good... he's giving that look that says,\"I'm not ready to be bisexual.\")"
+            mc "Gabriel __ don't think __'m ready for this. That kind of love is too powerful."
+            mc "You can't set __ up with another man, okay?"
+            gb "oh bad news"
+            mc "what?"
+            gb "hahahahhahahahahhahahahahahhahahahahahahahahahahahahahahahahahahahaha{nw}"
 
+        "I do":
+            gb "...__'re squirming in __ seat."
+            mc "nuh-uh!"
+            gb "I've been keeping a secret from __, Tony."
+            gb "I may be a man."
+            gb "But I'm also a woman!"
+            "What!? But that means..."
+            "He's been objectifying me using a female gaze!?"
+            "No...! I hate when women are powerful!!"
+            "NOOOOOOOOOOOOOOOOOOOO!!!!!!"
+
+    #deathnote copycaat music fades away
+    gb "Anyway."
+    gb "The next person is almost here."
+    gb "I should leave soon."
+    mc "WAIT!!"
+    gb "What is it?"
+    mc "Can I have my pronouns back?"
+    gb "No."
+    #gabriel leaves.
 
 
     return
