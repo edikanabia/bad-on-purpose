@@ -86,6 +86,7 @@ image ash shocked = "images/portraits/ash_shocked.png"
 image ash pepper = "images/portraits/ash_elixir.png"
 image ash disgusted = "images/portraits/ash_disgusted.png"
 image ash worried = "images/portraits/ash_worried.png"
+image ash annoyed = "images/portraits/ash_annoyed.png"
 
 #aizeer
 image aizeer neutral = "images/portraits/aizeer_neutral.png"
@@ -100,6 +101,7 @@ image onyx sad = "images/portraits/onxy_sad.png"
 image onyx angry = "images/portraits/onxy_angry.png"
 image onyx shocked = "images/portraits/onxy_shocked.png"
 image onyx worried = "images/portraits/onxy_worried.png"
+image onyx confused = "images/portraits/onxy_confused.png"
 
 #q
 image q neutral = "images/portraits/q_neutral.png"
@@ -117,6 +119,9 @@ image bg mcdonalds = "images/backgrounds/mcdonalds_interior.png"
 image bg mcdonalds hazy = "images/backgrounds/hazy_mcdonalds_interior.png"
 image bg black = Solid("000")
 image bg white = Solid("fff")
+
+#tierlist 
+image tierlist = "images/funnies/soda_teirlist.png"
 
 #cgs
 
@@ -148,7 +153,7 @@ define leave_early = False
 
 label start:
 
-
+    jump ash
 
     #show a menu that toggles the flash at the end of the story (the lightning)
 
@@ -810,69 +815,72 @@ label ash:
     "And they're just walking out on me left and right."
     "It makes no sense!"
     "The next date should be arriveing soon... she better be good."
-    ash "Oh hey! Are you Tony?"
+
+    show ash 
+
+    ash happy "Oh hey! Are you Tony?"
     mc "Wh- you're not even human!"
-    ash "Get over it"
+    ash annoyed "Get over it"
     mc "ok."
     mc "Yeah. I'm Tony."
     mc "That's my name, dont' wear it out."
-    ash "Ooookay."
+    ash neutral "Ooookay."
     ash "How are ya?"
     mc "I'm fine, thanks for asking."
-    ash ""
+    ash worried ""
     mc ""
-    ash "(is he not gonna ask how i'm doing...?)"
-    ash "So what do you do for fun?"
+    ash disgusted "(is he not gonna ask how i'm doing...?)"
+    ash neutral "So what do you do for fun?"
     "mmm, cna't flex too hard or I\"ll scare her away... gotta keep it humble..."
     mc "Eh, nothing too flashy, just flexing my intellectual muscles pondering the meaning of life while benchinig 450lbs with one arm..."
     "nailed it"
-    ash "You work out, huh?"
+    ash neutral "You work out, huh?"
     mc "Yep. If you need some tips, just hit me up{nw=0.5}"
-    ash "It doesn't look like you work out!"
-    ash "Ah, let me not judge."
-    ash "Personally, I'm super into sports, but on the weekends I like to chill and play video games for a few hours."
+    ash worried "It doesn't look like you work out.."
+    ash worried "Ah, let me not judge."
+    ash neutral "Personally, I'm super into sports, but on the weekends I like to chill and play video games for a few hours."
     mc "You mean you're a... {w=0.3}a...{w=0.3} a gamer...?"
-    ash "Yes...?"
+    ash disgusted "Yes...?"
     mc "A REAL girl gamer?"
-    ash "I'm an adult but yeah. I guess you could call me a gamer."
+    ash worried "I'm an adult but yeah. I guess you could call me a gamer."
     "heh... I'll be the judge of thar."
     mc "I jsut have a couple quesions for you.. since you SAY you're a gamer."
-    ash "You're not gonna do one of theose nerrd cred questionnaires where I have to answer trivia about 80s- and 90s-era video games,"
+    ash annoyed "You're not gonna do one of theose nerrd cred questionnaires where I have to answer trivia about 80s- and 90s-era video games,"
     ash "are you?"
     mc ""
     mc "well"
     mc "say"
     mc "for the sake of argument,"
     ash "*sigh*"
-    ash "Super Mario Bros. was released in 1985"
-    ash "The player character in the Legend of Zelda is named Link (although in most games you can rename him)"
-    ash "And in all other territories the SEGA Genesis is called the Mega Drive."
+    ash "Super Mario Bros. was released in 1985{nw=0.5}"
+    ash "The player character in the Legend of Zelda is named Link (although in most games you can rename him){nw=0.5}"
+    ash "And in all other territories the SEGA Genesis is called the Mega Drive.{nw=0.5}"
     ash "That do it?"
     "how'd she even know..."
     "Wowza... she's good."
-    ash "Do you need more time to come up with different riddles?"
+    ash worried "Do you need more time to come up with different riddles?"
     mc "I'm just... honestly, milady..."
-    ash "\"Milady.\""
+    ash disgusted "\"Milady.\""
     mc "True gamer girls, such as yourself, are a rare treat in the landscape of fakes."
     mc "Those unscrupulous fake girl gamers have always attempted to seduce us REAL gamers with their siren songs and cleavage..."
-    ash "huh"
+    ash worried "huh"
     mc "But an honest gamer girl as yourself is truly invested in the beauty of games...!"
-    ash "Do you think games are art?"
+    ash neutral "Do you think games are art?"
     mc "no"
-    ash ""
+    ash disgusted ""
     ash "So."
-    ash "Have you come up with that new quesiton yet...?"
+    ash worried "Have you come up with that new quesiton yet...?"
     mc "As a matter facy, I have."
     mc "Ahem."
     mc "What are your favorite positions and are you wearing a bra?"
-    ash "?"
-    ash "I always wear a bra and I'm a striker."
+    ash shocked "?"
+    ash disgusted "I always wear a bra and I'm a striker."
     mc "" # uh
-    ash "oh you meant like. {w=1.0}sex positions?"
+    ash neutral "oh you meant like. {w=1.0}sex positions?"
     ash "Well to be honest I could really do without sex." 
-    ash "...but that damn Dr Pepper a whole different story... "
-    ash "Elixir of the GODS, yo!"
-    ash "Wanna see my favorite sodas?"
+    ash happy "...but that damn Dr Pepper a whole different story... "
+    ash pepper "Elixir of the GODS, yo!"
+    ash happy "Wanna see my favorite sodas?"
 
     #menu is timed
     menu:
@@ -881,13 +889,112 @@ label ash:
         "No":
             pass
     
+    transform moveright:
+        linear 0.8 xpos 0.85
+    
+    transform moveleft:
+        linear 0.8 xpos 0.5 
+
+    show ash:
+        xalign 0.5
+        moveright
+    
+    show tierlist behind ash:
+        xalign 0.5
+        yalign 0.25
+
     # the soda cutscene, which is a recorded twitch vod of maru (as ash) rating every soda while being heckled by chat
     #OR: show the tier list
-    ash "So tbh imo ginger ale and rootbeer are kinda a particular flavor profile for me."
-    ash "They're like spicy in all the right ways, you know?"
+    ash happy"alright so to start us off, Coke and Pepsi"
+    ash neutral "they are the most basic of the bunch and are typically the most common of all the sodas" 
+    ash "so for that reason C tier"
+    ash happy "next we got sprite, an absolute classic of a drink"
+    ash "B tier, since it's not that great but a good drink all together "
+    ash disgusted "now this one is a bit controversial but 7up gets easy B tier"
+    ash happy "It's because it's essentially just a sprite but a but more carbonation imo"
+    ash neutral "now the cherry version of both coke and pepsi is just objectively better since it actually has flavor now"
+    ash happy "B tier, easy"
+    ash neutral "Fanta flavors are genuinely all good around the board, but grape is the most lacking"
+    ash happy "Orange and Pineapple are definitely B tier"
+    ash worried "Ill give grape C tier however since it's honestly just not it"
+    ash disgusted "Okay, crush is in a similar boat, but is overall just worse!"
+    ash neutral "Crush grape and strawberry are the only ones to really make note of"
+    ash disgusted "I will say the Crush version of Strawberry definitely beats Fanta's, but still not that great."
+    ash "C tier overall, orange will get D tier for being kinda bleh"
+    ash annoyed "and also Fanta Strawberry goes there too for being relatively mid"
+    ash disgusted "Sunkist would be last when it comes to fruit flavored sodas, and that shit is GARBAGE"
+    ash neutral "listen chat,"
+    ash worried "Sunkist is only something people enjoy when they are little babies who will drink anything with sugar in it."
+    ash annoyed "Don't you DARE come in here spilling some nonsense that it's good EVER!"
+    ash "Sunkist - F TIER, MODS, GET HIM OUT"
+    ash neutral "achem, moving on"
+    ash worried "gonna say it, Vanilla coke is honestly mid, not as good as the og"
+    ash annoyed "get that ass banned to D tier"
+    ash disgusted "okay so chat. Imma get a bit controversial again..."
+    ash "Mountain Dew is one of the biggest hit or miss soft drinks to ever be put on the market"
+    ash neutral "for that reason alone i'm gonna have to split them up a bit"
+    ash disgusted "the OG is honestly one of the WORST possible flavors to drink"
+    ash "Straight up just battery acid, no one wants to touch that shit."
+    ash worried "D teir. Only because it's not Sunkist"
+    ash neutral "Now listen folks, I get it, I'm a gamer-"
+    ash happy "- emphasis on the gay part - "
+    ash annoyed "But Code red is honestly kinda doo doo water!"
+    ash disgusted "It's a bit better than the OG so i'm not gonna be nearly as harsh, but you will not see me drinking this in the club"
+    ash neutral "and finally, with one of the most one sided competitions ever"
+    ash happy "Baja Blast, is {w=0.9}BY FAR"
+    ash "ONE OF THE SINGLE BEST THINGS TO BE CRAFTED BY MAN"
+    ash worried "Now don't get me wrong, there is honestly better drinks out there, but they COOKED with this one"
+    ash happy "easily triple platinum, give that an A but we also gonna give it top of A because its that good"
+    ash "alright, next up we got the rootbeers, and honestly these all fucking slap"
+    ash "A&W is probably one of the better ones to go for, nice and bubbly, relatively easy to down..."
+    ash "Its honestly super good and by far one of the better root beers you can get"
+    ash neutral "Mug and Barq's are also VERY good alternatives, and honestly hit any time of the year"
+    ash happy "These two honestly taste very similar to each other in my opinion, but that's alright"
+    ash "Honestly we giving these all As, we always hitting the streets with these in hands"
+    ash neutral "now I know some of y'all might be confused as to why Canada Dry is on this list, don't worry i got my reasons."
+    ash happy "Ginger ale is just the best of sodas not gonna cap"
+    ash "Easily downable, great for stomaie aches, goes amazing with crackers for real"
+    ash shocked "what CAN'T this drink do?"
+    ash happy "A tier, easily."
+    ash neutral "now we finally get to S tier, and i'm gonna be honest there was only one drink deserving of this spot"
+    ash shocked "the OFFICIAL..."
+    ash happy "ELIXIR OF THE GODS..."
+    ash pepper "DR. PEPPER!"
+    ash happy "This drink is God's blessing to us mere mortals here on (redacted)..."
+    ash pepper "This drink's flavor hits kinda like a rootbeer, but it's a bit on the sweeter side and not nearly as soft."
+    ash happy "It gives you a bit of bite with its Barq!"
+    ash shocked "BUT DONT GET IT TWISTED,"
+    ash happy "It does it in a way that add to the enjoyment of drinking it, ESPECIALLY ON THAT FIRST SIP"
+    ash "OOOOOUUUUGH!"
+    ash "THAT FIRST SIP <3"
+    ash "LET ME TELL YOU CHAT, you will never see me rep a drink THIS HARD"
+    ash worried "It's alright if it aint your favorite"
+    ash happy "BUT THAT JUST MEANS YOU'RE MISSING OUT!"
+    ash pepper "Dr. Pepper! EASIEST S TIER OF MY GOD,"
+    ash shocked "DAMN"
+    ash happy "LIFE"
+    ash annoyed "...but then we got our cheap imitation..."
+    ash "Pibb... Xtra..."
+    ash "dear lord... this drink is just.."
+    ash disgusted "..."
+    ash shocked "WHO SAID IT'S GOOD!?" 
+    ash annoyed "MODS, BAN THAT GUY OFF EVERY SINGLE PLATFORM."
+    ash "I DONT WANT TO SEE THIS GUY IN MY STREAM, ON MY YOUTUBE, ON MY TWITTER PAGE"
+    ash "ON MY TUMBLER LIVE (rest in peace), ON MY KICK (I don't even have a kick), NOT EVEN ON MY TIKTOK 'For you' PAGE, KILL THIS MAN"
+    ash shocked "You like the taste of one of the phoniest, most pathetic drinks my lips ever had the displeasure of resting upon EVER!!"
+    ash annoyed "YOU CAN PRACTICALLY TASTE THE CHEMICALS"
+    ash "you like the hell spawn of all soft drink i cant stand for that"
+    ash neutral "actually..."
+    ash annoyed "yeah that's what tier this drink gets, hellspawn, get this out of my site" 
     #she just yaps here
+    
+    show ash:
+        moveleft
+    
+    hide tierlist 
 
-    ash "And that's pretty much it."
+    ash happy "And that's pretty much it."
+    ash "So what do you think? what's YOUR favorite soda?"
     #the date branches to give you a different ending based on whether or not you like PiBB Xtra
     menu yoursoda:
         ash "What's your favorite kind of soda?"
@@ -915,12 +1022,12 @@ label ashend:
     "I can't possibly turn up my nose at a real life girl gamer!"
     "I think sh'ell make a fine gf."
     mc "Wait,where are you going?"
-    ash "I gotta get home. It's late"
+    ash neutral "I gotta get home. It's late"
     mc "Wait!"
     mc "Let's make plans for another date."
-    ash "Huh?"
-    ash "Hell nah lmfao you broke asf taking me to this janky ass McDonald's 😂"
-    ash "Thanks for the meal tho"
+    ash worried "Huh?"
+    ash annoyed "Hell nah lmfao you broke asf taking me to this janky ass McDonald's 😂"
+    ash happy "Thanks for the meal tho"
     "And after all I DID for her? Women are so ungrateful... grrrrr"
     jump qdate
     # replace ending check with next date
@@ -928,21 +1035,21 @@ label ashend:
 
 label why_pibb:
 
-    ash "What the..."
-    ash "Why would you drink a PiBB Xtra when Dr Pepper is right there...?"
+    ash shocked "What the..."
+    ash disgusted "Why would you drink a PiBB Xtra when Dr Pepper is right there...?"
     mc "it's a cherry coola that was meant to compete with but not taste exactly like dr pepper"
     mc "You see the coca cola company (coke for short) understood, after the faliure of new coke, {nw=0.3}"
     mc "that in competeing with pepsico, they should not attempt to directly imitate their products 
         in order to avoid alienating their core audience in Atlanta. {nw=0.3}"
-    ash "Um- {nw=0.3}"
+    ash worried "Um- {nw=0.3}"
     mc "that was actually one of many such run-ins with attempting to mimic pepsico. in fact the wretched pepsico {nw=0.3}"
     mc "had forced the coke company to change the original name already. anyway. {nw=0.3}"
     mc "PiBB Xtra is a refreshing spiced cherry cola for when you need a delicious pick-me-up from any Coke product-carrying retailer. {nw=0.3}"
-    ash "TONY."
-    ash "If I wanted to drink a cherry cola from the Coca-Cola company, I would just drink a Cherry Coke!"
+    ash annoyed "TONY."
+    ash disgusted "If I wanted to drink a cherry cola from the Coca-Cola company, I would just drink a Cherry Coke!"
     mc "It's NOT a cherry cola it is a SPICED cherry cola, there's a whole WORLD of difference!"
     mc "But that may be a bit too nuanced for your female brain..."
-    ash "Oh, misogyny. I'm out"
+    ash shocked "Oh, misogyny. I'm out"
     "No way she left!"
     "That wasn't misogyny it was just a keen observation from my large brain! grrr....."
     "I'm so angry I could..."
@@ -1050,24 +1157,25 @@ label qdate:
 label onyx:
 
     #some of this is hidden if he meets gabriel after q
-    mc "Huh.. wait _ still can't talk about __self!"
+    mc jawdrop "Huh.. wait _ still can't talk about __self!"
     mc "fuck..."
 
-    "guess __ stuck like this for a while."
-    "_ still got another date, hopefully the next frew girls 
+    mc_thought rage "guess __ stuck like this for a while."
+    mc_thought sensitive "_ still got another date, hopefully the next frew girls 
     dont mind not being able to say anything about __ pronouns"
     "Feels like Gabriel did this just to watch __ suffer more than he knows _ already have."
-    "Yeah... definitely set up by... THEM huh.."
-    "_ swear... ___ definitly get __ revenge after this is all ov-"
+    mc_thought rage "Yeah... definitely set up by... THEM huh.."
+    mc_thought rage "_ swear... ___ definitly get __ revenge after this is all ov-"
     
-    ox "um... __ wouldn't happen to be Tony correct??"
-    mc "oh uh yeah"
+    show onyx 
+    ox neutral "um... __ wouldn't happen to be Tony correct??"
+    mc conservative "oh uh yeah"
     mc "that's... __"
-    ox "how are ___ doing that with ___ mouth?"
+    ox worried "how are ___ doing that with ___ mouth?"
     #onxy looks concerned never | experienced anything like this
 
-    mc "she took __ pronouns."
-    ox "Who's pronouns?"
+    mc sensitive "she took __ pronouns."
+    ox worried "Who's pronouns?"
     mc "__ pronouns"
     ox "Pronouns?"
     mc "__ Pronouns"
@@ -1075,36 +1183,36 @@ label onyx:
     mc "she took __ pronouns"
     ox "she took pronouns?"
     mc "yes"
-    ox "So.. ___ pronouns are she/her"
-    mc "no, __ pronouns are not she/her"
+    ox confused "So.. ___ pronouns are she/her"
+    mc rage "no, __ pronouns are not she/her"
     ox "then what are pronouns then?"
-    mc "__ pronouns are ___/__"
-    ox "...well?"
+    mc smug "__ pronouns are ___/__"
+    ox worried "...well?"
     mc "__/___"
     ox "so pronouns are.. nothing?"
     ox "___ dont know what pronouns are?"
-    mc "_ KNOW WHAT PRONOUNS ARE"
-    ox "Then which pronouns do ___ use?!"
-    mc "oooooh... _ see what the problem is."
-    ox "What is the problem?"
+    mc rage "_ KNOW WHAT PRONOUNS ARE"
+    ox angry "Then which pronouns do ___ use?!"
+    mc genius "oooooh... _ see what the problem is."
+    ox shocked "What is the problem?"
     mc "YOU cant understand __!"
-    ox "...what am i not getting then???"
-    mc "__ pronouns!"
-    ox "i think ___ are the one who doesn't get pronouns Tony..."
+    ox worried "...what am i not getting then???"
+    mc rage "__ pronouns!"
+    ox sad "i think ___ are the one who doesn't get pronouns Tony..."
     "god help __"
     mc "no you misunderstand!"
     ox "i don't think i do..."
     mc "NO, ITS __ PRONOUNS... THEY'RE GONE!"
-    ox "I'm pretty sure we still use pronouns everyday."
+    ox worried "I'm pretty sure we still use pronouns everyday."
     mc "_ REALIZE THAT NOW"
-    ox "umm... i did??? 🤔"
+    ox neutral "umm... i did??? 🤔"
     mc "No... _... uhg.."
-    ox "...well since ___ clearly don't understand"
-    ox "Im just gonna say that MY pronouns are he/him"
-    mc "{w=0.9}w h a t"
+    ox angry "...well since ___ clearly don't understand"
+    ox neutral "Im just gonna say that MY pronouns are he/him"
+    mc jawdrop "{w=0.9}w h a t"
     ox "My pronouns are He/Him"
     mc "Your pronouns are he/him?! _ can't believe this!"
-    ox "OH! GOOD! I UNDERSTOOD THAT ONE!"
+    ox happy "OH! GOOD! I UNDERSTOOD THAT ONE!"
 
     jump night_three
 
@@ -1119,26 +1227,71 @@ label dragon:
     "Sending me a beautiful woman and there's alwasy somme trick..."
     "I'm hoping the next one is a REAL catch this time."
     "Oh, that must be her."
-    dg "Hello!"
-    mc "Hello beautiful woman."
-    dg "How are __?"
-    dg "*gasp* __ pronouns!"
-    mc "What about them?"
+    
+    show aizeer
+
+    dg neutral "Hello!"
+    mc smug "Hello beautiful woman."
+    dg happy "How are __?"
+    dg shocked "*gasp* __ pronouns!"
+    mc sensitive "What about them?"
     dg "They're gone!"
     dg "Hold on, I'll fix this:"
     #thunderclap with white flash
     $ renpy.notify("Pronouns restored.")
-    dg "That should do it."
+    dg happy "That should do it."
     dg "It's such a beautiful evening! Why are we cramped indoors?"
-    mc "Eh, I don't like the outdoors."
-    dg ""
-
-
-    mc "*sight*"
+    mc smug "Eh, I don't like the outdoors."
+    dg neutral "Oh uhh.. Any specific reason why?"
+    mc genius "well.. Why would anyone spend time outside?"
+    mc "it's so gross and mucky out there you know? Not really ideal for a gamer like me."
+    dg happy "ahh, so you play games professionally then?"
+    mc conservative "what.. No.."
+    "I mean I definitely COULD, i'm god's gift to gaming after all."
+    "I just don't want to hurt all those people trying so desperately to get into high ranks haha."
+    dg "oh, so just a hobby then? Maybe you like more story based games?"
+    mc smug "Nah, I mostly play FPSs since those are what TRUE gamers play."
+    dg "I personally play mostly platformers, they're not as stressful you know."
+    mc "fitting for someone of your stature probably. You should work your way up to some REAL games"
+    dg "Heh, probably could try some more difficult stuff yeah, you could probably walk circles around me!"
+    mc_thought jawdrop "Wait what.. She didn't even deny it!"
+    dg "maybe we can play some fighting or party games sometime! That could be fun!" 
+    mc smug "against a non-gamer? That would be quick work."
+    dg "that's okay, it's about fun right?" 
+    mc jawdrop "umm.. No? Gaming isn't about fun.."
+    dg shocked "huh?"
+    mc genius "Gaming is about being better than your opponent."
+    mc "crushing them, making them salty at your superiority" 
+    dg worried "..oh"
+    mc smug "listen it's fine, i wouldn't expect a girl to understand at the end of the day"
+    dg neutral "..well maybe you can explain it to me sometime"
+    dg "sounds like an interesting discussion"
+    mc jawdrop "...wait really?"
+    mc smug "i mean uh.. of course! I'd gladly explain the complex world of gaming to you"
+    dg "we can also watch a movie or something, do you have any favorites?"
+    mc sensitive "oh uhh.."
+    mc_thought jawdrop "Damn I can only think of anime movies!"
+    mc_thought rage "Come on tony, you got this, you're doing good so far.. I think.."
+    mc_thought rage "Just.. say the first thing on your mind!"
+    mc smug "My Hero Academia: World Heroes' Mission"
+    mc_thought jawdrop "{w=0.8}G O D!"
+    mc_thought rage "{w=0.8}D A M N I T!"
+    dg "oh is that like, an anime thing?"
+    mc sensitive "uh.. yeah.."
+    dg "never really was into anime but that sounds cool."
+    mc "we could maybe go back to my place to watch it?"
+    dg happy "you know, I think I'd like that!"
+    "Wait.. something isn't right.."
+    mc conservative "*sigh*"
     mc "all right"
     mc "what's the catch."
-    dg "Oh, no catch!"
-    dg "But I am technically a dragon."
+    dg neutral "Oh, no catch!"
+    dg worried "But I am technically a dragon."
+    #hard cut to him in his room.
+    mc_thought rage "So many women, and not a single one dateable."
+
+
+   
 
     jump night_four
 
