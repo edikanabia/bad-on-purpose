@@ -5,30 +5,35 @@
 
 define e = Character("Eileen")
 
-# maake a date character template
-define date = Character()
+#all characters named
+define gb = Character("Gabriel", image="gabriel")
+define nc = Character("Niecy", image="niecy")
+define mama = Character("mama", image="mama")
+define ash = Character("Ash", image="ash")
+define lb = Character("Ladybird", image="ladybird")
+define qt = Character("Sephirah", image="q")
+define dg = Character("Dragon", image="aizeer")
+define jl = Character("Jules", image="jules")
+define ox = Character("Onyx", image="onxy")
+define mc = Character("tony", image="tony")
+define mc_polite = Character()
 
+#ergion images linked
 
-define gb = Character("Gabriel")
-define nc = Character("Niecy")
-define mama = Character("mama")
-define ash = Character("Ash")
-define lb = Character("Ladybird")
-define qt = Character("Sephirah")
-define dg = Character("Dragon")
-define jl = Character("Jules")
-define ox = Character("Onyx")
+#endregion
+
 
 #change the args on this to make it a subtitle chant that auto advances
 define chant = Character("Gabriel")
 
 
-define mc = Character("tony")
-define mc_polite = Character()
+
 
 #all flags
 define bird_fail = True
 define normal_points = 0
+define where = ""
+define leave_early = False
 
 
 # The game starts here.
@@ -74,14 +79,6 @@ label start:
 
     return
 
-label notifytest:
-    mama "so you will date me...?"
-    mc "No I hate aliens"
-    $ renpy.notify("Hunting license revoked.")
-
-    mc "wtf"
-    mc "My hunting license"
-    return
 
 label gabeintro:
     #scene: Gabriel's room
@@ -149,7 +146,7 @@ label gabeintro:
 
 label where_to:
     "I'vev got a long week ahead of me. But first I have to make an important decision!"
-    $ where = ""
+
     menu:
         "Where should I take my date to?"
         "Fancy restaurant":
@@ -360,6 +357,7 @@ label afterq:
 #all of the days are in tony's room.
 label day_one:
     #scene: tony's room
+    "I'd better get ready for my first date."
     call where_to
     jump jules
     return
@@ -416,16 +414,77 @@ label night_four:
 #region Dates
 
 label jules:
-
+    #just a normal date from someone who can't get over her ex...
     
     jl "Hey!"
     mc "Hello."
-    jl "Sorry I'm late! How are ya?"
+    jl "How are ya?"
     mc "I'm pretty good."
-    jl "Cool!"
+    jl "Cool! I'm Jules."
+    mc "It's tony."
+    jl "Nice to meet you."
+    jl "Sorry I'm late! I didn't have time to button my shirt."
+    mc "Hey, I'm not complainin."
+    jl "*laughs*"
+    mc "So? What do you thinkof the venue huh? preddy cool isn't it?"
+    jl "I don't love this place, actually."
+    jl "But I mean it's all right for a casual thing, you know? With your friends."
+    jl "When we first came to the city, Bo and I used to come here just to be somewhere that wasn't outside."
+    mc "Who's Bowen Eye?"
+    jl "Oh, Bo is... a lot to me! But, you know... we're supposed to be on break."
+    jl "He's not anyone you have to worry about."
     #silence
     jl "So um, what do you for fun!"
-    mc "Read a book for the first time."
+    mc "Usually I play video games, very intellectual exercise."
+    jl "It's a very expensive exercise, too. But I hear they're good for cognition and reflexes."
+    mc "Are you perhasp as cultured as I am?"
+    jl "Me? Oh, I don't really play. Growing up, there was really one person I knew who had one of those..."
+    jl "Gaming consoles?"
+    jl "Bo and I would go visit him from time to time."
+    jl "But he and his mom ended up moving away..."
+    jl "They look fun, though. Changed a lot, haven't they?"
+    jl "What kinds of games do you play?"
+    mc "I odn't simply play one Kind, of game."
+    jl "I figured! That's... why I asked, \"what kind{b}s{/b}.\""
+    mc "Well, everything, I guess!"
+    jl "So you can help me out a bit! Cuz I started to get really into these, like..."
+    jl "I think they're called adventure games?"
+    mc "Oh those don't count"
+    jl "wh"
+    jl "Why not?"
+    mc "Cuz they don't have enough gameplay. Like you're just clickin on stuff and reading it."
+    jl "Are all games not just clicking on stuff?"
+    mc "Well when I use my custom Ubuntu distro on my Raspberry Pi am I playing video games?"
+    jl "You could be! I don't know what raspberry pies have to do with anything!"
+    mc "Well I'm much more well-versed on the topic than you are!"
+    jl "Okay! Enlighten me."
+    mc "There's an objective definition for a game. A game must meet multiple criteria..."
+    mc "There must be a win condiiton and a loss condition,"
+    mc "There must be explicit rules,"
+    mc "AND it must require significant skill or physical activity to complete."
+    jl "Huh, okay."
+    jl "So Candyland isn't a game."
+    mc "It-"
+    jl "Is it?"
+    "WHO Does she think she is!?"
+    jl "I'm not trying to catch you in a bind or anything, I promise!"
+    jl "I just wanna understand you."
+    mc "It is a game,"
+    jl "Even htough it's effectively predetermined?" 
+    jl "It doesn't require any skill at all. To pick a card from a deck."
+    jl "I used to play the damn thing with Bo all the time."
+    jl "He'd say I was cheating cuz he rarely ever won. But he always let me go first, so..."
+    mc "You talk about this Bo guy a LOT."
+    jl "*sigh* Is it that obvious?"
+    jl "We grew up together, so everything reminds me of him."
+    mc "I see. I see you."
+    mc "You can't imagine a world without him because your small mind doesn't allow your schemas to develop."
+    jl "What!?"
+    mc "It's the nature of a woman, from a small town especially, to have that experience, Julia."
+    mc "But because I'm {i}very{/i} open-minded,..."
+    mc "Even though you can't carry a conversation on MY turf..."
+    mc "I can DEFINITELY carry one on yours."
+    mc "I read a book for the first time."
     jl "Oh, I totally get you. I've been so distracted with everything going on, I barely have time to read either."
     jl "I haven't finished a good book in so long."
     jl "..."
@@ -444,10 +503,38 @@ label jules:
     jl "How did you find the {w=0.6}you know, {w=0.4}the experience?"
     mc "was alright. I liekd the pictures"
     jl "he's, yanno. he's a good artist"
-    mc "Eh honestly in my opinion "
-
-
-    jl "I don't love this place, actually."
+    jl "um"
+    jl "rhymes are good too"
+    mc "there's rhymes?"
+    jl "..."
+    jl "If you liked that story, might I suggest Green Eggs and Ham next?"
+    mc "Woah there... I appreciate an intellectual, especially a woman who's an intellectual-"
+    mc "though not as intellectual as me-"
+    mc "but there's no need to be a show off."
+    jl "It's... y'know, it's whatever."
+    jl "I think I should go now."
+    mc "What? But... you agreed to meet! I still have approximately three hours of quality time with you left!"
+    jl "{cps=*0.2}Nyeahhhhhhhhhhhhh{/cps} I changed my mind."
+    mc "But what did I doooooooo actually what did I do!"
+    jl "Okay, well, uh, you got my name wrong, after I told it to you."
+    jl "You called me small-minded? Over, essentially, nothing."
+    jl "I'm just getting the overall vibe that you wouldn't really respect or appreciate me."
+    mc "I thought we were having a respectful, intellectual exchange!" 
+    jl "*sigh* Okay, well,"
+    jl "Even if we hit it out of the park, I just don't know. About us. I don't know"
+    jl "It's my fault, partly. I really, REALLY miss my ex."
+    jl "But the, um. Elitism? Chauvinism? There's a word for it..."
+    jl "It's not helping."
+    mc "Well jeez!"
+    mc "I had no idea you were so sensitive!"
+    jl "(I knew this was a bad idea...)"
+    jl "Tony? Is it Tony?"
+    mc "Yees..."
+    jl "It was uh, nice meeting you."
+    mc "Fine!! Be that way!!"
+    mc "I hope I never see you again!!"
+    jl "(Yeah I'm getting outta here.)"
+    #jules leaves.
 
     jump mamad
     
@@ -457,6 +544,12 @@ label mamad:
     #mama from a distance cg
     $ leave_early = False
 
+    "There's no way I'm going home without a proper date"
+    "Letting a broad walk out on me.. I woulda stopped her if she wasn't six feet tall."
+    "I gotta find someone else tho! So I don't let my time go to waste."
+    #sees mama
+    "Hey, there's a looker!"
+    "damn she's thicc!"
     mc "Hello? Hello? Hello beautiful woman?"
     "???" "Are you referring to me as a beautiful woman!?"
     mc "You wanna come over here?"
@@ -464,7 +557,7 @@ label mamad:
     "..."
     "Now that Im up cloase n personal..."
     $ renpy.notify("She's literally stunning.")
-    "Shes... not that hot."
+    "Shes... not that hot. Too tubby."
     mc "How old are you mama?"
     mama "The destruction of your pplanet predates me!"
     mama "Yet, I outrank every member of your species!"
@@ -479,17 +572,18 @@ label mamad:
     mama "I am confused as to why you brought up video games seeing as you asked me how old I am!"
     mama "I was borne from a thought around six million years ago, eight billion years in the future!"
     mc "Damn!!"
-    mama "Is that, a turn-off...?"
+    mama "Is that, a turned off...?"
     menu:
         "Yeah":
             #premature date end
             mc "It totally is."
-            mc "Man. I'm goin home."
+            mama "Oh... I'm sorry!"
+            mama "I thought... I thought... since you called out to me..."
+            mc "Nah. I'm going home"
             $ leave_early = true
             jump night_one
         "Nah":
             $ normal_points = normal_points + 1
-            pass
 
     mc "where ar eyou from?"
     mama "I am from the mass of deepspace that obstructs the corners of the universe!"
@@ -497,11 +591,50 @@ label mamad:
     mama "I traveled the universe in search of love..."
     mama "You called me over, and it must be because you love me!"
     mama "Show me some love!! Yes, let us create love!!"
-    "WOAH."
-    "Back off, lady. You're a 6. at best"
+    mc "WOAH."
+    mc "Back off, lady. You're a 6. at best"
     "Man. It's always the ugly girls that are so forward..."
+    mama "Ahh!!"
+    mama "That... wasn't very nice!"
+    "..."
+    "you know what?"
+    "That Julia chick was wrong. I'm SO oen minded."
+    mc "I guess I can give you a CHANCE."
+    mama "so you will date me...?"
+    mc "Yeaaaaaahhhhh I gueeeeesssssss"
+    mama "Wow! I am so happy, I could... I could..."
+    #wing monster mama
+    mc "WOAH WHAT THE-"
+    "what the HECK is that?"
+    "some kind of WING MONSTER?"
+    mama "Ohhhh..."
+    mama "I did it again..."
+    mama "this always happens when I get excited...."
+    mama "I have been deigning to tell you..."
+    mama "In simple terms..."
+    mama " I am an alien from outerspace..."
+    mama "You do not ahte me for this, do you?"
+    mama "It is something I cannot change..."
 
-    call notifytest
+    menu:
+        "I don't hate you":
+            $ normal_points += 1
+        "I hate aliens":
+            pass
+
+    $ renpy.notify("Hunting license revoked.")
+    mc "No I think you're disgusting"
+    mama "w..."
+    mama "WAAAAAAAAAAAAAHHHHHHHHHHHHHHHH!!"
+    #mama runs away
+    "another customer" "what the hell was that man?"
+    mc "I know she was such a freak"
+    "another customer" "nah man, YOU'RE the freak!"
+    "customers" "freak! freak! freak! freak! freak!"
+    #you need to leave!
+    mc "NUH-UH!!! NUH-UH!! NO U!!! NUH-UH!!"
+    "Oh no... my attacks! they're bouncung off!"
+    "I-I gotta get outta here!"
 
     jump night_one
 
