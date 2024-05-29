@@ -37,7 +37,6 @@ image side tony genius = "images/portraits/tony_genius.png"
 #gabriel
 image gabriel neutral = "images/portraits/gabriel_neutral.png"
 image gabriel happy = "images/portraits/gabriel_happy.png"
-image gabriel sad = "images/portraits/gabriel_sad.png"
 image gabriel shocked = "images/portraits/gabriel_shocked.png"
 image gabriel annoyed = "images/portraits/gabriel_annoyed.png"
 image gabriel thinking = "images/portraits/gabriel_thinking.png"
@@ -124,6 +123,9 @@ image bg white = Solid("fff")
 image tierlist = "images/funnies/soda_teirlist.png"
 
 #cgs
+image cg spying neutral = "images/cgs/cg_spying2.png"
+image cg spying worried = "images/cgs/cg_spying1.png"
+image cg death = "images/cgs/cg_killing_blow.png"
 
 #endregion
 
@@ -147,13 +149,13 @@ define bird_fail = True
 define normal_points = 0
 define where = ""
 define leave_early = False
-
+define game_over_scene = "game_over"
 
 # The game starts here.
 
 label start:
 
-    jump ash
+    jump gabeintro
 
     #show a menu that toggles the flash at the end of the story (the lightning)
 
@@ -163,9 +165,9 @@ label start:
         name = name.strip() or "Kevin"
         
 
-    "sys" "Looks like your name issssssssssss"
-    "sys" "[mc]"
-    "sys" "aren't you glad we saved you the trouble?"
+    "Looks like your name issssssssssss"
+    "[name], is it?"
+    "all right... let's do it."
 
     scene bg room
 
@@ -184,11 +186,16 @@ label start:
 label gabeintro:
     #scene: Gabriel's room
     scene bg gabriel room
-    "I did agree to meet thiss gabriel guy to set up these dates."
-    "so where is he?"
-    "all I see is a really tall woman wlaiking toward me..."
+    mc_thought "I did agree to meet thiss gabriel guy to set up these dates."
+    mc_thought "so where is he?"
+    mc_thought "all I see is a really tall woman wlaiking toward me..."
     show gabriel
-    gb neutral "Hi. I'm Gabriel."
+    gb neutral "Hi. I'm Gabriel. You must be [mc]."
+    menu:
+        "Tony!?":
+            pass
+    "Heh..."
+    "You'll be glad we saved you the trouble."
     mc_thought jawdrop "SEPH-{nw=0.5}"
     gb "Is something wrong...?"
     mc smug "Oh osorry... it's just that.. you remind me of this guy from this video game."
@@ -209,7 +216,7 @@ label gabeintro:
     "god"
     "dammit"
     gb "Oh. So it's like that, huh..."
-
+    call screen expression game_over_scene pass (False, True)
     #fake game over screen
 
     mc "Oh god. for a second there I thought I doied"
@@ -273,7 +280,7 @@ label where_to:
 
 label interlude:
     #scene: gabriel room
-
+    scene bg gabriel room
     mc "Gabriel!"
     nc "Hello white man!"
     mc "Who's this?"
@@ -458,13 +465,14 @@ label afterq:
 #region Days 
 #all of the days are in tony's room.
 label day_one:
-    #scene: tony's room
+    scene bg home
     "I'd better get ready for my first date."
     call where_to
     jump jules
     return
 
 label night_one:
+    scene bg home
     "man..."
     "tonight was CRAZY."
     ""
@@ -473,6 +481,7 @@ label night_one:
 
 
 label day_two:
+    scene bg home
     #it's the next day and tony's up bright and early because gabe 
     #said he has to show out and be gentle for the next date.
     "Another day?"
@@ -485,6 +494,7 @@ label day_two:
     return
 
 label night_two:
+    scene bg home
     #tony's gonna plan to show up at gabriel's room angry, feeling set up.
     "Tuh. a MAN named LADYbird? riDICKulous."
     "Tomorrow morning I'm gonna show Gabriel a pizza my mind."
@@ -493,6 +503,7 @@ label night_two:
     return
 
 label night_three:
+    scene bg home
     #return here after onyx. last time's a charm.
     "Another resounding... failuer."
     "The girl could be cute, and I'll JUST start to overlook her flaws..."
@@ -503,6 +514,7 @@ label night_three:
     return
 
 label night_four:
+    scene bg home
     "So many women and not a single one of them dateable."
     "Damn."
     "I guess tomorrow I'm gonna have to tell Gabriel to send some more myway."
@@ -516,6 +528,7 @@ label night_four:
 #region Dates
 
 label jules:
+    scene bg mcdonalds
     #just a normal date from someone who can't get over her ex...
     
     jl "Hey!"
@@ -743,6 +756,7 @@ label mamad:
     return
 
 label ladybird:
+    scene bg black
 
     #ladybird (sier) is expecting a proper date
     #step 1: pick him up at his house
@@ -754,8 +768,11 @@ label ladybird:
     mc "About that..."
     mc "I don't have a car?"
 
+    scene bg drive thru
+
     #copy over Janay's scene
-    #scene: mcdonalds
+    scene bg mcdonalds
+
 
     mc "Wait. You're a man?"
     lb "I think so!"
@@ -803,6 +820,7 @@ label ladybird_fail:
 
 #region Just Ash...
 label ash:
+    scene bg mcdonalds
     $ fav_soda = ""
     "I don't believe gabriel whe he says the dates falling thru are my fautl."
     if where != "":
@@ -1029,8 +1047,9 @@ label ashend:
     ash annoyed "Hell nah lmfao you broke asf taking me to this janky ass McDonald's 😂"
     ash happy "Thanks for the meal tho"
     "And after all I DID for her? Women are so ungrateful... grrrrr"
+    #fade to black
     jump qdate
-    # replace ending check with next date
+    
     return
 
 label why_pibb:
@@ -1056,8 +1075,9 @@ label why_pibb:
     "couldd..."
     "..."
     "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+    #fade to black
     jump qdate
-    # replace ending check with next date
+    
     return
 #endregion Just Ash...
 
@@ -1350,11 +1370,11 @@ label regularending:
     gb "Goodbye."
 
     if normal_points >6:
-        pass
+        show expression game_over_scene pass (True)
     else:
-        pass
+        show expression game_over_scene pass (False)
     #you died :(
-
+    
     return
 
 label failsafeending:
@@ -1389,7 +1409,7 @@ label sodaending:
     gb "ok who the FUCK drinks mr pibb"
     mc "it is no longer called MISTRE PIBB it's called PiBB Xtra and it's a spiced cherry cola thats"
     gb "I'm killing you. {w=0.4} I'm killing you"
-
+    show expression game_over_scene pass (False)
     #you died :(
     return
 #endregion

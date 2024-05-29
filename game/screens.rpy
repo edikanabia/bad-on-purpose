@@ -1503,7 +1503,7 @@ define bubble.expand_area = {
 #We decided to make this because it would be funny
 ###########
 
-screen game_over(secret):
+screen game_over(secret, fakeout):
     zorder 500
     
     #screen takes argument to decide which game over to use
@@ -1517,7 +1517,10 @@ screen game_over(secret):
         add "images/funnies/youdied_regular.png"
         #show youdied_regular.png
         pass
-
+    
+    #play a sound effect
+    #if fakeout is true, return control back to game after click
+    #if not, return to menu
         
     #a click will boot the player back to menu
 
