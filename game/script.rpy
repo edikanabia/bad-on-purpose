@@ -216,7 +216,7 @@ label gabeintro:
     "god"
     "dammit"
     gb "Oh. So it's like that, huh..."
-    call screen expression game_over_scene pass (False, True)
+    show screen expression game_over_scene pass (False, True)
     #fake game over screen
 
     mc "Oh god. for a second there I thought I doied"
