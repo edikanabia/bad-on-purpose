@@ -5,7 +5,7 @@
 
 define e = Character("Eileen")
 
-#all characters named
+#region all characters named
 define gb = Character("Gabriel", image="gabriel")
 define nc = Character("Niecy", image="niecy")
 define mama = Character("mama", image="mama")
@@ -14,17 +14,112 @@ define lb = Character("Ladybird", image="ladybird")
 define qt = Character("Sephirah", image="q")
 define dg = Character("Dragon", image="aizeer")
 define jl = Character("Jules", image="jules")
-define ox = Character("Onyx", image="onxy")
+define ox = Character("Onyx", image="onyx")
 define mc = Character("tony", image="tony")
+define mc_thought = Character(image="tony")
 define mc_polite = Character()
+#endregion
 
-#ergion images linked
+
+#region images linked
+
+#tony
+image side tony jawdrop = "images/portraits/tony_jawdrop.png"
+image side tony rage = "images/portraits/tony_rage.png"
+image side tony sensitive = "images/portraits/tony_sensitive.png"
+image side tony smug = "images/portraits/tony_smug.png"
+image side tony conservative = "images/portraits/tony_conservative.png"
+image side tony genius = "images/portraits/tony_genius.png"
+
+#gabriel
+image gabriel neutral = "images/portraits/gabriel_neutral.png"
+image gabriel happy = "images/portraits/gabriel_happy.png"
+image gabriel sad = "images/portraits/gabriel_sad.png"
+image gabriel shocked = "images/portraits/gabriel_shocked.png"
+image gabriel annoyed = "images/portraits/gabriel_annoyed.png"
+image gabriel thinking = "images/portraits/gabriel_thinking.png"
+image gabriel tired = "images/portraits/gabriel_tired.png"
+image gabriel annoyed closed = "images/portraits/gabriel_annoyed_closed.png"
+image gabriel threaten = "images/portraits/gabriel_threaten.png"
+image gabriel nervous = "images/portraits/gabriel_nervous.png"
+
+#jules
+image jules neutral = "images/portraits/jules_neutral.png"
+image jules happy = "images/portraits/jules_happy.png"
+image jules sad = "images/portraits/jules_sad.png"
+image jules angry = "images/portraits/jules_angry.png"
+image jules sideeye = "images/portraits/jules_sideeye.png"
+
+#mama
+image mama happy = "images/portraits/mama_happy.png"
+image mama neutral = "images/portraits/mama_neutral.png"
+image mama confused = "images/portraits/mama_confused.png"
+image mama sad = "images/portraits/mama_sad.png"
+image mama happy monster = "images/portraits/wing_mama.png"
+image mama smitten = "images/portraits/wing_mama_smitten.png"
+image mama sad monster = "images/portraits/wing_mama_sad.png"
+image mama worried = "images/portraits/wing_mama_worried"
+
+#ladybird
+image ladybird happy = "images/portraits/ladybird_happy.png"
+image ladybird sad = "images/portraits/ladybird_sad.png"
+image ladybird neutral = "images/portraits/ladybird_neutral.png"
+image ladybird thinking = "images/portraits/ladybird_thinking.png"
+image ladybird sideeye  = "images/portraits/ladybird_sideeye.png"
+
+#niecy
+image niecy neutral = "images/portraits/niecy_neutral.png"
+image niecy happy = "images/portraits/niecy_happy.png"
+image niecy sad = "images/portraits/niecy_sad.png"
+image niecy solemn = "images/portraits/niecy_solemn.png"
+image niecy devious = "images/portraits/niecy_devious.png"
+image niecy shocked = "images/portraits/niecy_shocked.png"
+image niecy worried = "images/portraits/niecy_worried.png"
+
+#ash
+image ash happy = "images/portraits/ash_happy.png"
+image ash neutral = "images/portraits/ash_neutral.png"
+image ash shocked = "images/portraits/ash_shocked.png"
+image ash pepper = "images/portraits/ash_elixir.png"
+image ash disgusted = "images/portraits/ash_disgusted.png"
+image ash worried = "images/portraits/ash_worried.png"
+
+#aizeer
+image aizeer neutral = "images/portraits/aizeer_neutral.png"
+image aizeer happy = "images/portraits/aizeer_happy.png"
+image aizeer shocked = "images/portraits/aizeer_shocked.png"
+image aizeer worried = "images/portraits/aizeer_worried.png"
+
+#onyx
+image onyx neutral = "images/portraits/onxy_neutral.png"
+image onyx happy = "images/portraits/onxy_happy.png"
+image onyx sad = "images/portraits/onxy_sad.png"
+image onyx angry = "images/portraits/onxy_angry.png"
+image onyx shocked = "images/portraits/onxy_shocked.png"
+image onyx worried = "images/portraits/onxy_worried.png"
+
+#q
+image q neutral = "images/portraits/q_neutral.png"
+image q smitten = "images/portraits/q_smitten.png"
+image q yap = "images/portraits/q_yap.png"
+image q smug = "images/portraits/q_smug.png"
+image q shocked = "images/portraits/q_shocked.png"
+image q angry = "images/portraits/q_angry.png"
+
+#backgrounds
+image bg gabriel room = "images/backgrounds/gabriel_room.png"
+image bg home = "images/backgrounds/home.png"
+image bg drive thru = "images/backgrounds/drivethrough.png"
+image bg mcdonalds = "images/backgrounds/mcdonalds_interior.png"
+image bg mcdonalds hazy = "images/backgrounds/hazy_mcdonalds_interior.png"
+
+#cgs
 
 #endregion
 
 
 #change the args on this to make it a subtitle chant that auto advances
-define chant = Character("Gabriel")
+define chant = Character()
 
 
 
@@ -42,7 +137,6 @@ label start:
 
 
 
-    $ flash_on = False
     #show a menu that toggles the flash at the end of the story (the lightning)
 
 
@@ -55,18 +149,7 @@ label start:
     "sys" "[mc]"
     "sys" "aren't you glad we saved you the trouble?"
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
-
     scene bg room
-
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
-
-    show eileen happy
-
 
 
     e "TIME JUMP!! w"
@@ -82,14 +165,15 @@ label start:
 
 label gabeintro:
     #scene: Gabriel's room
-
+    scene bg gabriel room
     "I did agree to meet thiss gabriel guy to set up these dates."
     "so where is he?"
     "all I see is a really tall woman wlaiking toward me..."
-    gb "Hi. I'm Gabriel."
-    "SEPH-{nw=0.3}"
+    show gabriel
+    gb neutral "Hi. I'm Gabriel."
+    mc_thought jawdrop "SEPH-{nw=0.5}"
     gb "Is something wrong...?"
-    mc "Oh osorry... it's just that.. you remind me of this guy from this video game."
+    mc smug "Oh osorry... it's just that.. you remind me of this guy from this video game."
     gb "I get that a lot."
     mc "are you a \[KEYWORD\] parody?"
     gb "..."
