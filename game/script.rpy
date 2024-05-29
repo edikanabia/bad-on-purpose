@@ -20,6 +20,9 @@ define mc_thought = Character(image="tony")
 define mc_polite = Character()
 #endregion
 
+#change the args on this to make it a subtitle chant that auto advances
+define chant = Character()
+
 
 #region images linked
 
@@ -112,14 +115,24 @@ image bg home = "images/backgrounds/home.png"
 image bg drive thru = "images/backgrounds/drivethrough.png"
 image bg mcdonalds = "images/backgrounds/mcdonalds_interior.png"
 image bg mcdonalds hazy = "images/backgrounds/hazy_mcdonalds_interior.png"
+image bg black = Solid("000")
+image bg white = Solid("fff")
 
 #cgs
 
 #endregion
 
+#region Pre-defined screen transformations
+#lightning flash
+#transformation flash
+#fall asleep
+#screen shake
 
-#change the args on this to make it a subtitle chant that auto advances
-define chant = Character()
+#endregion
+
+#region Sound
+
+#endregion
 
 
 
