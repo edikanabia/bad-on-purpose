@@ -1498,6 +1498,30 @@ define bubble.expand_area = {
     "thought" : (0, 0, 0, 0),
 }
 
+###########
+#Game over screen
+#We decided to make this because it would be funny
+###########
+
+screen game_over(secret):
+    zorder 500
+    
+    #screen takes argument to decide which game over to use
+    #not a button, but can be passed with a click
+    #once passed, ends the game
+    if secret == True:
+        add "images/funnies/youdied_gabriel_ending.png"
+        #show youdied_gabriel_ending.png
+        pass
+    else:
+        add "images/funnies/youdied_regular.png"
+        #show youdied_regular.png
+        pass
+
+        
+    #a click will boot the player back to menu
+
+        
 
 
 ################################################################################
