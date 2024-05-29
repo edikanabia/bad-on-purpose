@@ -1505,19 +1505,33 @@ define bubble.expand_area = {
 
 screen game_over(secret, fakeout):
     zorder 500
+    modal True
     
     #screen takes argument to decide which game over to use
     #not a button, but can be passed with a click
     #once passed, ends the game
-    if secret == True:
-        add "images/funnies/youdied_gabriel_ending.png"
-        #show youdied_gabriel_ending.png
-        pass
-    else:
-        add "images/funnies/youdied_regular.png"
-        #show youdied_regular.png
-        pass
-    
+
+    frame:
+        xalign 0.5
+        yalign 0.5
+        if secret == True:
+            add "images/funnies/youdied_gabriel_ending.png"
+            #show youdied_gabriel_ending.png
+            pass
+        else:
+            add "images/funnies/youdied_regular.png"
+            #show youdied_regular.png
+            pass
+        #boogly
+        text "(Did you know the clipart frog is copyrighted? We didn't!)":
+            xpos 500
+            ypos 900
+        textbutton "Return to menu":
+            xalign 0.5
+            yalign 0.75
+            action Hide("game_over",Dissolve(0.5))
+
+                    
     #play a sound effect
     #if fakeout is true, return control back to game after click
     #if not, return to menu

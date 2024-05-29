@@ -1370,9 +1370,9 @@ label regularending:
     gb "Goodbye."
 
     if normal_points >6:
-        show expression game_over_scene pass (True)
+        show screen expression game_over_scene pass (True, False)
     else:
-        show expression game_over_scene pass (False)
+        show screen expression game_over_scene pass (False, False)
     #you died :(
     
     return
@@ -1401,6 +1401,7 @@ label earlyend:
     mc ""
     mc "that was your mom?" #tiny
     nc "You're really in it now..."
+    show screen expression game_over_scene pass (False, False)
     #you died
     return
 
@@ -1409,7 +1410,7 @@ label sodaending:
     gb "ok who the FUCK drinks mr pibb"
     mc "it is no longer called MISTRE PIBB it's called PiBB Xtra and it's a spiced cherry cola thats"
     gb "I'm killing you. {w=0.4} I'm killing you"
-    show expression game_over_scene pass (False)
+    show screen expression game_over_scene pass (False, False)
     #you died :(
     return
 #endregion
