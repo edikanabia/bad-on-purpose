@@ -1517,15 +1517,19 @@ screen game_over(secret, fakeout):
         if secret == True:
             add "images/funnies/youdied_gabriel_ending.png"
             #show youdied_gabriel_ending.png
+            text "\"See you in another lifetime, doll...💙\"":
+                xalign 0.5
+                ypos 900
             pass
         else:
             add "images/funnies/youdied_regular.png"
             #show youdied_regular.png
+            text "(Did you know the clipart frog is copyrighted? We didn't!)":
+                xalign 0.5
+                ypos 900
             pass
         #boogly
-        text "(Did you know the clipart frog is copyrighted? We didn't!)":
-            xpos 500
-            ypos 900
+        
         textbutton "Return to menu":
             xalign 0.5
             yalign 0.75

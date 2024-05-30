@@ -13,8 +13,8 @@ define qt = Character("Sephirah", image="q")
 define dg = Character("Dragon", image="aizeer")
 define jl = Character("Jules", image="jules")
 define ox = Character("Onyx", image="onyx")
-define mc = Character("tony", what_italic=True, image="tony")
-define mc_thought = Character(image="tony") #tony's thoughts are colored and italicized
+define mc = Character("tony", image="tony")
+define mc_thought = Character(what_italic=True, image="tony") #tony's thoughts are colored and italicized
 define mc_polite = Character() #different font, probably times new roman lol
 
 #endregion
@@ -34,7 +34,7 @@ image side tony conservative = "images/portraits/tony_conservative.png"
 image side tony genius = "images/portraits/tony_genius.png"
 image side tony awooga = "images/portraits/tony_awooga.png"
 image side tony neutral = "images/portraits/tony_neutral.png"
-image side tony sleep = "images/portraits/tony_sleep.png"
+image side tony sleep = "images/portraits/tony_sleeping.png"
 
 #gabriel
 image gabriel neutral = "images/portraits/gabriel_neutral.png"
@@ -139,6 +139,7 @@ image tierlist = "images/funnies/soda_teirlist.png"
 image cg spying neutral = "images/cgs/cg_spying2.png"
 image cg spying worried = "images/cgs/cg_spying1.png"
 image cg death = "images/cgs/cg_killing_blow.png"
+image cg chant = "images/cgs/cg_killing_blow2.png"
 #high five, possibly?
 
 #endregion
@@ -211,6 +212,7 @@ define normal_points = 0
 define where = ""
 define leave_early = False
 define game_over_scene = "game_over"
+define descriptor = ""
 #endregion
 
 # The game starts here.
@@ -450,7 +452,7 @@ label interlude:
 
 #activates after gaining a certain amount of normal points
 label afterq:
-
+    
     show gabriel confused with dissolve_fast
     gb "What happened?"
     mc neutral "__ lost __ pronouns."
@@ -461,7 +463,7 @@ label afterq:
     #bruh
     gb unamused "It's a mystery."
     mc "YOu set me up."
-    gb "I didn't plan that."
+    gb neutral "I didn't plan that."
     gb thinking "Some forces are even beyond my control..."
     mc neutral "huh."
     mc "Man Gabe,"
@@ -469,7 +471,7 @@ label afterq:
     gb thinking "I neglected correct __ earlier. But I should have."
     mc "Man Gabriel, this date stuff is annoying."
     mc "Is it easier to date men?"
-    gb confused "Shouldn't __ have asked __ that when __ went on the dates with men?"
+    gb confused "Shouldn't __ have asked __ that when __ went on a date with a man?"
     mc "Well __ didn't realize it then!"
     gb "Realize what?"
     mc sensitive "...you're pwetty."
@@ -1473,8 +1475,13 @@ label why_pibb:
 
 
 label qdate:
-    scene bg black with new_day
-    #black screen. he fell asleep.
+    scene bg black with dissolve_slow
+
+    if bird_fail == True:
+        $ descriptor = "femcel"
+    else:
+        $ descriptor = "man"
+
     "???" "..hello..."
     "???" "Hello?"
     mc_thought neutral "huh?"
@@ -1489,7 +1496,7 @@ label qdate:
     qt "Ok. First question:"
     qt yap "What are your pronouns?"
     mc_thought "gabes really resting my pasticence with all ofthe curveballs hes throwing me."
-    mc_thought "first a man. now a LIBERAL"
+    mc_thought "first a [descriptor]. now a LIBERAL"
     mc_thought rage "I HAVE TO STAND MY GROUND."
     mc genius "I don't {i}do{/i} pronouns."
     qt shocked "No pronouns?"
@@ -1553,8 +1560,7 @@ label qdate:
     qt yap "Oh I just thought it'd be funny lol"
     mc "So you're g-"
     hide q with dissolve_slow
-    show bg mcdonalds with dissolve_slow
-    hide bg mcdonalds hazy with dissolve
+
     #q fades away and the mcdonald's turns back to normal
 
     #normal points check
@@ -1562,6 +1568,7 @@ label qdate:
         call afterq
     else:
         pass
+    show bg mcdonalds with dissolve_slow
     jump onyx
 
 
@@ -1571,8 +1578,9 @@ label qdate:
 label onyx:
 
     #some of this is hidden if he meets gabriel after q
-    mc jawdrop "Huh.. wait _ still can't talk about __self!"
-    mc "fuck..."
+    if normal_points <7:
+        mc jawdrop "Huh.. wait _ still can't talk about __self!"
+        mc "fuck..."
 
     mc_thought rage "guess __ stuck like this for a while."
     mc_thought smug  "_ still got another date, hopefully the next frew girls 
@@ -1581,7 +1589,7 @@ label onyx:
     mc_thought "Yeah... definitely set up by... THEM huh.."
     mc_thought rage "_ swear... ___ definitly get __ revenge after this is all ov-"
     
-    show onyx with dissolve_fast
+    show onyx neutral with dissolve_fast
     ox neutral "um... __ wouldn't happen to be Tony correct??"
     mc conservative "oh uh yeah"
     mc "that's... __"
@@ -1627,6 +1635,16 @@ label onyx:
     ox "My pronouns are He/Him"
     mc "Your pronouns are he/him?! _ can't believe this!"
     ox happy "OH! GOOD! I UNDERSTOOD THAT ONE!"
+    ox "That's the first normal sentence you've said to me."
+    mc rage "Man.... just walk out already."
+    mc "This went TERRIBLY."
+    ox sad "But I came all this way..."
+    ox happy "The least __ could do is buy me a Big Mac."
+    mc neutral "Fine."
+    hide onyx with dissolve
+    show bg black with dissolve
+    "Tony buys Onyx a Big Mac. But the date is over before it even starts."
+    "Crestfallen, Tony trudges back home..."
 
     jump night_three
 
@@ -1637,11 +1655,11 @@ label onyx:
 
 label dragon:
     scene bg mcdonalds with new_day
-    mc_thought "It's the last date."
-    mc_thought "So dar that ASS-istant Niecy has been setting me up to FAIL."
+    mc_thought neutral "It's the last date."
+    mc_thought rage "So dar that ASS-istant Niecy has been setting me up to FAIL."
     mc_thought "Sending me a beautiful woman and there's alwasy somme trick..."
-    mc_thought "I'm hoping the next one is a REAL catch this time."
-    mc_thought "Oh, that must be her."
+    mc_thought smug "I'm hoping the next one is a REAL catch this time."
+    mc_thought neutral "Oh, that must be her."
     
     show aizeer with dissolve_fast
 
@@ -1656,15 +1674,15 @@ label dragon:
     show aizeer with lightning_flash_2
     $ renpy.notify("Pronouns restored.")
     dg happy "That should do it."
-    dg "It's such a beautiful evening! Why are we cramped indoors?"
+    dg "It's such a beautiful day! Why are we cramped indoors?"
     mc smug "Eh, I don't like the outdoors."
     dg neutral "Oh uhh.. Any specific reason why?"
     mc genius "well.. Why would anyone spend time outside?"
     mc "it's so gross and mucky out there you know? Not really ideal for a gamer like me."
     dg happy "ahh, so you play games professionally then?"
     mc conservative "what.. No.."
-    "I mean I definitely COULD, i'm god's gift to gaming after all."
-    "I just don't want to hurt all those people trying so desperately to get into high ranks haha."
+    mc_thought smug "I mean I definitely COULD, i'm god's gift to gaming after all."
+    mc_thought sensitive "I just don't want to hurt all those people trying so desperately to get into high ranks haha."
     dg "oh, so just a hobby then? Maybe you like more story based games?"
     mc smug "Nah, I mostly play FPSs since those are what TRUE gamers play."
     dg "I personally play mostly platformers, they're not as stressful you know."
@@ -1697,7 +1715,7 @@ label dragon:
     dg "never really was into anime but that sounds cool."
     mc "we could maybe go back to my place to watch it?"
     dg happy "you know, I think I'd like that!"
-    "Wait.. something isn't right.."
+    mc_thought neutral "Wait.. something isn't right.."
     mc conservative "*sigh*"
     mc "all right"
     mc "what's the catch."
@@ -1716,6 +1734,7 @@ label dragon:
 #region Endings
 
 label killing_chant:
+    show cg chant
     chant "The divine power vested in me must only be used for good, for justice, to strike down evil."
     chant "The title Mother was bestowed upon me and may be retracted at any time."
     chant "I must at all times serve and be in servitude of the common man, for the good of humanity."
@@ -1728,13 +1747,14 @@ label killing_chant:
 
 label endingcheck:
 
-    scene bg gabriel room with dissolve
+    scene bg gabriel room with new_day
+    show gabriel thinking with dissolve_fast
     mc smug "Oh thank goodness you're here gabe. It was TERRIBLE,."
     mc rage "those girls... they were so WEIRD! "
     mc "And some of them weren't even girls!"
     mc "I TRUSTED you to bring me girls!!"
     show gabriel neutral at center with dissolve_fast
-    gb worried "\"Girls?\" Like, children?"
+    gb nervous "\"Girls?\" Like, children?"
     mc "Gabe!!! Obviously by \"girls,\" the English word for female children, I meant \"adult women.\""
     mc smug "EVERYONE knows tha.t"
     gb shocked "Uh-huh."
@@ -1757,9 +1777,9 @@ label endingcheck:
     return
 
 label regularending:
-    gb worried "Tony!"
-    gb "HOW did you even manage that?"
-    gb confused "Your standards are so high, but none of these people were good enough for you?"
+    gb thinking "Tony!"
+    gb confused "HOW did you even manage that?"
+    gb tired "Your standards are so high, but none of these people were good enough for you?"
     mc smug "*shrugs* I'm simply the best"
     gb thinking"..."
     call killing_chant
