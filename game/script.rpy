@@ -15,14 +15,14 @@ define qt = Character("Sephirah", image="q")
 define dg = Character("Dragon", image="aizeer")
 define jl = Character("Jules", image="jules")
 define ox = Character("Onyx", image="onyx")
-define mc = Character("tony", image="tony")
+define mc = Character("tony", what_italic=True, image="tony")
 define mc_thought = Character(image="tony") #tony's thoughts are colored and italicized
 define mc_polite = Character() #different font, probably times new roman lol
 
 #endregion
 
 #change the args on this to make it a subtitle chant that auto advances
-define chant = Character()
+define chant = Character(what_outlines=[(1,"#000",0,0)], what_xalign=0.5, what_textalign=0.5, what_layout="subtitle" window_background=None)
 
 
 #region images linked
@@ -36,6 +36,7 @@ image side tony conservative = "images/portraits/tony_conservative.png"
 image side tony genius = "images/portraits/tony_genius.png"
 image side tony awooga = "images/portraits/tony_awooga.png"
 image side tony neutral = "images/portraits/tony_neutral.png"
+image side tony sleep = "images/portraits/tony_sleep.png"
 
 #gabriel
 image gabriel neutral = "images/portraits/gabriel_neutral.png"
@@ -140,6 +141,7 @@ image tierlist = "images/funnies/soda_teirlist.png"
 image cg spying neutral = "images/cgs/cg_spying2.png"
 image cg spying worried = "images/cgs/cg_spying1.png"
 image cg death = "images/cgs/cg_killing_blow.png"
+#high five, possibly?
 
 #endregion
 
@@ -599,10 +601,10 @@ label night_two:
 label night_three:
     scene bg home with fade
     #return here after onyx. last time's a charm.
-    mc_thought conservative "Another resounding... failuer."
+    mc_thought conservative "Another resounding... failuer tongiht."
     mc_thought "The girl could be cute, and I'll JUST start to overlook her flaws..."
     mc_thought rage "And then there's always a catch!"
-    mc_thought "The Universe is so CRUEL to me!!"
+    mc_thought sensitive "The Universe is so CRUEL to me!!"
     mc_thought smug "guess i'll just go to bed and try to prepare for tomorrow..."
     jump dragon
     return
@@ -1140,7 +1142,7 @@ label ladybird_fail:
     gb "Hang on. I'll fix this..."
     hide cg spying worried with dissolve
     #scene is whatever the previous scene was
-    show gabriel happy at right with dissolve_fast
+    show gabriel happy at left with dissolve_fast
     gb "Excuse me, for a moment!"
     show ladybird happy:
         move_to_left
@@ -1205,7 +1207,7 @@ label ash:
     "It makes no sense!"
     "The next date should be arriveing soon... she better be good."
 
-    show ash 
+    show ash with dissolve_fast
 
     ash happy "Oh hey! Are you Tony?"
     mc jawdrop "Wh- you're not even human!"
@@ -1378,10 +1380,9 @@ label ash:
     hide tierlist 
 
     ash happy "And that's pretty much it."
-    ash "So what do you think? what's YOUR favorite soda?"
+    ash "So what do you think? what's your favorite soda?"
     #the date branches to give you a different ending based on whether or not you like PiBB Xtra
     menu yoursoda:
-        ash "What's your favorite kind of soda?"
         "Dr Pepper":
             $ fav_soda = "pepper"
             ash "Oh, great! Glad you agree."
@@ -1395,24 +1396,30 @@ label ash:
 
 label ashend:
 
-    "She's salmost doen with her meal. I have to make a decision soon..."
-    "This is a tough decision."
-    "ON one hand she is atually very nice and sweet and cool and firendly."
-    "On the other, hwer friendlyness reminfs me of a male friend, and not a woman..."
-    "on ONE hand she is a strange animal furry mammal person..."
-    "one the other, hot damn she"
+    mc_thought neutral "She's salmost doen with her meal. I have to make a decision soon..."
+    mc_thought "This is a tough decision."
+    mc_thought sensitive "ON one hand she is atually very nice and sweet and cool and firendly."
+    mc_thought neutral "On the other, hwer friendlyness reminfs me of a male friend, and not a woman..."
+    mc_thought "on ONE hand she is a strange animal furry mammal person..."
+    mc_thought awooga "one the other, hot damn she"
     $ renpy.notify("We've censored Tony's remarks for the sake of decency.")
     mc_polite "Tony finds Ash very beautiful and aesthetically pleasing."
-    "I can't possibly turn up my nose at a real life girl gamer!"
-    "I think sh'ell make a fine gf."
-    mc "Wait,where are you going?"
+    mc_thought sensitive "But I can't possibly turn up my nose at a real life girl gamer!"
+    mc_thought smug "I think sh'ell make a fine gf."
+    mc neutral "Wait,where are you going?"
     ash neutral "I gotta get home. It's late"
     mc "Wait!"
-    mc "Let's make plans for another date."
+    mc sensitive "Let's make plans for another date."
     ash worried "Huh?"
     ash annoyed "Hell nah lmfao you broke asf taking me to this janky ass McDonald's 😂"
     ash happy "Thanks for the meal tho"
-    "And after all I DID for her? Women are so ungrateful... grrrrr"
+    hide ash with dissolve_fast
+    mc_thought rage "She really left...!"
+    mc_thought "And after all I DID for her? Women are so ungrateful... grrrrr"
+    mc_thought "I'm so angry I could..."
+    mc_thought neutral "couldd..."
+    mc_thought "..."
+    mc_thought sleep "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
     #fade to black
     jump qdate
     
@@ -1422,26 +1429,26 @@ label why_pibb:
 
     ash shocked "What the..."
     ash disgusted "Why would you drink a PiBB Xtra when Dr Pepper is right there...?"
-    mc "it's a cherry coola that was meant to compete with but not taste exactly like dr pepper"
-    mc "You see the coca cola company (coke for short) understood, after the faliure of new coke, {nw=0.3}"
+    mc neutral "it's a cherry coola that was meant to compete with but not taste exactly like dr pepper"
+    mc genius "You see the coca cola company (coke for short) understood, after the faliure of new coke, {nw=0.3}"
     mc "that in competeing with pepsico, they should not attempt to directly imitate their products 
         in order to avoid alienating their core audience in Atlanta. {nw=0.3}"
     ash worried "Um- {nw=0.3}"
-    mc "that was actually one of many such run-ins with attempting to mimic pepsico. in fact the wretched pepsico {nw=0.3}"
-    mc "had forced the coke company to change the original name already. anyway. {nw=0.3}"
-    mc "PiBB Xtra is a refreshing spiced cherry cola for when you need a delicious pick-me-up from any Coke product-carrying retailer. {nw=0.3}"
+    mc neutral "that was actually one of many such run-ins with attempting to mimic pepsico. in fact the wretched pepsico {nw=0.3}"
+    mc rage "had forced the coke company to change the original name already. anyway. {nw=0.3}"
+    mc smug "PiBB Xtra is a refreshing spiced cherry cola for when you need a delicious pick-me-up from any Coke product-carrying retailer. {nw=0.3}"
     ash annoyed "TONY."
     ash disgusted "If I wanted to drink a cherry cola from the Coca-Cola company, I would just drink a Cherry Coke!"
     mc "It's NOT a cherry cola it is a SPICED cherry cola, there's a whole WORLD of difference!"
     mc "But that may be a bit too nuanced for your female brain..."
     ash shocked "Oh, misogyny. I'm out"
     hide ash with dissolve
-    "No way she left!"
-    "That wasn't misogyny it was just a keen observation from my large brain! grrr....."
-    "I'm so angry I could..."
-    "couldd..."
-    "..."
-    "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+    mc_thought rage "No way she left!"
+    mc_thought "That wasn't misogyny it was just a keen observation from my large brain! grrr....."
+    mc_thought "I'm so angry I could..."
+    mc_thought neutral "couldd..."
+    mc_thought "..."
+    mc_thought sleep "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
     #fade to black
     jump qdate
     
@@ -1452,82 +1459,88 @@ label why_pibb:
 
 
 label qdate:
+    scene bg black with new_day
     #black screen. he fell asleep.
     "???" "..hello..."
     "???" "Hello?"
-    "huh?"
-    "who goes there!?"
+    mc_thought neutral "huh?"
+    mc_thought "who goes there!?"
     #when he wakes up the mcdonald's looks a little strange.
     #Q stands in front of him, and it's a date?
-    qt "you seem chill. lets hang out"
-    mc "Are you my *yaaaaawn* date?"
+    scene bg mcdonalds hazy with dissolve_slow
+    show q neutral with dissolve_slow
+    qt "i'm just gonna sit right here, if you don't mind."
+    mc neutral "Are you my *yaaaaawn* date?"
     qt "uhhhh sure."
     qt "Ok. First question:"
-    qt "What are your pronouns?"
-    "gabes really resting my pasticence with all ofthe curveballs hes throwing me."
-    "first a man. now a LIBERAL"
-    "I HAVE TO STAND MY GROUND."
-    mc "I don't {i}do{/i} pronouns."
-    qt "No pronouns?"
-    mc "No."
+    qt yap "What are your pronouns?"
+    mc_thought "gabes really resting my pasticence with all ofthe curveballs hes throwing me."
+    mc_thought "first a man. now a LIBERAL"
+    mc_thought rage "I HAVE TO STAND MY GROUND."
+    mc genius "I don't {i}do{/i} pronouns."
+    qt shocked "No pronouns?"
+    mc smug "No."
     qt "Only your name?"
     mc "Yeah."
-    mc "wait,"
-    qt "So if I were to use he/him for you, that would be misgendering..."
+    mc neutral "wait,"
+    qt neutral "So if I were to use he/him for you, that would be misgendering..."
     mc "No, it- {nw=0.5}"
     qt "No pronouns..."
     mc "wait a minute-{nw=0.5}"
     $ renpy.notify("Pronouns lost!")
-    qt "...got it."
+    qt smug "...got it."
 
     qt "Alright, second question."
-    qt "Hypothetically." 
-    qt "If __ girlfriend were a worm, would __ still love her?"
+    qt neutral "Hypothetically." 
+    qt yap "If __ girlfriend were a worm, would __ still love her?"
     mc "What?"
     qt "If __ girlfriend were a worm,"
     qt "would __ still love her?"
     mc "Would who still love her?"
-    qt "__, Tony! __!!"
+    qt angry "__, Tony! __!!"
     mc "HOW are you doing that with your mouth???"
     qt "__ didn't answer my question."
-    mc "Well of course __ would love __ hypothetical girlfriend"
-    "..."
-    "hold on"
-    mc "__ would love __ hypothetical girlfriend"
-    mc "what is goin g on"
-    qt "Oh, __ said __ didn't do pronouns."
+    mc smug "Well of course __ would love __ hypothetical girlfriend"
+    mc_thought "..."
+    mc_thought neutral "hold on"
+    mc neutral "__ would love __ hypothetical girlfriend"
+    mc "what is goin g on!"
+    qt neutral "Oh, __ said __ didn't do pronouns."
     qt "So I took em. {w}Don't need those anymore!"
-    #tony D:    
+    mc jawdrop""  
 
-    qt "Okay. Last question."
-    qt "If __ were put in an elementary school and __ couldn't escape, how many fifth graders do __ think __ could take out before dying?"
-    mc "{w=0.9}Like in CoD zombies?"
+    qt smug "Okay. Last question."
+    qt yap "If __ were put in an elementary school and __ couldn't escape, how many fifth graders do __ think __ could take out before dying?"
+    mc neutral "{w=0.9}Like in CoD zombies?"
     qt "Yeah"
-    mc "Easily 300 rounds."
-    qt "Really?????"
-    mc "Yeah. Like __ easily got 300 rounds in blops 3 zombies. on every map"
+    mc smug "Easily 300 rounds."
+    qt shocked "Really?????"
+    mc conservative "Yeah. Like __ easily got 300 rounds in blops 3 zombies. on every map"
     qt "Oh wow! Isn't that world record?"
-    qt "Wait I'm looking that up right now..."
-    "whats she doing"
-    mc "jsyk __ records orent on thwe leaderboards yet tho hteyre still beeing verified"
-    qt "Says highest possible round is 255..."
-    mc "yeah but"
+    qt neutral "Wait I'm looking that up right now..."
+    mc_thought rage "whats she doing"
+    mc smug "jsyk __ records orent on thwe leaderboards yet tho hteyre still beeing verified"
+    qt neutral "Says highest possible round is 255..."
+    mc neutral "yeah but"
     qt "Higher rounds aren't possible without mods..."
     qt "Yeah gonna have to doubt on the fifth graders question :/"
-    mc "__ could do it!"
-    qt "Excuse me, are __ modding my fifth graders question?"
-    mc ""
+    mc rage "__ could do it!"
+    qt angry "Excuse me, are __ modding my fifth graders question?"
+    mc "...no...."
 
-    qt "anyway."
+    qt smug "anyway."
     qt "Still can't believe the whole \"no pronouns\" thing."
-    qt "Me personally, my pronouns are just she cuz I can't be her"
-    qt "(Her is my girlfriend)"
+    qt neutral "Me personally, my pronouns are just she cuz I can't be her"
+    qt smitten "(Her is my girlfriend)"
     mc "You have a GIRLFRIEND?"
-    qt "Oh yeah I do"
-    qt "We're not really looking for a third, though."
+    qt yap "Oh yeah I do"
+    qt neutral "We're not really looking for a third, though."
     mc "So why are you here?"
-    qt "Oh I just thought it'd be funny lol"
+    qt yap "Oh I just thought it'd be funny lol"
     mc "So you're g-"
+    hide q with dissolve_slow
+    show bg mcdonalds with dissolve_slow
+    hide bg mcdonalds hazy with dissolve
     #q fades away and the mcdonald's turns back to normal
 
     #normal points check
@@ -1548,13 +1561,13 @@ label onyx:
     mc "fuck..."
 
     mc_thought rage "guess __ stuck like this for a while."
-    mc_thought sensitive "_ still got another date, hopefully the next frew girls 
+    mc_thought smug  "_ still got another date, hopefully the next frew girls 
     dont mind not being able to say anything about __ pronouns"
-    "Feels like Gabriel did this just to watch __ suffer more than he knows _ already have."
-    mc_thought rage "Yeah... definitely set up by... THEM huh.."
+    mc_thought neutral "Feels like Gabriel did this just to watch __ suffer more than he knows _ already have."
+    mc_thought "Yeah... definitely set up by... THEM huh.."
     mc_thought rage "_ swear... ___ definitly get __ revenge after this is all ov-"
     
-    show onyx 
+    show onyx with dissolve_fast
     ox neutral "um... __ wouldn't happen to be Tony correct??"
     mc conservative "oh uh yeah"
     mc "that's... __"
@@ -1609,13 +1622,14 @@ label onyx:
 
 
 label dragon:
-    "It's the last date."
-    "So dar that ASS-istant Niecy has been setting me up to FAIL."
-    "Sending me a beautiful woman and there's alwasy somme trick..."
-    "I'm hoping the next one is a REAL catch this time."
-    "Oh, that must be her."
+    scene bg mcdonalds with new_day
+    mc_thought "It's the last date."
+    mc_thought "So dar that ASS-istant Niecy has been setting me up to FAIL."
+    mc_thought "Sending me a beautiful woman and there's alwasy somme trick..."
+    mc_thought "I'm hoping the next one is a REAL catch this time."
+    mc_thought "Oh, that must be her."
     
-    show aizeer
+    show aizeer with dissolve_fast
 
     dg neutral "Hello!"
     mc smug "Hello beautiful woman."
@@ -1624,7 +1638,8 @@ label dragon:
     mc sensitive "What about them?"
     dg "They're gone!"
     dg "Hold on, I'll fix this:"
-    #thunderclap with white flash
+    show aizeer with lightning_flash_1
+    show aizeer with lightning_flash_2
     $ renpy.notify("Pronouns restored.")
     dg happy "That should do it."
     dg "It's such a beautiful evening! Why are we cramped indoors?"
@@ -1699,20 +1714,23 @@ label killing_chant:
 
 label endingcheck:
 
-    mc "Oh thank goodness you're here gabe. It was TERRIBLE,."
-    mc "those girls... they were so WEIRD! "
+    scene bg gabriel room with dissolve
+    mc smug "Oh thank goodness you're here gabe. It was TERRIBLE,."
+    mc rage "those girls... they were so WEIRD! "
     mc "And some of them weren't even girls!"
     mc "I TRUSTED you to bring me girls!!"
-    gb "\"Girls?\" Like, children?"
+    show gabriel neutral at center with dissolve_fast
+    gb worried "\"Girls?\" Like, children?"
     mc "Gabe!!! Obviously by \"girls,\" the English word for female children, I meant \"adult women.\""
-    mc "EVERYONE knows tha.t"
-    gb "Uh-huh."
-    gb "So have you decided on who you'd like to continue pursuing?"
-    mc "Nah, you gotta set up some more dates. They all left and I can't figure out why :/"
-    gb "You're telling me you fumbled all of them?"
+    mc smug "EVERYONE knows tha.t"
+    gb shocked "Uh-huh."
+    gb neutral "So have you decided on who you'd like to continue pursuing?"
+    mc smug "Nah, you gotta set up some more dates. They all left and I can't figure out why :/"
+    gb tired "You're telling me you fumbled all of them?"
     gb "All of them, in a row?"
     gb "Every single one?"
-    mc "I didn't fumble; I'm the prize!"
+    mc genius"I didn't fumble; I'm the prize!"
+    gb annoyed closed "..."
     #gabriel grimaces with his eyes wide.
 
     if fav_soda == "pibb":
@@ -1725,24 +1743,28 @@ label endingcheck:
     return
 
 label regularending:
-    gb "Tony."
-    gb ""
+    gb annoyed closed "Tony."
+    gb worried "HOW did you even manage that?"
+    gb annoyed "Your standards are so high, but none of these people were good enough for you?"
+    mc smug "*shrugs* I'm simply the best"
+    gb thinking"..."
     call killing_chant
-    mc "What?"
+    mc neutral "What?"
+    show cg death with dissolve_fast
     gb "You're going to hell."
     gb "Goodbye."
 
     if normal_points >6:
-        show screen expression game_over_scene pass (True, False)
+        call screen expression game_over_scene pass (True, False)
     else:
-        show screen expression game_over_scene pass (False, False)
+        call screen expression game_over_scene pass (False, False)
     #you died :(
     
     return
 
 label failsafeending:
-    gb "That's weird..."
-    mc "Is something wrong?"
+    gb shocked "That's weird..."
+    mc neutral "Is something wrong?"
     gb "um..."
     jump regularending
     #ending continues as normal. should be unreachable by the player
@@ -1769,10 +1791,10 @@ label earlyend:
 
 label sodaending:
 
-    gb "ok who the FUCK drinks mr pibb"
-    mc "it is no longer called MISTRE PIBB it's called PiBB Xtra and it's a spiced cherry cola thats"
-    gb "I'm killing you. {w=0.4} I'm killing you"
-    show screen expression game_over_scene pass (False, False)
+    gb unamused "ok who the FUCK drinks mr pibb"
+    mc genius "it is no longer called MISTRE PIBB it's called PiBB Xtra and it's a spiced cherry cola thats"
+    gb tired "I'm killing you. {w=0.4} I'm killing you"
+    call screen expression game_over_scene pass (False, False)
     #you died :(
     return
 #endregion
