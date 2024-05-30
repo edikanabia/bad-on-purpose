@@ -78,6 +78,7 @@ image ladybird neutral = "images/portraits/ladybird_neutral.png"
 image ladybird thinking = "images/portraits/ladybird_thinking.png"
 image ladybird sideeye  = "images/portraits/ladybird_sideeye.png"
 image ladybird shocked = "images/portraits/ladybird_shocked.png"
+image ladybird eyeup = "images/portraits/ladybird_eyeup.png"
 
 #niecy
 image niecy neutral = "images/portraits/niecy_neutral.png"
@@ -536,11 +537,16 @@ label day_one:
     return
 
 label night_one:
+    $ alien = ""
     scene bg home with fade
     mc_thought conservative "man..."
     mc_thought "tonight was CRAZY."
     mc_thought "I never expected someone so tall to be unable to take a RESL intellectual conversation..."
-    mc_thought "and the alien lady afterward!"
+    if leave_early == True:
+        $ alien = "weird"
+    else:
+        $ alien = "alien"
+    mc_thought "and the [alien] lady afterward!"
     mc_thought "just my luck isn't it."
     mc_thought smug "they were wrong tho... I'm not the freak"
     mc_thought "Sheesh... I should head to bed."
@@ -565,7 +571,16 @@ label day_two:
 label night_two:
     scene bg home with fade
     #tony's gonna plan to show up at gabriel's room angry, feeling set up.
-    mc_thought rage "Tuh. a MAN named LADYbird? riDICKulous."
+    if bird_fail == True:
+        mc_thought neutral "Gabriel was soooooo mad at me."
+        mc_thought "Like wow gabe."
+        mc_thought "If you like him that much..."
+        mc_thought smug "Why don't you go after him yourself!"
+        "Does he know!?"
+    else:
+        mc_thought rage "Tuh. a MAN named LADYbird? riDICKulous."
+        mc_thought "whose idea was that anyway!!?"
+
     mc_thought conservative "Tomorrow morning I'm gonna show Gabriel a pizza my mind."
     mc_thought "But first?"
     mc_thought sensitive "A MAN's man's gotta get to his 9pm bedtimies!"
@@ -771,7 +786,7 @@ label mamad:
             mama "Oh... I'm sorry!"
             mama "I thought... I thought... since you called out to me..."
             mc "Nah. I'm going home"
-            $ leave_early = true
+            $ leave_early = True
             jump night_one
         "Nah":
             $ normal_points = normal_points + 1
@@ -834,7 +849,7 @@ label mamad:
     return
 
 label ladybird:
-    scene bg black
+    scene bg black with dissolve
     #ladybird (sier) is expecting a proper date
     #step 1: pick him up at his house
     #scene: all black
@@ -895,23 +910,214 @@ label ladybird:
     mc smug "Wanna go in?"
     lb "I suppose..."
     mc "After you."
-    scene bg mcdonalds with dissolve_fast
-    show ladybird happy at person_e with dissolve_fast
+    scene bg mcdonalds with dissolve
+    show ladybird happy at right with dissolve_fast
     mc "..."
     mc "What are you doing?"
     lb neutral "Waiting to be seated...?"
+    menu:
+        "Wonder who waits to be seated at a McDonald's.":
+            $ normal_points += 1
+            mc_thought neutral "...who waits to be seated at a McDonald's?"
+            pass
+        "Who waits to be seated at a McDonald's!?":
+            mc smug "Ummmm Ladybird!"
+            mc "This {i}fine establishment{/i} allows you to go directly to the counter to order your food!"
+            mc genius "Everyone with a BRAIN knows that."
+            lb sad "Are.. are you saying I...?"
+            mc "It's okay, Miladybird."
+            mc "I don't expect you to understand."
+            mc "Allow me to educate you. It will be the basis of a healthy and stable relationship"
+            jump ladybird_fail
+    show cg spying neutral with dissolve_fast
+    gb "did he just wait to be seated at a damn McDonald's"
+    nc "SHHHHHHH!"
+    gb "why are you shushing me we can't fucking hear them"
+    hide cg spying with dissolve_fast
     mc "I think it's okay if we just go straight to the countrer."
+    show ladybird happy:
+        linear 0.8 person_d
+    show server at offscreenleft
+    show server:
+        linear 0.8 person_b
+    
+    lb "So! What do you recommend?"
+    mc neutral "uhhhhh"
+    lb "Ooooh, that quarter pounder looks scrumptious!"
+    lb "Do you think the quarters come separately?"
+    mc "We should start with some fries."
+    lb "Okay!"
+    "server" "Hi, welcome to McDonalds may I take your order"
+    mc smug "Ladybirds first...!"
+    mc_thought genius "hehe"
+    lb "Can I get a large fry? The largest you have."
+    lb "Perhaps thumb-sized, if possible, or- Oh! Oh! Do you have any fries the size of my arm?"
+    "server" "*sigh* No sir. We do not."
+    "server" "a large fry refers to the size of the container."
+    mc "You know what. we could just get a soundwich. like a nice cheeseburger."
+    lb "*gasp*!! {w=0.5} A quarter pounder with CHEESE! Great idea!"
+    lb shocked "Oh, hm, why not get the double quarter pounder?"
+    "server" "I hear it's double the fun."
+    lb "Maybe I'll even get two of them."
+    mc_thought neutral "For someone who thought this was gonna be fancier than it is..."
+    mc_thought genius "She sure is excited."
+    mc_thought neutral "But I'm getting kinda"
+    mc_thought rage "TIRED"
+    mc_thought neutral "of how indecisive she is!!"
+    menu: 
+        "I'm gonna tell her what's up":
+            mc rage "WILL YOU HUrry up and pick something already!!"
+            show server:
+                linear 0.8 offscreenleft
+            hide server with dissolve_fast
+            mc "I've been STANDING for TWO MINUTES!!"
+            mc sensitive "my feetsies hurt :("
+            lb sad "I... I'm sorry..."
+            jump ladybird_fail
+        "I can't yet, I've got to hold it in...":
+            $ normal_points += 1
+            pass
 
-    #copy over Janay's scene
+    mc_thought neutral "She's really the yapper huh."
+    "..."
+    "..."
+    lb shocked "Tony!!"
+    mc "Hunh!?"
+    lb neutral "What are you getting?"
+    menu:
+        "One cheeseburger":
+            mc rage "ONE cheeseburger like a CIVILIZED HUMAN WHO CAN MODERATE THEIR POTIONS!!!"
+            mc smug "I mean portions."
+            lb sad "Oh..."
+            "server" "gah dam."
+            show server:
+                linear 0.8 offscreenleft
+            jump ladybird_fail
+        "Two cheeseburgers":
+            mc neutral "TWO cheeseburgers."
+            mc "Because my stomach is GROWLING."
+            lb "It is? Let's hurry up and eat, then!"
+            mc rage "NEXT TIME, don't make me WAIT so long for my FOOD," 
+            mc "B***H!!"
+            show ladybird shocked with dissolve_fast
+            pause 3.0
+            show server:
+                linear 0.8 offscreenleft
+            jump ladybird_fail
+        "Three cheeseburgers":
+            $ normal_points += 1
+            pass
+        "Four cheeseburgers":
+            mc  smug "Fffffour cheeseburgers."
+            lb happy "Oh wow!"
+            lb neutral "Do you usually get four cheeseburgers?"
+            mc neutral "Uh...."
+            mc_thought rage "I-I-I don't like that she called my bluff!"
+            mc "YOU DRESS WEIRD!!"
+            lb shocked "Wh..."
+            lb sad "No I don't..."
+            "server" "I don't wanna be here for this."
+            show server:
+                linear 0.8 offscreenleft
+            jump ladybird_fail
+    mc smug "THReeeeeee cheeseburgers."
+    mc rage "SINCE the McRibb is gone..."
+    "server" "Oh, dude-"
+    "server" "The McRibb came back, bro."
+    mc neutral "What? No it isn't."
+    "server" "???"
+    "server" "yes it is???"
+    mc genius "No it's not I would know I'm really really smart"
+    "server" "Oh boy."
+    show cg spying neutral with dissolve_fast
+    gb "What's going on?"
+    nc "They're taking a long time to order..."
+    gb "He's arguing with the server?"
+    nc "Oh god, he's hopeless."
+    "..."
+    nc "Hey, he just said Taco Bell!"
+    gb "You can read lips, Niecy? What are they saying now?"
+    nc "Ah, I just really like Taco Bell. Can't do much beyond that."
+    gb "Huh. They're really going at it."
+    gb "...Yeah, they're {i}really{/i} going at it."
+    nc "Should we do something?"
+    gb "Mmmmmmmm"
+    gb "nah"
+    gb "It should be fine."
+    nc "Oh hey, looks like things are settling down."
+    hide cg spying neutral with dissolve_fast
 
+    mc neutral "OKAY FINE. The quarter pounder with cheese."
+    "server" "will that be all"
+    lb eyeup "Of course not! No meal would be complete without a dessert!"
+    mc_thought smug "Of course he's gonna say the chocolate chip cookie."
+    lb happy "I'd like one ice cream please!"
+    show cg spying worried with vpunch
+    gb "HE WENT FOR THE ICE CREAM!?"
+    hide cg spying worried with dissolve_fast
+    "server" "..."
+    "server" "I'm so sorry sir,"
+    "server" "Ice cream machine broke."
+    show ladybird shocked
+    pause 3.0
+    lb "It... it CAN'T be!"
+    "server" "*crsshhh* management, we got a customer on suicide watch *crshh* over"
+    mc_thought sensitive "She's having that reaction because she doesn't know any better..."
+    mc_thought genius "Now's my chance to clinch this and bring it home...!"
+    menu:
+        "The ice cream machine is always broken":
+            $ normal_points += 1
 
-    mc "Wait. You're a man?"
-    lb "I think so!"
+        "The ice cream machine is always broken":
+            mc genius "The ice cream machine is always broken," 
+            mc rage "{w=2.0}IDIOT"
+            show ladybird sad
+            mc "NOBODY EVEN LIKES ICE CREAM LIKE THATANYWAY."
+            "server" "yo chill out lil bro"
+            mc smug "Hang on, I'm not done."
+            mc rage "IT'S ALL CURD AND SLOP!!"
+            mc "You're DISGUSTING!!"
+            "server" "yeesh..."
+            show server:
+                linear 0.8 offscreenleft
+            lb "..."
+            jump ladybird_fail
+    mc genius "The ice cream machine is always broken, Miladybird."
+    mc "Might I suggest, "
+    "server" "the apple pie"
+    mc "the ch-"
+    mc rage "who said the apple pie."
+    "server" "brother can you just pay for your order."
+    mc "FINE"
+
+    $ renpy.Notify("Mission: Date handled!")
+    scene bg black with dissolve_fast
+    "Tony and Ladybird get through the arduous task of ordering a meal."
+    "Now, they finally sit down to eat it..."
+    scene bg mcdonalds with dissolve_fast
+    show ladybird happy at center with dissolve_fast
+    lb "I'm so excited to eat these."
+    mc neutral "Big meal, huh"
+    lb "Of course! I'm a growing boy, as they say."
+    mc_thought neutral "\"Boy...\""
+
+    mc smug "Wait." 
+    mc jawdrop "You're a man?"
+    lb happy "I think so!"
     mc "I thought you were a girl!!"
-    lb "Oh, no. I'm not educated enough to be a girl, yet."
-    lb "But I'm working toward my BFA (Bachelor of Femme Arts)"
+    lb neutral "Oh, no. I'm not educated enough to be a girl, yet."
+    lb thinking "But I'm working toward my BFA (Bachelor of Femme Arts)"
     mc "Huh!? I thought... with a name like {i}Lady{/i}bird..."
-    lb "You might not believe this, but my mononym penname is not, in fact, my true name!"
+    lb happy "You might not believe this, but my mononym penname is not, in fact, my true name!"
+    mc rage "What the heck!! I asked them for beautiful girls with attractive personalities!"
+    lb neutral "Oh, no. Definitely not a girl."
+    lb happy "But I'd like to be included in that designation, one day."
+    lb "Girls and Ladybird. Has a nice ring to it."
+    lb neutral "Do you at least find my personality attractive...?"
+    mc "I-"
+    mc sensitive "well"
+    lb thinking "Aha... :)"
+    lb happy "Good bye, Tony. I hope it works out for you someday."
 
     
 
@@ -927,7 +1133,7 @@ label ladybird_fail:
     gb "Hang on. I'll fix this..."
     hide cg spying worried with dissolve
     #scene is whatever the previous scene was
-    show gabriel happy at person_e with dissolve_fast
+    show gabriel happy at right with dissolve_fast
     gb "Excuse me, for a moment!"
     show ladybird happy:
         move_to_left
@@ -938,19 +1144,35 @@ label ladybird_fail:
     gb annoyed "TONY!! WHAT are you DOING!"
     mc smug "Just being honest!!!"
     gb "I TOLD YOU-"
-    show ladybird
+    show ladybird sideeye with dissolve_fast
+    show gabriel shocked with dissolve_fast
+    pause 4.0
+    show gabriel annoyed with dissolve_fast
     #ladybird looks at him funny
-    gb "Have you no tact? I told you, gentleness and care!"
+    gb "(Have you no tact? I told you, gentleness and care!)"
     mc "I was being gentle! I got this I promise!"
+    show gabriel annoyed:
+        zoom 3.0
+        xalign 0.6
+        yanchor 1.0
+        ypos 3000
+    
     gb "I'll be \"gentle\" when I tear you limb from limb if you don't scurry your sorry lil white ass home you paper pale worthless pile of sawdust."
+    hide gabriel
+    show gabriel annoyed closed with dissolve_fast
     gb "I swear to god."
     mc_thought jawdrop "Yikes!"
     mc_thought "I'm outta here!"
     #tony skidaddles
+    show gabriel neutral:
+        linear 0.8 person_d
+    show ladybird neutral:
+        linear 0.8 person_b
+
     gb "He wasn't too mean to you, was he?"
-    lb "I mean, people have been cruel to me before."
+    lb sad "I mean, people have been cruel to me before."
     gb "Don't worry."
-    gb "I'll treat you right."
+    gb happy "I'll treat you right."
     #so if you fail ladybird he isn't going to talk to you, and it should lock you out of Gaybriel too.
 
 
