@@ -22,7 +22,7 @@ define mc_polite = Character() #different font, probably times new roman lol
 #endregion
 
 #change the args on this to make it a subtitle chant that auto advances
-define chant = Character(what_outlines=[(1,"#000",0,0)], what_xalign=0.5, what_textalign=0.5, what_layout="subtitle" window_background=None)
+define chant = Character(what_outlines=[(1,"#000",0,0)], what_xalign=0.5, what_textalign=0.5, what_layout="subtitle", window_background=None)
 
 
 #region images linked
@@ -452,79 +452,90 @@ label interlude:
 #activates after gaining a certain amount of normal points
 label afterq:
 
+    show gabriel confused with dissolve_fast
     gb "What happened?"
-    mc "__ lost __ pronouns."
+    mc neutral "__ lost __ pronouns."
     gb "Oh wow."
     gb "That must be so tough for __."
-    mc "__ know, right? __ can't even refer to __ in the first person."
+    mc rage "__ know, right? __ can't even refer to __ in the first person."
     mc "Why is that????"
-    #gabriel stares at the camera
-    gb "It's a mystery."
+    #bruh
+    gb unamused "It's a mystery."
     mc "YOu set me up."
     gb "I didn't plan that."
+    gb thinking "Some forces are even beyond my control..."
+    mc neutral "huh."
     mc "Man Gabe,"
-    gb "__ are not permitted to call me that, by the way."
-    gb "I neglected correct __ earlier. But I should have."
+    gb unamused "__ are not permitted to call me that, by the way."
+    gb thinking "I neglected correct __ earlier. But I should have."
     mc "Man Gabriel, this date stuff is annoying."
     mc "Is it easier to date men?"
-    gb "Shouldn't __ have asked __ that when __ went on the dates with men?"
+    gb confused "Shouldn't __ have asked __ that when __ went on the dates with men?"
     mc "Well __ didn't realize it then!"
     gb "Realize what?"
-    mc "...you're pwetty."
+    mc sensitive "...you're pwetty."
     mc "I don't care that you're a man."
-    gb "Don't go developing on me {i}now,{/i} __'ve been so terrible so far..."
+    gb tired "Don't go developing on me {i}now,{/i} __'ve been so terrible so far..."
     mc "Gabe- um- Gabriel?"
     mc "Do you think __ could ever be with a man?"
-    gb "I can't answer that for __."
+    gb thinking "I can't answer that for __."
     mc "...could __ be with you?"
-    gb "I'm married."
-    "here's how tony can still win:" #I need like death note copycat music here
-    mc "Is your marriage open"
+    gb unamused "I'm married."
+    mc_thought genius "here's how tony can still win:" #I need like death note copycat music here
+    mc smug "Is your marriage open"
     mc "cuz you seem like an open marriage guy."
     mc "I'm not against being the third."
-    gb "(...This isn't good.)"
-    gb "(If he comes out as bisexual now, we'll never be taken seriously again...)"
+    gb thinking "(...This isn't good.)"
+    gb annoyed closed "(If he comes out as bisexual now, we'll never be taken seriously again...)"
     gb "(Think of what this will do to the community...!)"
-    gb "My marriage is only open to women."
-    gb "Extra men aren't partners... they're accessories."
-    "Guh...! That objectifying gaze...! It's almost too much to bear!"
-    "__ can feel him queering my gender!"
-    "Wait... if __ play my cards right, __ can clutch this counter and live with a sliver of health...!"
-    mc "__ LIKE WHEN WOMEN ARE MEAN TO __!!"
-    gb "*snort*"
-    gb "__ don't mean that."
+    gb neutral "My marriage is only open to women."
+    gb happy "Extra men aren't partners... they're accessories."
+    mc_thought jawdrop "Guh...! That objectifying gaze...! It's almost too much to bear!"
+    mc_thought "__ can feel him queering my gender!"
+    mc_thought genius "Wait... if __ play my cards right, __ can clutch this counter and live with a sliver of health...!"
+    mc jawdrop "__ LIKE WHEN WOMEN ARE MEAN TO __!!"
+    mc_thought rage "{w=0.4} GOD {w=0.4}DAMMIT"
+    gb shocked "*snort*"
+    gb happy "__ don't mean that."
     menu:
-        "I don't":
-            gb "Thought so."
-            "That was a close one. __ could have died."
-            "__'m not ready to be bisexual..."
-            gb "(Good... he's giving that look that says,\"I'm not ready to be bisexual.\")"
-            mc "Gabriel __ don't think __'m ready for this. That kind of love is too powerful."
+        "__ don't":
+            gb thinking "Thought so."
+            mc_thought neutral "That was a close one. __ could have died."
+            mc_thought "__'m not ready to be bisexual..."
+            gb thinking "(Good... he's giving that look that says,\"I'm not ready to be bisexual.\")"
+            mc jawdrop "Gabriel __ don't think __'m ready for this. That kind of love is too powerful."
             mc "You can't set __ up with another man, okay?"
-            gb "oh bad news"
-            mc "what?"
+            gb happy "oh bad news"
+            mc smug "what?"
             gb "hahahahhahahahahhahahahahahhahahahahahahahahahahahahahahahahahahahaha{nw}"
 
-        "I do":
-            gb "...__'re squirming in __ seat."
-            mc "nuh-uh!"
+        "__ do":
+            gb neutral "...__'re squirming in __ seat."
+            mc rage "nuh-uh!"
             gb "I've been keeping a secret from __, Tony."
             gb "I may be a man."
-            gb "But I'm also a woman!"
-            "What!? But that means..."
-            "He's been objectifying me using a female gaze!?"
-            "No...! I hate when women are powerful!!"
-            "NOOOOOOOOOOOOOOOOOOOO!!!!!!"
+            gb happy "But I'm also a woman!"
+            mc_thought jawdrop "What!? But that means..."
+            mc_thought rage "He's been objectifying __ using a female gaze!?"
+            mc_thought "No...! __ hate when women are powerful!!"
+            mc_thought "NOOOOOOOOOOOOOOOOOOOO!!!!!!"
+            show gabriel thinking with alien_reveal
 
     #deathnote copycaat music fades away
-    gb "Anyway."
+    gb thinking "Anyway."
     gb "The next person is almost here."
-    gb "I should leave soon."
-    mc "WAIT!!"
-    gb "What is it?"
-    mc "Can I have my pronouns back?"
-    gb "No."
+    gb neutral "I should leave soon."
+    show gabriel neutral:
+        move_to_right
+    mc jawdrop "WAIT!!"
+    gb neutral "What is it?"
+    mc sensitive "Can __ have __ pronouns back?"
+    gb happy "No."
+    show gabriel happy:
+        linear 0.8 offscreenright
+        pause 0.8
     #gabriel leaves.
+    hide gabriel
 
 
     return
@@ -903,6 +914,7 @@ label ladybird:
             mc "I think EYE Will be the decider of whether or noot you are worthy of my admiration"
             jump ladybird_fail
         "Let it go":
+            $ normal_points += 1
             pass
     "They continue walking." #footsteps.
     lb neutral "How long until we get to the place, anyway? And where are we going?"
@@ -1276,6 +1288,7 @@ label ash:
     #menu is timed
     menu:
         "Yes":
+            $ normal_points += 1
             pass
         "No":
             pass
@@ -1389,6 +1402,7 @@ label ash:
             jump ashend
         "PiBB Xtra":
             $ fav_soda = "pibb"
+            $ normal_points -= 3
             jump why_pibb
             
     return
@@ -1544,7 +1558,7 @@ label qdate:
     #q fades away and the mcdonald's turns back to normal
 
     #normal points check
-    if normal_points > 3:
+    if normal_points >= 7:
         call afterq
     else:
         pass
@@ -1677,7 +1691,7 @@ label dragon:
     mc_thought rage "Just.. say the first thing on your mind!"
     mc smug "My Hero Academia: World Heroes' Mission"
     mc_thought jawdrop "{w=0.8}G O D!"
-    mc_thought rage "{w=0.8}D A M N I T!"
+    mc_thought rage "{w=0.8}D A M M I T!"
     dg "oh is that like, an anime thing?"
     mc sensitive "uh.. yeah.."
     dg "never really was into anime but that sounds cool."
@@ -1743,9 +1757,9 @@ label endingcheck:
     return
 
 label regularending:
-    gb annoyed closed "Tony."
-    gb worried "HOW did you even manage that?"
-    gb annoyed "Your standards are so high, but none of these people were good enough for you?"
+    gb worried "Tony!"
+    gb "HOW did you even manage that?"
+    gb confused "Your standards are so high, but none of these people were good enough for you?"
     mc smug "*shrugs* I'm simply the best"
     gb thinking"..."
     call killing_chant
@@ -1754,7 +1768,7 @@ label regularending:
     gb "You're going to hell."
     gb "Goodbye."
 
-    if normal_points >6:
+    if normal_points >=7:
         call screen expression game_over_scene pass (True, False)
     else:
         call screen expression game_over_scene pass (False, False)
@@ -1763,7 +1777,7 @@ label regularending:
     return
 
 label failsafeending:
-    gb shocked "That's weird..."
+    gb confused "That's weird..."
     mc neutral "Is something wrong?"
     gb "um..."
     jump regularending
