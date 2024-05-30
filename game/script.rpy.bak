@@ -10,7 +10,7 @@ define mama = Character("mama", image="mama")
 define ash = Character("Ash", image="ash")
 define lb = Character("Ladybird", image="ladybird")
 define qt = Character("Sephirah", image="q")
-define dg = Character("Aizeer", image="aizeer")
+define dg = Character("Dragon", image="aizeer")
 define jl = Character("Jules", image="jules")
 define ox = Character("Onyx", image="onyx")
 define mc = Character("tony", image="tony")
@@ -462,7 +462,7 @@ label afterq:
     mc "Why is that????"
     #bruh
     gb unamused "It's a mystery."
-    mc "YOu set __ up."
+    mc "YOu set me up."
     gb neutral "I didn't plan that."
     gb thinking "Some forces are even beyond my control..."
     mc neutral "huh."
@@ -475,7 +475,7 @@ label afterq:
     mc "Well __ didn't realize it then!"
     gb "Realize what?"
     mc sensitive "...you're pwetty."
-    mc "__ don't care that you're a man."
+    mc "I don't care that you're a man."
     gb tired "Don't go developing on me {i}now,{/i} __'ve been so terrible so far..."
     mc "Gabe- um- Gabriel?"
     mc "Do you think __ could ever be with a man?"
@@ -485,25 +485,25 @@ label afterq:
     mc_thought genius "here's how tony can still win:" #I need like death note copycat music here
     mc smug "Is your marriage open"
     mc "cuz you seem like an open marriage guy."
-    mc "__'m not against being the third."
+    mc "I'm not against being the third."
     gb thinking "(...This isn't good.)"
-    gb annoyed closed "(If __ comes out as bisexual now, we'll never be taken seriously again...)"
+    gb annoyed closed "(If he comes out as bisexual now, we'll never be taken seriously again...)"
     gb "(Think of what this will do to the community...!)"
     gb neutral "My marriage is only open to women."
     gb happy "Extra men aren't partners... they're accessories."
     mc_thought jawdrop "Guh...! That objectifying gaze...! It's almost too much to bear!"
-    mc_thought "__ can feel him queering __ gender!"
-    mc_thought genius "Wait... if __ play __ cards right, __ can clutch this counter and live with a sliver of health...!"
+    mc_thought "__ can feel him queering my gender!"
+    mc_thought genius "Wait... if __ play my cards right, __ can clutch this counter and live with a sliver of health...!"
     mc jawdrop "__ LIKE WHEN WOMEN ARE MEAN TO __!!"
     mc_thought rage "{w=0.4} GOD {w=0.4}DAMMIT"
     gb shocked "*snort*"
-    gb nervous "__ don't mean that."
+    gb happy "__ don't mean that."
     menu:
         "__ don't":
             gb thinking "Thought so."
             mc_thought neutral "That was a close one. __ could have died."
             mc_thought "__'m not ready to be bisexual..."
-            gb thinking "(Good... __'s giving that look that says,\"I'm not ready to be bisexual.\")"
+            gb thinking "(Good... he's giving that look that says,\"I'm not ready to be bisexual.\")"
             mc jawdrop "Gabriel __ don't think __'m ready for this. That kind of love is too powerful."
             mc "You can't set __ up with another man, okay?"
             gb happy "oh bad news"
@@ -550,7 +550,7 @@ label afterq:
 label day_one:
     scene bg home with fade
     mc_thought smug "I'd better get ready for my first date."
-    call where_to from _call_where_to
+    call where_to
     jump jules
     return
 
@@ -593,7 +593,6 @@ label night_two:
     scene bg home with fade
     #tony's gonna plan to show up at gabriel's room angry, feeling set up.
     if bird_fail == True:
-        $ renpy.notify("Mission failed!")
         mc_thought neutral "Gabriel was soooooo mad at me."
         mc_thought "Like wow gabe."
         mc_thought "If you like him that much..."
@@ -615,10 +614,10 @@ label night_three:
     scene bg home with fade
     #return here after onyx. last time's a charm.
     mc_thought conservative "Another resounding... failuer tongiht."
-    mc_thought "The girl could be cute, and __'ll JUST start to overlook her flaws..."
+    mc_thought "The girl could be cute, and I'll JUST start to overlook her flaws..."
     mc_thought rage "And then there's always a catch!"
-    mc_thought sensitive "The Universe is so CRUEL to __!!"
-    mc_thought smug "guess __'ll just go to bed and try to prepare for tomorrow..."
+    mc_thought sensitive "The Universe is so CRUEL to me!!"
+    mc_thought smug "guess i'll just go to bed and try to prepare for tomorrow..."
     jump dragon
     return
 
@@ -773,7 +772,7 @@ label mamad:
     mc_thought "There's no way I'm going home without a proper date"
     mc_thought neutral "I gotta find someone else! So I don't let my time go to waste."
     #sees mama
-    show mama neutral at right with dissolve
+    show mama neutral at person_e with dissolve
     mc_thought awooga "Hey, there's a looker!"
     mc_thought "damn she's thicc!"
     mc awooga "Hello? Hello? Hello beautiful woman?"
@@ -1015,7 +1014,6 @@ label ladybird:
             "server" "gah dam."
             show server:
                 linear 0.8 offscreenleft
-            hide server with dissolve_fast
             jump ladybird_fail
         "Two cheeseburgers":
             mc neutral "TWO cheeseburgers."
@@ -1027,7 +1025,6 @@ label ladybird:
             pause 3.0
             show server:
                 linear 0.8 offscreenleft
-            hide server with dissolve_fast
             jump ladybird_fail
         "Three cheeseburgers":
             $ normal_points += 1
@@ -1044,7 +1041,6 @@ label ladybird:
             "server" "I don't wanna be here for this."
             show server:
                 linear 0.8 offscreenleft
-            hide server with dissolve_fast
             jump ladybird_fail
     mc smug "THReeeeeee cheeseburgers."
     mc rage "SINCE the McRibb is gone..."
@@ -1116,7 +1112,7 @@ label ladybird:
     "server" "brother can you just pay for your order."
     mc "FINE"
 
-    $ renpy.notify("Mission accomplished!")
+    $ renpy.notify("Mission: Date handled!")
     scene bg black with dissolve_fast
     "Tony and Ladybird get through the arduous task of ordering a meal."
     "Now, they finally sit down to eat it..."
@@ -1211,21 +1207,21 @@ label ladybird_fail:
 
 #region Just Ash...
 label ash:
-    scene bg mcdonalds with dissolve
+    scene bg mcdonalds
     $ fav_soda = ""
-    mc_thought neutral "I don't believe gabriel whe he says the dates falling thru are my fautl."
+    "I don't believe gabriel whe he says the dates falling thru are my fautl."
     if where != "":
-        mc_neutral smug "I've beeen taking my dates to the greatest [where] in the world..."
+        "I've beeen taking my dates to the greatest [where] in the world..."
     else:
-        mc_neutral smug "I've been saving them from the horrors of going to the beach...outside..."
-        mc_neutral smug "where it's hot and dangerous..."
+        "I've been saving them from the horrors of going to the beach...outside..."
+        "where it's hot and dangerous..."
     
-    mc_neutral "I've been showing them kindness by being honest..."
-    mc_neutral neutral"And they're just walking out on me left and right."
-    mc_neutral rage "It makes no sense! Ugh!"
-    mc_neutral "The next date should be arriveing soon... she better be good."
+    "I've been showing them kindness by being honest..."
+    "And they're just walking out on me left and right."
+    "It makes no sense!"
+    "The next date should be arriveing soon... she better be good."
 
-    show ash happy at person_c with dissolve_fast
+    show ash with dissolve_fast
 
     ash happy "Oh hey! Are you Tony?"
     mc jawdrop "Wh- you're not even human!"
@@ -1240,9 +1236,9 @@ label ash:
     mc ""
     ash disgusted "(is he not gonna ask how i'm doing...?)"
     ash neutral "So what do you do for fun?"
-    mc_thought "mmm, cna't flex too hard or I\"ll scare her away... gotta keep it humble..."
+    "mmm, cna't flex too hard or I\"ll scare her away... gotta keep it humble..."
     mc "Eh, nothing too flashy, just flexing my intellectual muscles pondering the meaning of life while benchinig 450lbs with one arm..."
-    mc_thought genius "nailed it"
+    "nailed it"
     ash neutral "You work out, huh?"
     mc "Yep. If you need some tips, just hit me up{nw=0.5}"
     ash worried "It doesn't look like you work out.."
@@ -1252,12 +1248,12 @@ label ash:
     ash disgusted "Yes...?"
     mc "A REAL girl gamer?"
     ash worried "I'm an adult but yeah. I guess you could call me a gamer."
-    mc_thought smug "heh... I'll be the judge of thar."
+    "heh... I'll be the judge of thar."
     mc "I jsut have a couple quesions for you.. since you SAY you're a gamer."
     ash annoyed "You're not gonna do one of theose nerrd cred questionnaires where I have to answer trivia about 80s- and 90s-era video games,"
     ash "are you?"
-    mc jawdrop ""
-    mc smug "well"
+    mc ""
+    mc "well"
     mc "say"
     mc "for the sake of argument,"
     ash "*sigh*"
@@ -1265,23 +1261,23 @@ label ash:
     ash "The player character in the Legend of Zelda is named Link (although in most games you can rename him){nw=0.5}"
     ash "And in all other territories the SEGA Genesis is called the Mega Drive.{nw=0.5}"
     ash "That do it?"
-    mc_thought jawdrop "how'd she even know..."
-    mc_thought awooga "Wowza... she's good."
+    "how'd she even know..."
+    "Wowza... she's good."
     ash worried "Do you need more time to come up with different riddles?"
-    mc jawdrop "I'm just... honestly, milady..."
+    mc "I'm just... honestly, milady..."
     ash disgusted "\"Milady.\""
-    mc sensitive "True gamer girls, such as yourself, are a rare treat in the landscape of fakes."
+    mc "True gamer girls, such as yourself, are a rare treat in the landscape of fakes."
     mc "Those unscrupulous fake girl gamers have always attempted to seduce us REAL gamers with their siren songs and cleavage..."
     ash worried "huh"
     mc "But an honest gamer girl as yourself is truly invested in the beauty of games...!"
     ash neutral "Do you think games are art?"
-    mc conservative "no"
+    mc "no"
     ash disgusted ""
     ash "So."
     ash worried "Have you come up with that new quesiton yet...?"
-    mc smug "As a matter facy, I have."
+    mc "As a matter facy, I have."
     mc "Ahem."
-    mc awooga "What are your favorite positions and are you wearing a bra?"
+    mc "What are your favorite positions and are you wearing a bra?"
     ash shocked "?"
     ash disgusted "I always wear a bra and I'm a striker."
     mc "" # uh
@@ -1569,7 +1565,7 @@ label qdate:
 
     #normal points check
     if normal_points >= 7:
-        call afterq from _call_afterq
+        call afterq
     else:
         pass
     show bg mcdonalds with dissolve_slow
@@ -1593,7 +1589,7 @@ label onyx:
     mc_thought "Yeah... definitely set up by... THEM huh.."
     mc_thought rage "_ swear... ___ definitly get __ revenge after this is all ov-"
     
-    show onyx neutral at person_c with dissolve_fast
+    show onyx neutral with dissolve_fast
     ox neutral "um... __ wouldn't happen to be Tony correct??"
     mc conservative "oh uh yeah"
     mc "that's... __"
@@ -1660,12 +1656,12 @@ label onyx:
 label dragon:
     scene bg mcdonalds with new_day
     mc_thought neutral "It's the last date."
-    mc_thought rage "So dar that ASS-istant Niecy has been setting __ up to FAIL."
-    mc_thought "Sending __ a beautiful woman and there's alwasy somme trick..."
-    mc_thought smug "__'m hoping the next one is a REAL catch this time."
+    mc_thought rage "So dar that ASS-istant Niecy has been setting me up to FAIL."
+    mc_thought "Sending me a beautiful woman and there's alwasy somme trick..."
+    mc_thought smug "I'm hoping the next one is a REAL catch this time."
     mc_thought neutral "Oh, that must be her."
     
-    show aizeer neutral at person_c with dissolve_fast
+    show aizeer with dissolve_fast
 
     dg neutral "Hello!"
     mc smug "Hello beautiful woman."
@@ -1738,7 +1734,7 @@ label dragon:
 #region Endings
 
 label killing_chant:
-    show cg chant with dissolve_fast
+    show cg chant
     chant "The divine power vested in me must only be used for good, for justice, to strike down evil."
     chant "The title Mother was bestowed upon me and may be retracted at any time."
     chant "I must at all times serve and be in servitude of the common man, for the good of humanity."
@@ -1786,16 +1782,16 @@ label regularending:
     gb tired "Your standards are so high, but none of these people were good enough for you?"
     mc smug "*shrugs* I'm simply the best"
     gb thinking"..."
-    call killing_chant from _call_killing_chant
+    call killing_chant
     mc neutral "What?"
     show cg death with dissolve_fast
     gb "You're going to hell."
     gb "Goodbye."
 
     if normal_points >=7:
-        call screen expression game_over_scene pass (True, False) with fade_near_instant
+        call screen expression game_over_scene pass (True, False)
     else:
-        call screen expression game_over_scene pass (False, False) with fade_near_instant
+        call screen expression game_over_scene pass (False, False)
     #you died :(
     
     return
@@ -1823,7 +1819,7 @@ label earlyend:
     gb annoyed "You really showed my mother who's boss!"
     mc jawdrop "that was your mom?" #tiny
     nc sad "You're really in it now..."
-    call screen expression game_over_scene pass (False, False) with fade_near_instant
+    call screen expression game_over_scene pass (False, False)
     #you died
     return
 
@@ -1832,7 +1828,7 @@ label sodaending:
     gb unamused "ok who the FUCK drinks mr pibb"
     mc genius "it is no longer called MISTRE PIBB it's called PiBB Xtra and it's a spiced cherry cola thats"
     gb tired "I'm killing you. {w=0.4} I'm killing you"
-    call screen expression game_over_scene pass (False, False) with fade_near_instant
+    call screen expression game_over_scene pass (False, False)
     #you died :(
     return
 #endregion
