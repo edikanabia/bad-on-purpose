@@ -3,8 +3,6 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define e = Character("Eileen")
-
 #region all characters named
 define gb = Character("Gabriel", image="gabriel")
 define nc = Character("Niecy", image="niecy")
@@ -200,19 +198,20 @@ define fade_near_instant = Fade (0, 1.0, 0.8, color="#000")
 
 #endregion
 
-#region Sound
+#region Sound Files
 
 #endregion
 
 
 
 
-#all flags
+#region all flags
 define bird_fail = True
 define normal_points = 0
 define where = ""
 define leave_early = False
 define game_over_scene = "game_over"
+#endregion
 
 # The game starts here.
 
@@ -1193,6 +1192,7 @@ label ladybird_fail:
     gb "He wasn't too mean to you, was he?"
     lb sad "I mean, people have been cruel to me before."
     gb "Don't worry."
+    show ladybird happy
     gb happy "I'll treat you right."
     #so if you fail ladybird he isn't going to talk to you, and it should lock you out of Gaybriel too.
 
