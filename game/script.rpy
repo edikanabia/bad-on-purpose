@@ -16,8 +16,9 @@ define dg = Character("Dragon", image="aizeer")
 define jl = Character("Jules", image="jules")
 define ox = Character("Onyx", image="onyx")
 define mc = Character("tony", image="tony")
-define mc_thought = Character(image="tony")
-define mc_polite = Character()
+define mc_thought = Character(image="tony") #tony's thoughts are colored and italicized
+define mc_polite = Character() #different font, probably times new roman lol
+
 #endregion
 
 #change the args on this to make it a subtitle chant that auto advances
@@ -33,6 +34,8 @@ image side tony sensitive = "images/portraits/tony_sensitive.png"
 image side tony smug = "images/portraits/tony_smug.png"
 image side tony conservative = "images/portraits/tony_conservative.png"
 image side tony genius = "images/portraits/tony_genius.png"
+image side tony awooga = "images/portraits/tony_awooga.png"
+image side tony neutral = "images/portraits/tony_neutral.png"
 
 #gabriel
 image gabriel neutral = "images/portraits/gabriel_neutral.png"
@@ -44,6 +47,9 @@ image gabriel tired = "images/portraits/gabriel_tired.png"
 image gabriel annoyed closed = "images/portraits/gabriel_annoyed_closed.png"
 image gabriel threaten = "images/portraits/gabriel_threaten.png"
 image gabriel nervous = "images/portraits/gabriel_nervous.png"
+image gabriel worried = "images/portraits/gabriel_worried.png"
+image gabriel confused = "images/portraits/gabriel_confused.png"
+image gabriel unamused = "images/portraits/gabriel_unamused.png"
 
 #jules
 image jules neutral = "images/portraits/jules_neutral.png"
@@ -51,6 +57,9 @@ image jules happy = "images/portraits/jules_happy.png"
 image jules sad = "images/portraits/jules_sad.png"
 image jules angry = "images/portraits/jules_angry.png"
 image jules sideeye = "images/portraits/jules_sideeye.png"
+image jules shocked = "images/portraits/jules_shocked.png"
+image jules neutral happy = "images/portraits/jules_neutral_happy.png"
+image jules smitten = "images/portraits/jules_smitten.png"
 
 #mama
 image mama happy = "images/portraits/mama_happy.png"
@@ -60,7 +69,7 @@ image mama sad = "images/portraits/mama_sad.png"
 image mama happy monster = "images/portraits/wing_mama.png"
 image mama smitten = "images/portraits/wing_mama_smitten.png"
 image mama sad monster = "images/portraits/wing_mama_sad.png"
-image mama worried = "images/portraits/wing_mama_worried"
+image mama worried = "images/portraits/wing_mama_worried.png"
 
 #ladybird
 image ladybird happy = "images/portraits/ladybird_happy.png"
@@ -68,6 +77,7 @@ image ladybird sad = "images/portraits/ladybird_sad.png"
 image ladybird neutral = "images/portraits/ladybird_neutral.png"
 image ladybird thinking = "images/portraits/ladybird_thinking.png"
 image ladybird sideeye  = "images/portraits/ladybird_sideeye.png"
+image ladybird shocked = "images/portraits/ladybird_shocked.png"
 
 #niecy
 image niecy neutral = "images/portraits/niecy_neutral.png"
@@ -110,6 +120,9 @@ image q smug = "images/portraits/q_smug.png"
 image q shocked = "images/portraits/q_shocked.png"
 image q angry = "images/portraits/q_angry.png"
 
+#misc
+image server = "images/portraits/server.png"
+
 #backgrounds
 image bg gabriel room = "images/backgrounds/gabriel_room.png"
 image bg home = "images/backgrounds/home.png"
@@ -129,7 +142,53 @@ image cg death = "images/cgs/cg_killing_blow.png"
 
 #endregion
 
-#region Pre-defined screen transformations
+#region Pre-defined transforms
+
+#positions
+transform move_to_right:
+    linear 0.8 xalign 0.85
+    yalign 1.0
+    
+transform move_to_center:
+    linear 0.8 xalign 0.5 
+    yalign 1.0
+
+transform move_to_left:
+    linear 0.8 xalign 0.1
+    yalign 1.0
+
+transform person_a:
+    xalign 0.15
+    yalign 1.0
+
+transform person_b:
+    xalign 0.3
+    yalign 1.0
+
+transform person_c:
+    xalign 0.5
+    yalign 1.0
+
+transform person_d:
+    xalign 0.7
+    yalign 1.0
+
+transform person_e:
+    xalign 0.82
+    yalign 1.0
+
+
+#transitions
+define dissolve_fast = Dissolve(0.2)
+define dissolve_slow = Dissolve(0.8)
+define jumpcut = Dissolve(0.07)
+define new_day = Fade(0.5, 0.2, 0.5)
+define alien_reveal = Fade(2.0, 0.1, 2.5, color="#FFF")
+define lightning_flash_1 = Fade(0.01,0,0.01, color="#98C0DB")
+define lightning_flash_2 = Fade(0.01,0,1.0, color="#98C0DB")
+
+#animations
+
 #lightning flash
 #transformation flash
 #fall asleep
@@ -155,10 +214,6 @@ define game_over_scene = "game_over"
 
 label start:
 
-    jump gabeintro
-
-    #show a menu that toggles the flash at the end of the story (the lightning)
-
 
     python:
         name = renpy.input("Name the protagonist! (We recommend not giving him the name of someone or something you like.)")
@@ -169,18 +224,17 @@ label start:
     "[name], is it?"
     "all right... let's do it."
 
-    scene bg room
-
-
-    e "TIME JUMP!! w"
     jump gabeintro
 
-    # These display lines of dialogue.
+    return
 
-
-    # This ends the game.
+label transform_tests:
+    show gabriel neutral at person_b
+    show niecy happy at person_d
+    "Hi Gabriel, Hi niecy."
 
     return
+
 
 
 label gabeintro:
@@ -189,22 +243,25 @@ label gabeintro:
     mc_thought "I did agree to meet thiss gabriel guy to set up these dates."
     mc_thought "so where is he?"
     mc_thought "all I see is a really tall woman wlaiking toward me..."
-    show gabriel
-    gb neutral "Hi. I'm Gabriel. You must be [mc]."
+    show gabriel neutral at person_c with dissolve_fast
+
+        
+    gb "Hi. I'm Gabriel. You must be [mc]."
     menu:
-        "Tony!?":
+        "Why is my name Tony":
             pass
     "Heh..."
     "You'll be glad we saved you the trouble."
+    "Moving on."
     mc_thought jawdrop "SEPH-{nw=0.5}"
     gb "Is something wrong...?"
     mc smug "Oh osorry... it's just that.. you remind me of this guy from this video game."
-    gb "I get that a lot."
+    gb thinking "I get that a lot."
     mc "are you a \[KEYWORD\] parody?"
-    gb "..."
+    gb neutral "..."
 
     menu:
-        gb "Who the hell is \[KEYWORD\]?"
+        gb tired "Who the hell is \[KEYWORD\]?"
         "Don't say ligma balls":
             pass
         "Don't say ligma balls":
@@ -213,40 +270,41 @@ label gabeintro:
             pass
     
     mc "ligma balls"
-    "god"
-    "dammit"
-    gb "Oh. So it's like that, huh..."
-    show screen expression game_over_scene pass (False, True)
+    mc_thought rage "god"
+    mc_thought "dammit"
+    gb happy "Oh. So it's like that, huh..."
+    show screen expression game_over_scene pass (False, True) with dissolve_fast
     #fake game over screen
 
-    mc "Oh god. for a second there I thought I doied"
-    gb "That was mercy."
+    mc smug "Oh god. for a second there I thought I doied"
+    gb annoyed "That was mercy."
     gb "Act up again and justice will come later."
-    "kowai desu ne :("
-    gb "Of course, there will be no need for justice if you simply do the right thing from the start!"
-    mc "which is?"
-    gb "Before you are several beautiful women. My assistant gathered them."
-    "Hot damn! I'm excited!!!!!"
+    mc_thought sensitive "kowai desu ne :("
+    gb thinking "Of course, there will be no need for justice if you simply do the right thing from the start!"
+    mc smug "which is?"
+    gb neutral "Before you are several beautiful women. My assistant gathered them."
+    mc_thought smug "Hot damn! I'm excited!!!!!"
     gb "Your mission is to be normal around them. {w=0.3} Can you handle that?"
-    mc "Course I can! I'm the normalest guy there is, {nw=0.2}" 
-    mc "I'm so normal they used to call me Average Joe and I got the superlative for Most Normalest Guy in the yearbook {nw=0.2}"
-    gb "SHut the fuck up"
+    mc genius "Course I can! I'm the normalest guy there is, {nw=0.2}" 
+    mc smug "I'm so normal they used to call me Average Joe and I got the superlative for Most Normalest Guy in the yearbook {nw=0.2}"
+    gb tired "SHut the fuck up"
     gb "Please."
-    mc "ok."
+    mc conservative "ok."
     mc "*raises hand*"
     gb "What."
     mc "Is my mission just to be normal because to be honest I\"m really tryna fuck so{nw=0.5}"
-    gb "Listen. Tony."
+    gb thinking "Listen. Tony."
     gb "As a recovering misogynist myself, no one wants to hear you say that."
-    gb "But to answer your question, these are actually functions of the same thing."
+    gb neutral "But to answer your question, these are actually functions of the same thing."
     mc "Man if it's theat easy I wouldev had a gf alaready... i feel like you're lying."
-    gb "Because you're so normal?"
-    mc "Yeah!"
+    gb unamused "Because you're so normal?"
+    mc smug "Yeah!"
     gb "Yeah we'll see about that."
+    hide gabriel with dissolve_slow
     #gabriel fades away
-    "oh."
-    "he vanished."
-    "well!"
+    mc_thought conservative "oh."
+    mc_thought "he vanished."
+    mc_thought smug "well! I should get going."
 
 
     jump day_one
@@ -254,25 +312,27 @@ label gabeintro:
     return
 
 label where_to:
-    "I'vev got a long week ahead of me. But first I have to make an important decision!"
+    mc_thought "I'vev got a long week ahead of me. But first I have to make an important decision!"
 
     menu:
-        "Where should I take my date to?"
+        mc_thought "Where should I take my date to?"
         "Fancy restaurant":
-            "Yes, yes! The fanciest restaurant I can think of!"
+            mc_thought genius "Yes, yes! The fanciest restaurant I can think of!"
+            mc_thought "McDonald's!"
             $ where = "fancy restaurant"
         "Coffee shop":
-            "Of course! What better coffee shop than McCafe!"
+            mc_thought genius "Of course!" 
+            mc_thought "And What better coffee shop {cps=*0.3}than...{/cps} McCafe!"
             $ where = "coffee shop"
         "Beach":
-            "The beach...?"
-            "Ehh... but I hate sweating."
-            "I'm sure my date will appreciate a meal from the greatest American restaurant---"
-            "that's McDonald's, of course---"
-            "MUCH more than sweating on some sandy beach."
-            "I'm a GENIUS!"
+            mc_thought smug "The beach...?"
+            mc_thought "Ehh... but I hate sweating."
+            mc_thought "I'm sure my date will appreciate a meal from the greatest American restaurant---"
+            mc_thought genius "that's McDonald's, of course---"
+            mc_thought smug "MUCH more than sweating on some sandy beach."
+            mc_thought genius "I'm a GENIUS!"
     
-    "I should take everyone to this venue!"
+    mc_thought "I should take everyone to this venue!"
 
     return
 
@@ -280,40 +340,44 @@ label where_to:
 
 label interlude:
     #scene: gabriel room
-    scene bg gabriel room
-    mc "Gabriel!"
+    scene bg gabriel room with fade
+    mc rage "Gabriel!"
+    show niecy happy at person_b with dissolve
+    show gabriel neutral at person_d with dissolve
+
     nc "Hello white man!"
-    mc "Who's this?"
+    mc conservative "Who's this?"
     gb "My assistant, Niecy."
     nc "Nice to meet you!"
     mc "Okay."
-    nc "(\"Okay?\" Not \"The pleasure's all mine\" or \"Nice to meet you too?\")"
-    gb "(I told you you wouldn't like him.)"
-    gb "How goes it?"
-    mc "Not great!"
+    nc solemn "(\"Okay?\" Not \"The pleasure's all mine\" or \"Nice to meet you too?\")"
+    gb thinking "(I told you you wouldn't like him.)"
+    gb neutral "How goes it?"
+    mc rage "Not great!"
     mc "How comes, yesterday, you had me do all that only for the lady to turn out to be a dude!?"
-    nc "What? I thought men were okay!" 
+    nc shocked "What? I thought men were okay!" 
     nc "You had the text in your bio that said,\"I have a soft spot for pretty men.\""
-    mc "Whhaaaaaaaaaaat who put that there?"
+    mc jawdrop "Whhaaaaaaaaaaat who put that there?"
     if bird_fail == False:
         gb "And we told you ahead of time... that Ladybird is a man."
-        "...it's true. it was on my phone. they texted me"
-        mc "Well he wasn't cool anyway!"
+        mc_thought smug "...it's true. it was on my phone. they texted me"
+        mc smug "Well he wasn't cool anyway!"
     else:
-        gb "Well we all saw how you treated him."
+        gb tired "Well we all saw how you treated him."
         gb "No need to complain after the fact. You got your point across."
-    nc "It usually takes a couple dates to find someone you click with."
-    nc "We'll find someone for you! Don't worry too much."
-    mc "Tbh, I'm trying to keep faith in your guys' choices of girl, but these ppl arenn't my thing at all!"
-    nc "I'm so sorry!!"
+    nc neutral "It usually takes a couple dates to find someone you click with."
+    nc happy "We'll find someone for you! Don't worry too much."
+    mc smug "Tbh, I'm trying to keep faith in your guys' choices of girl, but these ppl arenn't my thing at all!"
+    nc shocked "I'm so sorry!!"
     nc "I really tried my hardest to find as many women with unmatched beauty and attractive personalities as I could."
-    nc "Just like you put in your description..."
-    mc "Well you're not doing a very good job!"
-    mc "I was so miffed from that first one I actually called over another girl to finish out the night."
-    gb "Well look at you, coming out of your shell."
-    mc "Yeah, she was happy to date m e but I got closer and she was kinda fat and old so I had to tell her no. Just my luck huh"
-    nc "Fat and old!? Yo send her my way!"
-    #gabriel niecy high five
+    nc sad "Just like you put in your description..."
+    mc rage "Well you're not doing a very good job!"
+    mc smug "I was so miffed from that first one I actually called over another girl to finish out the night."
+    gb happy "Well look at you, coming out of your shell."
+    mc conservative "Yeah, she was happy to date m e but I got closer and she was kinda fat and old so I had to tell her no."
+    gb shocked "Fumble tbh"
+    nc happy "Fat and old!? Yo send her my way!"
+    #gabriel niecy high five cg, if there's time.
 
     mc "Now that i think about it, she kinda looked like you Gabe!"
     mc "White hair, purple eyes, everything."
@@ -465,60 +529,68 @@ label afterq:
 #region Days 
 #all of the days are in tony's room.
 label day_one:
-    scene bg home
-    "I'd better get ready for my first date."
+    scene bg home with fade
+    mc_thought smug "I'd better get ready for my first date."
     call where_to
     jump jules
     return
 
 label night_one:
-    scene bg home
-    "man..."
-    "tonight was CRAZY."
-    ""
+    scene bg home with fade
+    mc_thought conservative "man..."
+    mc_thought "tonight was CRAZY."
+    mc_thought "I never expected someone so tall to be unable to take a RESL intellectual conversation..."
+    mc_thought "and the alien lady afterward!"
+    mc_thought "just my luck isn't it."
+    mc_thought smug "they were wrong tho... I'm not the freak"
+    mc_thought "Sheesh... I should head to bed."
     jump day_two
     return
 
 
 label day_two:
-    scene bg home
+    scene bg home with fade
     #it's the next day and tony's up bright and early because gabe 
     #said he has to show out and be gentle for the next date.
-    "Another day?"
-    "Another HAWT BABE! woohoo!"
-    "Gabriel said for this one that I have to have to treat this next one with \"gentleness and care.\""
-    "No need ot remind me, Im' the gentlest gy there is."
-    "I evemm have my yearbook superlative for gentlest guy..."
-    "Of cours,e I mean my middle shchool yearbook."
+    mc_thought neutral "Another day?"
+    mc_thought awooga"Another HAWT BABE! woohoo!"
+    mc_thought conservative "Gabriel said for this one that I have to have to treat this next one with \"gentleness and care.\""
+    mc_thought smug "No need ot remind me, Im' the gentlest gy there is."
+    mc_thought "I evemm have my yearbook superlative for gentlest guy..."
+    mc_thought genius "Of cours,e I mean my middle shchool yearbook."
+    mc_thought smug "This should be EASY!"
     jump ladybird
     return
 
 label night_two:
-    scene bg home
+    scene bg home with fade
     #tony's gonna plan to show up at gabriel's room angry, feeling set up.
-    "Tuh. a MAN named LADYbird? riDICKulous."
-    "Tomorrow morning I'm gonna show Gabriel a pizza my mind."
+    mc_thought rage "Tuh. a MAN named LADYbird? riDICKulous."
+    mc_thought conservative "Tomorrow morning I'm gonna show Gabriel a pizza my mind."
+    mc_thought "But first?"
+    mc_thought sensitive "A MAN's man's gotta get to his 9pm bedtimies!"
+    mc_thought "Nighty night!"
     jump interlude
 
     return
 
 label night_three:
-    scene bg home
+    scene bg home with fade
     #return here after onyx. last time's a charm.
-    "Another resounding... failuer."
-    "The girl could be cute, and I'll JUST start to overlook her flaws..."
-    "And then there's always a catch!"
-    "The Universe is so CRUEL to me!!"
-    "guess i'll just go to bed and try to prepare for tomorrow..."
+    mc_thought conservative "Another resounding... failuer."
+    mc_thought "The girl could be cute, and I'll JUST start to overlook her flaws..."
+    mc_thought rage "And then there's always a catch!"
+    mc_thought "The Universe is so CRUEL to me!!"
+    mc_thought smug "guess i'll just go to bed and try to prepare for tomorrow..."
     jump dragon
     return
 
 label night_four:
-    scene bg home
-    "So many women and not a single one of them dateable."
-    "Damn."
-    "I guess tomorrow I'm gonna have to tell Gabriel to send some more myway."
-    "And to tell his assistant to stop ffffmucking it up for me..."
+    scene bg home with None
+    mc_thought conservative "So many women and not a single one of them dateable."
+    mc_thought "Damn."
+    mc_thought smug "I guess tomorrow I'm gonna have to tell Gabriel to send some more myway."
+    mc_thought conservative "And to tell his assistant to stop ffffmucking it up for me..."
     jump endingcheck
     return
 
@@ -528,127 +600,128 @@ label night_four:
 #region Dates
 
 label jules:
-    scene bg mcdonalds
+    scene bg mcdonalds with new_day
     #just a normal date from someone who can't get over her ex...
-    
+    show jules happy at person_c with dissolve_fast
     jl "Hey!"
-    mc "Hello."
-    jl "How are ya?"
+    mc conservative "Hello."
+    jl neutral happy "How are ya?"
     mc "I'm pretty good."
     jl "Cool! I'm Jules."
     mc "It's tony."
-    jl "Nice to meet you."
-    jl "Sorry I'm late! I didn't have time to button my shirt."
+    jl "Nice to meet you!"
+    jl "Sorry I'm late, I didn't have time to button my shirt."
     mc "Hey, I'm not complainin."
-    jl "*laughs*"
-    mc "So? What do you thinkof the venue huh? preddy cool isn't it?"
-    jl "I don't love this place, actually."
-    jl "But I mean it's all right for a casual thing, you know? With your friends."
-    jl "When we first came to the city, Bo and I used to come here just to be somewhere that wasn't outside."
-    mc "Who's Bowen Eye?"
-    jl "Oh, Bo is... a lot to me! But, you know... we're supposed to be on break."
-    jl "He's not anyone you have to worry about."
-    #silence
-    jl "So um, what do you for fun!"
-    mc "Usually I play video games, very intellectual exercise."
+    jl happy "*laughs*"
+    mc smug "So? What do you thinkof the venue huh? preddy cool isn't it?"
+    jl neutral "I don't love this place, actually."
+    jl neutral happy "But I mean it's all right for a casual thing, you know? With your friends."
+    jl neutral "When we first came to the city, Bo and I used to come here just to be somewhere that wasn't outside."
+    mc neutral "Who's Bowen Eye?"
+    jl smitten "Oh, Bo is... a lot to me! But, you know... we're supposed to be on break."
+    jl neutral "He's not anyone you have to worry about."
+    "(silence)"
+    jl neutral happy "So um, what do you for fun!"
+    mc smug "Usually I play video games, very intellectual exercise."
     jl "It's a very expensive exercise, too. But I hear they're good for cognition and reflexes."
-    mc "Are you perhasp as cultured as I am?"
-    jl "Me? Oh, I don't really play. Growing up, there was really one person I knew who had one of those..."
-    jl "Gaming consoles?"
-    jl "Bo and I would go visit him from time to time."
-    jl "But he and his mom ended up moving away..."
-    jl "They look fun, though. Changed a lot, haven't they?"
-    jl "What kinds of games do you play?"
-    mc "I odn't simply play one Kind, of game."
-    jl "I figured! That's... why I asked, \"what kind{b}s{/b}.\""
-    mc "Well, everything, I guess!"
-    jl "So you can help me out a bit! Cuz I started to get really into these, like..."
-    jl "I think they're called adventure games?"
-    mc "Oh those don't count"
-    jl "wh"
+    mc genius "Are you perhasp as cultured as I am?"
+    jl smitten "Me? Oh, I don't really play. Growing up, there was really one person I knew who had one of those..."
+    jl shocked"Gaming consoles?"
+    jl happy "Bo and I would go visit him from time to time."
+    jl neutral "But he and his mom ended up moving away..."
+    jl happy "They look fun, though. Changed a lot, haven't they?"
+    jl shocked "What kinds of games do you play?"
+    mc genius "Erm, I odn't simply play one Kind, of game."
+    jl angry "I figured! That's... why I asked, \"what kind{b}s{/b}.\""
+    mc smug "Well, everything, I guess!"
+    jl happy neutral "So you can help me out a bit! Cuz I started to get really into these, like..."
+    jl neutral "I think they're called adventure games?"
+    mc conservative "Oh those don't count"
+    jl shocked "wh"
     jl "Why not?"
     mc "Cuz they don't have enough gameplay. Like you're just clickin on stuff and reading it."
     jl "Are all games not just clicking on stuff?"
-    mc "Well when I use my custom Ubuntu distro on my Raspberry Pi am I playing video games?"
+    mc neutral "Well when I use my custom Ubuntu distro on my Raspberry Pi am I playing video games?"
     jl "You could be! I don't know what raspberry pies have to do with anything!"
-    mc "Well I'm much more well-versed on the topic than you are!"
-    jl "Okay! Enlighten me."
+    mc smug "Well I'm much more well-versed on the topic than you are!"
+    jl neutral happy "Okay! Enlighten me."
     mc "There's an objective definition for a game. A game must meet multiple criteria..."
     mc "There must be a win condiiton and a loss condition,"
     mc "There must be explicit rules,"
     mc "AND it must require significant skill or physical activity to complete."
-    jl "Huh, okay."
+    jl neutral "Huh, okay."
     jl "So Candyland isn't a game."
     mc "It-"
-    jl "Is it?"
-    "WHO Does she think she is!?"
-    jl "I'm not trying to catch you in a bind or anything, I promise!"
-    jl "I just wanna understand you."
-    mc "It is a game,"
-    jl "Even htough it's effectively predetermined?" 
+    jl shocked "Is it?"
+    mc_thought rage "WHO Does she think she is!?"
+    jl happy "I'm not trying to catch you in a bind or anything, I promise!"
+    jl neutral happy "I just wanna understand you."
+    mc neutral "It is a game,"
+    jl shocked "Even htough it's effectively predetermined?" 
     jl "It doesn't require any skill at all. To pick a card from a deck."
     jl "I used to play the damn thing with Bo all the time."
-    jl "He'd say I was cheating cuz he rarely ever won. But he always let me go first, so..."
+    jl smitten "He'd say I was cheating cuz he rarely ever won. But he always let me go first, so..."
     mc "You talk about this Bo guy a LOT."
-    jl "*sigh* Is it that obvious?"
+    jl sad "*sigh* Is it that obvious?"
     jl "We grew up together, so everything reminds me of him."
-    mc "I see. I see you."
+    mc conservative "I see. I see you."
     mc "You can't imagine a world without him because your small mind doesn't allow your schemas to develop."
-    jl "What!?"
-    mc "It's the nature of a woman, from a small town especially, to have that experience, Julia."
-    mc "But because I'm {i}very{/i} open-minded,..."
-    mc "Even though you can't carry a conversation on MY turf..."
+    jl shocked "What!?"
+    mc smug "It's the nature of a woman, from a small town especially, to have that experience, Julia."
+    mc genius "But because I'm {i}very{/i} open-minded,..."
+    mc smug "Even though you can't carry a conversation on MY turf..."
     mc "I can DEFINITELY carry one on yours."
-    mc "I read a book for the first time."
-    jl "Oh, I totally get you. I've been so distracted with everything going on, I barely have time to read either."
-    jl "I haven't finished a good book in so long."
-    jl "..."
-    jl "I'm sorry, did you say you read a book for the first time?"
+    mc "For example, EYE read a book for the first time."
+    jl sad "Oh, I totally get you. I've been so distracted with everything going on, I barely have time to read either."
+    jl neutral happy "I haven't finished a good book in so long."
+    jl neutral "..."
+    jl shocked "I'm sorry, did you say you read a book for the first time?"
     mc "Yeah"
     jl "Like ever?"
     mc "Yeah, it was tough but I got through it."
     jl "You've never read a book before?"
     mc "No, is that weird?"
-    jl "It's a little weird, yeah."
-    jl "I don't wanna judge or anything, though."
-    jl "What book was it?"
+    jl sideeye "It's a little weird, yeah."
+    jl neutral "I don't wanna judge or anything, though."
+    jl neutral happy "What book was it?"
     mc "Cat in the Hat"
-    jl "{w=0.7}Dr. Seuss?"
+    jl shocked "Like {w=0.7}by Dr. Seuss?"
     mc "Yeah"
     jl "How did you find the {w=0.6}you know, {w=0.4}the experience?"
     mc "was alright. I liekd the pictures"
-    jl "he's, yanno. he's a good artist"
+    jl neutral "he's, yanno. he's a good artist"
     jl "um"
     jl "rhymes are good too"
-    mc "there's rhymes?"
-    jl "..."
-    jl "If you liked that story, might I suggest Green Eggs and Ham next?"
-    mc "Woah there... I appreciate an intellectual, especially a woman who's an intellectual-"
+    mc jawdrop"there's rhymes?"
+    jl sideeye"..."
+    jl happy "If you liked that story, might I suggest Green Eggs and Ham next?"
+    mc smug "Woah there... I appreciate an intellectual, especially a woman who's an intellectual-"
     mc "though not as intellectual as me-"
     mc "but there's no need to be a show off."
-    jl "It's... y'know, it's whatever."
+    jl sad "It's... y'know, it's whatever."
     jl "I think I should go now."
-    mc "What? But... you agreed to meet! I still have approximately three hours of quality time with you left!"
-    jl "{cps=*0.2}Nyeahhhhhhhhhhhhh{/cps} I changed my mind."
-    mc "But what did I doooooooo actually what did I do!"
-    jl "Okay, well, uh, you got my name wrong, after I told it to you."
-    jl "You called me small-minded? Over, essentially, nothing."
-    jl "I'm just getting the overall vibe that you wouldn't really respect or appreciate me."
-    mc "I thought we were having a respectful, intellectual exchange!" 
-    jl "*sigh* Okay, well,"
+    mc neutral "What? But... you agreed to meet! I still have approximately three hours of quality time with you left!"
+    jl neutral happy"{cps=*0.2}Nyeahhhhhhhhhhhhh{/cps} I changed my mind."
+    mc sensitive "But what did I doooooooo actually what did I do!"
+    jl neutral "Okay, well, uh, you got my name wrong, after I told it to you."
+    jl sad "You called me small-minded? Over, essentially, nothing."
+    jl sideeye "I'm just getting the overall vibe that you wouldn't really respect or appreciate me."
+    mc neutral "I thought we were having a respectful, intellectual exchange!" 
+    jl sad "*sigh* Okay, well,"
     jl "Even if we hit it out of the park, I just don't know. About us. I don't know"
-    jl "It's my fault, partly. I really, REALLY miss my ex."
-    jl "But the, um. Elitism? Chauvinism? There's a word for it..."
+    jl smitten "It's my fault, partly. I really, REALLY miss my ex."
+    jl sideeye "But the, um. Elitism? Chauvinism? There's a word for it..."
     jl "It's not helping."
-    mc "Well jeez!"
+    mc neutral "Well jeez!"
     mc "I had no idea you were so sensitive!"
-    jl "(I knew this was a bad idea...)"
-    jl "Tony? Is it Tony?"
+    jl sad "(I knew this was a bad idea...)"
+    jl angry "Tony? Is it Tony?"
     mc "Yees..."
-    jl "It was uh, nice meeting you."
-    mc "Fine!! Be that way!!"
+    jl sideeye "It was uh, nice meeting you."
+    mc rage "Fine!! Be that way!!"
     mc "I hope I never see you again!!"
-    jl "(Yeah I'm getting outta here.)"
+    jl sad "(Yeah I'm getting outta here.)"
+    hide jules with dissolve_fast
     #jules leaves.
 
     jump mamad
@@ -659,39 +732,42 @@ label mamad:
     #mama from a distance cg
     $ leave_early = False
 
-    "There's no way I'm going home without a proper date"
-    "Letting a broad walk out on me.. I woulda stopped her if she wasn't six feet tall."
-    "I gotta find someone else tho! So I don't let my time go to waste."
+    mc_thought rage "Letting a broad walk out on me.. I woulda stopped her if she wasn't six feet tall."
+    mc_thought "There's no way I'm going home without a proper date"
+    mc_thought neutral "I gotta find someone else! So I don't let my time go to waste."
     #sees mama
-    "Hey, there's a looker!"
-    "damn she's thicc!"
-    mc "Hello? Hello? Hello beautiful woman?"
+    show mama neutral at person_e with dissolve
+    mc_thought awooga "Hey, there's a looker!"
+    mc_thought "damn she's thicc!"
+    mc awooga "Hello? Hello? Hello beautiful woman?"
     "???" "Are you referring to me as a beautiful woman!?"
     mc "You wanna come over here?"
     "???" "WEll I must approach, if I am being summoned..."
-    "..."
-    "Now that Im up cloase n personal..."
+    show mama:
+        move_to_center
+    mc_thought neutral "hm...."
+    mc_thought "Now that Im up cloase n personal..."
     $ renpy.notify("She's literally stunning.")
-    "Shes... not that hot. Too tubby."
-    mc "How old are you mama?"
-    mama "The destruction of your pplanet predates me!"
-    mama "Yet, I outrank every member of your species!"
-    mama "In terms of the numbers, I am ranked the highest at 6,689,243rd!"
+    mc_thought conservative "Shes... not that hot. Too tubby."
+    mc neutral "How old are you mama?"
+    mama happy "The destruction of your pplanet predates me!"
+    mama neutral "Yet, I outrank every member of your species!"
+    mama happy "In terms of the numbers, I am ranked the highest at 6,689,243rd!"
     mc "How are you ranked that low?"
     mama "On the contrary! It's the highest in the world!"
     mc "But there aren't even that many players om WoW Classic."
-    mama "I beg your pardon?"
+    mama neutral "I beg your pardon?"
     mc "WoW Classic."
-    mama ":3?"
+    mama confused ":3?"
     mc "The video game????"
     mama "I am confused as to why you brought up video games seeing as you asked me how old I am!"
-    mama "I was borne from a thought around six million years ago, eight billion years in the future!"
-    mc "Damn!!"
-    mama "Is that, a turned off...?"
+    mama neutral "I was borne from a thought around six million years ago, eight billion years in the future!"
+    mc jawdrop "Damn!!"
+    mama sad "Is that, a turned off...?"
     menu:
         "Yeah":
             #premature date end
-            mc "It totally is."
+            mc conservative "It totally is."
             mama "Oh... I'm sorry!"
             mama "I thought... I thought... since you called out to me..."
             mc "Nah. I'm going home"
@@ -700,34 +776,35 @@ label mamad:
         "Nah":
             $ normal_points = normal_points + 1
 
-    mc "where ar eyou from?"
-    mama "I am from the mass of deepspace that obstructs the corners of the universe!"
+    mc smug "Nahhhhh mama where ar eyou from?"
+    mama neutral "I am from the mass of deepspace that obstructs the corners of the universe!"
     mama "I was cursed to live on Earth! But Earth is no curse at all! Not to me!!"
     mama "I traveled the universe in search of love..."
-    mama "You called me over, and it must be because you love me!"
+    mama happy "You called me over, and it must be because you love me!"
     mama "Show me some love!! Yes, let us create love!!"
-    mc "WOAH."
+    mc neutral "WOAH."
     mc "Back off, lady. You're a 6. at best"
-    "Man. It's always the ugly girls that are so forward..."
-    mama "Ahh!!"
+    mc_thought smug "Man. It's always the ugly girls that are so forward..."
+    mama sad "Ahh!!"
     mama "That... wasn't very nice!"
-    "..."
-    "you know what?"
-    "That Julia chick was wrong. I'm SO oen minded."
+    mc_thought neutral "..."
+    mc_thought "you know what?"
+    mc_thought neutral "That Julia chick was wrong. I'm SO oen minded."
     mc "I guess I can give you a CHANCE."
-    mama "so you will date me...?"
+    mama confused "so you will date me after all...?"
     mc "Yeaaaaaahhhhh I gueeeeesssssss"
-    mama "Wow! I am so happy, I could... I could..."
+    mama happy"Wow! I am so happy, I could... I could..."
+    show mama happy monster with alien_reveal
     #wing monster mama
-    mc "WOAH WHAT THE-"
-    "what the HECK is that?"
-    "some kind of WING MONSTER?"
-    mama "Ohhhh..."
+    mc jawdrop "WOAH WHAT THE-"
+    mc_thought jawdrop "what the HECK is that?"
+    mc_thought "some kind of WING MONSTER?"
+    mama worried "Ohhhh..."
     mama "I did it again..."
     mama "this always happens when I get excited...."
-    mama "I have been deigning to tell you..."
+    mama smitten "I have been deigning to tell you..."
     mama "In simple terms..."
-    mama " I am an alien from outerspace..."
+    mama "I am an alien from outerspace..."
     mama "You do not ahte me for this, do you?"
     mama "It is something I cannot change..."
 
@@ -739,17 +816,18 @@ label mamad:
 
     $ renpy.notify("Hunting license revoked.")
     mc "No I think you're disgusting"
-    mama "w..."
-    mama "WAAAAAAAAAAAAAHHHHHHHHHHHHHHHH!!"
+    mama worried "w..."
+    mama sad monster "WAAAAAAAAAAAAAHHHHHHHHHHHHHHHH!!"
     #mama runs away
+    hide mama with dissolve
     "another customer" "what the hell was that man?"
-    mc "I know she was such a freak"
+    mc smug "I know she was such a freak"
     "another customer" "nah man, YOU'RE the freak!"
     "customers" "freak! freak! freak! freak! freak!"
     #you need to leave!
-    mc "NUH-UH!!! NUH-UH!! NO U!!! NUH-UH!!"
-    "Oh no... my attacks! they're bouncung off!"
-    "I-I gotta get outta here!"
+    mc rage "NUH-UH!!! NUH-UH!! NO U!!! NUH-UH!!"
+    mc_thought rage "Oh no... my attacks! they're bouncung off!"
+    mc_thought "I-I gotta get outta here!"
 
     jump night_one
 
@@ -757,21 +835,74 @@ label mamad:
 
 label ladybird:
     scene bg black
-
     #ladybird (sier) is expecting a proper date
     #step 1: pick him up at his house
     #scene: all black
-    "*knock* *knock* *knock"
-
+    "..."
+    gb "The first step is for Tony to pick up Ladybird at his residence."
+    nc "Easy stuff!"
+    gb "Let's see how he does."
+    mc_thought "*knock* *knock* *knock"
+    mc neutral "Hellloooooooo!"
+    #open door
+    show ladybird neutral at center with dissolve_fast
+    lb "Hello."
+    mc "I'm here to pick you up."
     lb "I am excited to be a passenger in one of those earthly machines... what were they called..."
-    lb "Automobiles."
-    mc "About that..."
-    mc "I don't have a car?"
-
-    scene bg drive thru
+    lb happy "Automobiles!"
+    lb neutral "...where is it?"
+    mc "where's what"
+    lb "The car. Even I know what a car is."
+    mc "*shrugs*"
+    mc "Don't have one."
+    lb "How are are we supposed to get to the restaurant then?"
+    mc rage "Well damn Lady, it's not like I can carry you there!"
+    mc "Th- the restaurant isn't even that far."
+    lb thinking "*sigh* okay."
+    hide ladybird with dissolve_slow
+    #walking 
+    gb "There's no misogyny yet, but... horrible start so far."
+    nc "It can only go up from here!"
+    nc  "...Hey, why can't we drive them?"
+    gb "I'm curious to see how Tony handles this."
+    $ renpy.notify("Mission: Handle this!")
+    scene bg white with dissolve
+    show ladybird happy at center with dissolve_fast
+    lb "You're in luck that i'm so, \"walkpilled,\" today."
+    mc smug "It's a beautiful day."
+    lb "I know I am, thank you!"
+    mc neutral "uh."
+    menu:
+        "Clarify what you said":
+            mc "FOR your information, I wasn't talking about you."
+            mc "YOU are FAR TOO TALL for my liking....."
+            mc "I think EYE Will be the decider of whether or noot you are worthy of my admiration"
+            jump ladybird_fail
+        "Let it go":
+            pass
+    "They continue walking." #footsteps.
+    lb neutral "How long until we get to the place, anyway? And where are we going?"
+    mc smug "It's a surprise."    
+    scene bg drive thru with dissolve
+    show ladybird happy at person_d with dissolve_fast
+    lb "oh! I bet it's behind that McDonald's."
+    mc neutral "Erm... It is the McDonald's."
+    lb neutral "umm..."
+    show cg spying neutral with dissolve
+    gb "You've got to be fucking kidding me."
+    nc "I guess he's not good enough for Taco Bell."
+    hide cg spying neutral with dissolve
+    mc smug "Wanna go in?"
+    lb "I suppose..."
+    mc "After you."
+    scene bg mcdonalds with dissolve_fast
+    show ladybird happy at person_e with dissolve_fast
+    mc "..."
+    mc "What are you doing?"
+    lb neutral "Waiting to be seated...?"
+    mc "I think it's okay if we just go straight to the countrer."
 
     #copy over Janay's scene
-    scene bg mcdonalds
 
 
     mc "Wait. You're a man?"
@@ -790,20 +921,31 @@ label ladybird:
 
 label ladybird_fail:
     $ bird_fail = True
-    #CG: niecy and gabriel in the bushes
+    show cg spying worried with dissolve
+    gb "The hell did he just say to him!?"
     nc "Uh oh. Looks likek it's going south..."
-    gb "I will intervene. Worry not."
-    #scene: McDonald's
+    gb "Hang on. I'll fix this..."
+    hide cg spying worried with dissolve
+    #scene is whatever the previous scene was
+    show gabriel happy at person_e with dissolve_fast
     gb "Excuse me, for a moment!"
-    lb "Oh...! Tiny, your compatriot."
-    gb "TONY!! WHAT are you DOING!"
-    mc "Just being honest!!!"
+    show ladybird happy:
+        move_to_left
+    show gabriel happy:
+        move_to_center
+    lb happy "Oh...! Tiny, your compatriot."
+    show gabriel annoyed with vpunch
+    gb annoyed "TONY!! WHAT are you DOING!"
+    mc smug "Just being honest!!!"
     gb "I TOLD YOU-"
+    show ladybird
     #ladybird looks at him funny
     gb "Have you no tact? I told you, gentleness and care!"
     mc "I was being gentle! I got this I promise!"
     gb "I'll be \"gentle\" when I tear you limb from limb if you don't scurry your sorry lil white ass home you paper pale worthless pile of sawdust."
     gb "I swear to god."
+    mc_thought jawdrop "Yikes!"
+    mc_thought "I'm outta here!"
     #tony skidaddles
     gb "He wasn't too mean to you, was he?"
     lb "I mean, people have been cruel to me before."
@@ -907,15 +1049,10 @@ label ash:
         "No":
             pass
     
-    transform moveright:
-        linear 0.8 xpos 0.85
-    
-    transform moveleft:
-        linear 0.8 xpos 0.5 
 
     show ash:
         xalign 0.5
-        moveright
+        move_to_right
     
     show tierlist behind ash:
         xalign 0.5
@@ -1007,7 +1144,7 @@ label ash:
     #she just yaps here
     
     show ash:
-        moveleft
+        move_to_center
     
     hide tierlist 
 
@@ -1069,6 +1206,7 @@ label why_pibb:
     mc "It's NOT a cherry cola it is a SPICED cherry cola, there's a whole WORLD of difference!"
     mc "But that may be a bit too nuanced for your female brain..."
     ash shocked "Oh, misogyny. I'm out"
+    hide ash with dissolve
     "No way she left!"
     "That wasn't misogyny it was just a keen observation from my large brain! grrr....."
     "I'm so angry I could..."
@@ -1307,11 +1445,7 @@ label dragon:
     mc "what's the catch."
     dg neutral "Oh, no catch!"
     dg worried "But I am technically a dragon."
-    #hard cut to him in his room.
-    mc_thought rage "So many women, and not a single one dateable."
-
-
-   
+    mc_thought jawdrop "..."   
 
     jump night_four
 
