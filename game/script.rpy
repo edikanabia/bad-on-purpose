@@ -187,6 +187,7 @@ define new_day = Fade(0.5, 0.2, 0.5)
 define alien_reveal = Fade(2.0, 0.1, 2.5, color="#FFF")
 define lightning_flash_1 = Fade(0.01,0,0.01, color="#98C0DB")
 define lightning_flash_2 = Fade(0.01,0,1.0, color="#98C0DB")
+define fade_near_instant = Fade (0, 1.0, 0.8, color="#000")
 
 #animations
 
@@ -214,7 +215,6 @@ define game_over_scene = "game_over"
 # The game starts here.
 
 label start:
-
 
     python:
         name = renpy.input("Name the protagonist! (We recommend not giving him the name of someone or something you like.)")
@@ -274,7 +274,7 @@ label gabeintro:
     mc_thought rage "god"
     mc_thought "dammit"
     gb happy "Oh. So it's like that, huh..."
-    show screen expression game_over_scene pass (False, True) with dissolve_fast
+    show screen expression game_over_scene pass (False, True) with fade_near_instant
     #fake game over screen
 
     mc smug "Oh god. for a second there I thought I doied"
@@ -355,16 +355,19 @@ label interlude:
     gb thinking "(I told you you wouldn't like him.)"
     gb neutral "How goes it?"
     mc rage "Not great!"
-    mc "How comes, yesterday, you had me do all that only for the lady to turn out to be a dude!?"
-    nc shocked "What? I thought men were okay!" 
-    nc "You had the text in your bio that said,\"I have a soft spot for pretty men.\""
-    mc jawdrop "Whhaaaaaaaaaaat who put that there?"
+
     if bird_fail == False:
+        mc "How comes, yesterday, you had me do all that only for the lady to turn out to be a dude!?"
+        nc shocked "What? I thought men were okay!" 
+        nc "You had the text in your bio that said,\"I have a soft spot for pretty men.\""
+        mc jawdrop "Whhaaaaaaaaaaat who put that there?"
         gb "And we told you ahead of time... that Ladybird is a man."
         mc_thought smug "...it's true. it was on my phone. they texted me"
         mc smug "Well he wasn't cool anyway!"
     else:
-        gb tired "Well we all saw how you treated him."
+        mc "Why do you keep pickin out weirdos for me!"
+        mc "The first girl was obsessed with her ex and the second didn't get how a McDonald's date functioned!"
+        gb tired "Well we all saw how you treated them."
         gb "No need to complain after the fact. You got your point across."
     nc neutral "It usually takes a couple dates to find someone you click with."
     nc happy "We'll find someone for you! Don't worry too much."
@@ -376,41 +379,41 @@ label interlude:
     mc smug "I was so miffed from that first one I actually called over another girl to finish out the night."
     gb happy "Well look at you, coming out of your shell."
     mc conservative "Yeah, she was happy to date m e but I got closer and she was kinda fat and old so I had to tell her no."
-    gb shocked "Fumble tbh"
-    nc happy "Fat and old!? Yo send her my way!"
+    gb confused "Fumble tbh"
+    nc devious "Fat and old!? Yo send her my way!"
     #gabriel niecy high five cg, if there's time.
 
-    mc "Now that i think about it, she kinda looked like you Gabe!"
+    mc neutral "Now that i think about it, she kinda looked like you Gabe!"
     mc "White hair, purple eyes, everything."
     gb "Huh? A woman who looked like me? who's chubby and old?"
     gb "You met my landscaper?"
-    nc "But she doesn't look anything like you, does she? Besides the white hair and purple eyes."
-    gb "Yeah lot's of people have white hair and purple eyes, Tony." 
-    gb "You'll have to be more specific than that."
+    nc neutral "But she doesn't look anything like you, does she? Besides the white hair and purple eyes."
+    gb neutral "Yeah lot's of people have white hair and purple eyes, Tony." 
+    gb thinking "You'll have to be more specific than that."
     mc "She had white hair and purple eyes, but curly hair instead of straight, and she was a bit tan...."
     nc "Well, Orion has curly hair, but she's not short or fat..."
-    gb "She's short to me." 
-    gb "But that's because I'm 6'6 :)"
-    gb "I can't think of a single person who matches that description."
-    nc "..."
+    gb neutral "She's short to me." 
+    gb happy "But that's because I'm 6'6 :)"
+    gb thinking "I can't think of a single person who matches that description."
+    nc sad "..."
     nc "Gabriel, doesn't that sound like... like it could be..."
     gb "..."
 
     gb "Tony..." 
     gb "Be honest."
-    gb "What did you really say to her?" #gabriel's really close to the screen now.
+    gb threaten "What did you really say to her?" #gabriel's really close to the screen now.
     menu:
         "Answer":
-            nc "Tony don't answer that!"
+            nc shocked "Tony don't answer that!"
             menu:
                 "Listen to Niecy and shut your yap":
                     pass
 
                 "Double down":
-                    nc "Gabriel stop him! Save him!!"
-                    gb "From himself?"
-                    gb "Hahaha..."
-                    gb "Go ahead and finish."
+                    nc worried "Gabriel stop him! Save him!!"
+                    gb thinking "From himself?"
+                    gb happy "Hahaha..."
+                    gb thinking "Go ahead and finish."
                     menu:
                         "Tell Gabriel what you said despite the ominous laugh":
                             jump earlyend
@@ -420,23 +423,24 @@ label interlude:
         "Do not":
             pass
     
-    mc "Uh you know uh normal stuff."
-    mc "I didn't say anything mean."
-    mc "I was, like, super nice to her. And stuff."
-    gb "You hurt her feelings."
-    nc "I'm more curious as to why you passed up on the opportunity to fuck his mom."
+    mc smug "Uh you know uh normal stuff."
+    mc neutral "I didn't say anything mean."
+    mc smug "I was, like, super nice to her. And stuff."
+    gb thinking "You hurt her feelings."
+    nc solemn "I'm more curious as to why you passed up on the opportunity to fuck his mom."
     nc "Even if you weren't interested."
     gb "You win some, you lose some, I guess."
     mc "wait"
-    mc "THat was your MOM?"
-    nc "" #skull emoji
+    mc jawdrop"THat was your MOM?"
+    nc shocked "💀" #skull emoji
     gb "You've still got more dates lined up, so don't-"
-    gb "Don't fuck it up."
-    gb "I was going to say \"don't count yourself out just yet,\" but."
-    gb "I have  no reason to say that."
-    nc "That's not really your style, anyway."
-    gb "No, no it isn't. You're right, Niecy! You always are <3"
-    gb "Now GET OUT OF MY SIGHT!"
+    gb tired "Don't fuck it up."
+    gb thinking "I was going to say \"don't count yourself out just yet,\" but."
+    gb annoyed closed "I have  no reason to say that."
+    nc happy "That's not really your style, anyway."
+    gb thinking "No, no it isn't." 
+    gb happy "You're right, Niecy! You always are <3"
+    gb annoyed "Now GET OUT OF MY SIGHT!"
     
     jump ash
     #and scene!
@@ -548,7 +552,10 @@ label night_one:
         $ alien = "alien"
     mc_thought "and the [alien] lady afterward!"
     mc_thought "just my luck isn't it."
-    mc_thought smug "they were wrong tho... I'm not the freak"
+    if leave_early == False:
+        mc_thought smug "they were wrong tho... I'm not the freak"
+    else:
+        pass
     mc_thought "Sheesh... I should head to bed."
     jump day_two
     return
@@ -1070,7 +1077,7 @@ label ladybird:
 
         "The ice cream machine is always broken":
             mc genius "The ice cream machine is always broken," 
-            mc rage "{w=2.0}IDIOT"
+            mc rage "{w=0.5}IDIOT"
             show ladybird sad
             mc "NOBODY EVEN LIKES ICE CREAM LIKE THATANYWAY."
             "server" "yo chill out lil bro"
@@ -1090,7 +1097,7 @@ label ladybird:
     "server" "brother can you just pay for your order."
     mc "FINE"
 
-    $ renpy.Notify("Mission: Date handled!")
+    $ renpy.notify("Mission: Date handled!")
     scene bg black with dissolve_fast
     "Tony and Ladybird get through the arduous task of ordering a meal."
     "Now, they finally sit down to eat it..."
@@ -1118,7 +1125,7 @@ label ladybird:
     mc sensitive "well"
     lb thinking "Aha... :)"
     lb happy "Good bye, Tony. I hope it works out for you someday."
-
+    $ bird_fail = False
     
 
     jump night_two
@@ -1201,14 +1208,14 @@ label ash:
     show ash 
 
     ash happy "Oh hey! Are you Tony?"
-    mc "Wh- you're not even human!"
+    mc jawdrop "Wh- you're not even human!"
     ash annoyed "Get over it"
-    mc "ok."
+    mc conservative "ok."
     mc "Yeah. I'm Tony."
     mc "That's my name, dont' wear it out."
     ash neutral "Ooookay."
     ash "How are ya?"
-    mc "I'm fine, thanks for asking."
+    mc smug "I'm fine, thanks for asking."
     ash worried ""
     mc ""
     ash disgusted "(is he not gonna ask how i'm doing...?)"
@@ -1742,22 +1749,21 @@ label failsafeending:
     return
 
 label earlyend:
-    nc "Nooooooo!!"
-    mc "Can you stop SCREAAMING and let me finish?"
+    nc worried "Nooooooo!!"
+    mc neutral "Can you stop SCREAAMING and let me finish?"
     mc "Jeez woman."
-    mc "So like I said, I was already kinda put off by her being old and fat."
+    mc smug "So like I said, I was already kinda put off by her being old and fat."
     mc "But when she transformed into a wing monster, I just couldn't deal."
     mc "So I told her,"
     mc_polite "*slurs*"
     mc "I don't know WHAT she was thinking goin out in public like that."
-    gb "Wow! I'm so impressed!"
-    mc "Are you!"
+    gb happy "Wow! I'm so impressed!"
+    mc genius "Are you!"
     gb "Yeah!"
-    gb "You really showed my mother who's boss!"
-    mc ""
-    mc "that was your mom?" #tiny
-    nc "You're really in it now..."
-    show screen expression game_over_scene pass (False, False)
+    gb annoyed "You really showed my mother who's boss!"
+    mc jawdrop "that was your mom?" #tiny
+    nc sad "You're really in it now..."
+    call screen expression game_over_scene pass (False, False)
     #you died
     return
 

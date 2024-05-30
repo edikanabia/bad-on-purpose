@@ -1529,7 +1529,13 @@ screen game_over(secret, fakeout):
         textbutton "Return to menu":
             xalign 0.5
             yalign 0.75
-            action Hide("game_over",Dissolve(0.5))
+            
+            if fakeout == True:
+                action Hide("game_over",Dissolve(0.2))
+                pass
+            else:
+                action Return(None)
+                pass
 
                     
     #play a sound effect
