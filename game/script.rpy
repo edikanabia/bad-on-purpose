@@ -20,7 +20,7 @@ define mc_polite = Character() #different font, probably times new roman lol
 #endregion
 
 #change the args on this to make it a subtitle chant that auto advances
-define chant = Character(what_outlines=[(1,"#000",0,0)], what_xalign=0.5, what_textalign=0.5, what_layout="subtitle", window_background=None)
+define chant = Character(what_outlines=[(2,"#000",0,0)], what_xalign=0.5, what_textalign=0.5, what_layout="subtitle", window_background=None)
 
 
 #region images linked
@@ -244,7 +244,7 @@ label transform_tests:
 label gabeintro:
     #scene: Gabriel's room
     scene bg gabriel room
-    mc_thought "I did agree to meet thiss gabriel guy to set up these dates."
+    mc_thought neutral "I did agree to meet thiss gabriel guy to set up these dates."
     mc_thought "so where is he?"
     mc_thought "all I see is a really tall woman wlaiking toward me..."
     show gabriel neutral at person_c with dissolve_fast
@@ -374,7 +374,7 @@ label interlude:
         gb "No need to complain after the fact. You got your point across."
     nc neutral "It usually takes a couple dates to find someone you click with."
     nc happy "We'll find someone for you! Don't worry too much."
-    mc smug "Tbh, I'm trying to keep faith in your guys' choices of girl, but these ppl arenn't my thing at all!"
+    mc neutral "Tbh, I'm trying to keep faith in your guys' choices of girl, but these ppl arenn't my thing at all!"
     nc shocked "I'm so sorry!!"
     nc "I really tried my hardest to find as many women with unmatched beauty and attractive personalities as I could."
     nc sad "Just like you put in your description..."
@@ -827,7 +827,7 @@ label mamad:
     mc_thought neutral "..."
     mc_thought "you know what?"
     mc_thought neutral "That Julia chick was wrong. I'm SO oen minded."
-    mc "I guess I can give you a CHANCE."
+    mc neutral "I guess I can give you a CHANCE."
     mama confused "so you will date me after all...?"
     mc "Yeaaaaaahhhhh I gueeeeesssssss"
     mama happy"Wow! I am so happy, I could... I could..."
@@ -889,10 +889,10 @@ label ladybird:
     lb happy "Automobiles!"
     lb neutral "...where is it?"
     mc "where's what"
-    lb "The car. Even I know what a car is."
+    lb eyeup "The car. Even I know what a car is."
     mc "*shrugs*"
     mc "Don't have one."
-    lb "How are are we supposed to get to the restaurant then?"
+    lb sideeye "How are are we supposed to get to the restaurant then?"
     mc rage "Well damn Lady, it's not like I can carry you there!"
     mc "Th- the restaurant isn't even that far."
     lb thinking "*sigh* okay."
@@ -912,6 +912,7 @@ label ladybird:
     menu:
         "Clarify what you said":
             mc "FOR your information, I wasn't talking about you."
+            show ladybird shocked
             mc "YOU are FAR TOO TALL for my liking....."
             mc "I think EYE Will be the decider of whether or noot you are worthy of my admiration"
             jump ladybird_fail
@@ -931,7 +932,7 @@ label ladybird:
     nc "I guess he's not good enough for Taco Bell."
     hide cg spying neutral with dissolve
     mc smug "Wanna go in?"
-    lb "I suppose..."
+    lb thinking "I suppose..."
     mc "After you."
     scene bg mcdonalds with dissolve
     show ladybird happy at right with dissolve_fast
@@ -1176,6 +1177,7 @@ label ladybird_fail:
     show gabriel annoyed with dissolve_fast
     #ladybird looks at him funny
     gb "(Have you no tact? I told you, gentleness and care!)"
+    show ladybird eyeup
     mc "I was being gentle! I got this I promise!"
     show gabriel annoyed:
         zoom 3.0
@@ -1215,15 +1217,15 @@ label ash:
     $ fav_soda = ""
     mc_thought neutral "I don't believe gabriel whe he says the dates falling thru are my fautl."
     if where != "":
-        mc_neutral smug "I've beeen taking my dates to the greatest [where] in the world..."
+        mc_thought smug "I've beeen taking my dates to the greatest [where] in the world..."
     else:
-        mc_neutral smug "I've been saving them from the horrors of going to the beach...outside..."
-        mc_neutral smug "where it's hot and dangerous..."
+        mc_thought smug "I've been saving them from the horrors of going to the beach...outside..."
+        mc_thought smug "where it's hot and dangerous..."
     
-    mc_neutral "I've been showing them kindness by being honest..."
-    mc_neutral neutral"And they're just walking out on me left and right."
-    mc_neutral rage "It makes no sense! Ugh!"
-    mc_neutral "The next date should be arriveing soon... she better be good."
+    mc_thought "I've been showing them kindness by being honest..."
+    mc_thought neutral"And they're just walking out on me left and right."
+    mc_thought rage "It makes no sense! Ugh!"
+    mc_thought "The next date should be arriveing soon... she better be good."
 
     show ash happy at person_c with dissolve_fast
 
@@ -1625,7 +1627,7 @@ label onyx:
     ox worried "...what am i not getting then???"
     mc rage "__ pronouns!"
     ox sad "i think ___ are the one who doesn't get pronouns Tony..."
-    "god help __"
+    mc_thought rage "god help __"
     mc "no you misunderstand!"
     ox "i don't think i do..."
     mc "NO, ITS __ PRONOUNS... THEY'RE GONE!"
