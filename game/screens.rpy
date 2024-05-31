@@ -1506,7 +1506,7 @@ define bubble.expand_area = {
 screen game_over(secret, fakeout):
     zorder 500
     modal True
-    
+    on "show" action Play(channel="sound", file="audio/sfx/you_died.ogg")
     #screen takes argument to decide which game over to use
     #not a button, but can be passed with a click
     #once passed, ends the game

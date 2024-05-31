@@ -201,6 +201,14 @@ define fade_near_instant = Fade (0, 1.0, 0.8, color="#000")
 
 #region Sound Files
 
+#sfx
+define audio.knock = "audio/sfx/knock.ogg"
+define audio.walk = "audio/sfx/walk.ogg"
+
+#music
+define audio.date = "audio/bgm/date.ogg"
+
+
 #endregion
 
 
@@ -218,7 +226,7 @@ define descriptor = ""
 # The game starts here.
 
 label start:
-
+    jump regularending
     python:
         name = renpy.input("Name the protagonist! (We recommend not giving him the name of someone or something you like.)")
         name = name.strip() or "Kevin"
@@ -897,7 +905,7 @@ label ladybird:
     mc "Th- the restaurant isn't even that far."
     lb thinking "*sigh* okay."
     hide ladybird with dissolve_slow
-    #walking 
+    play sound walk
     gb "There's no misogyny yet, but... horrible start so far."
     nc "It can only go up from here!"
     nc  "...Hey, why can't we drive them?"
@@ -919,6 +927,7 @@ label ladybird:
         "Let it go":
             $ normal_points += 1
             pass
+    play sound walk
     "They continue walking." #footsteps.
     lb neutral "How long until we get to the place, anyway? And where are we going?"
     mc smug "It's a surprise."    
