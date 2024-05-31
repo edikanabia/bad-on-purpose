@@ -207,6 +207,12 @@ define audio.walk = "audio/sfx/walk.ogg"
 
 #music
 define audio.date = "audio/bgm/date.ogg"
+define audio.dateq = "audio/bgm/date_woozy.ogg"
+define audio.tony = "audio/bgm/quartet_short.ogg"
+define audio.tonyfail = "<from 45>audio/bgm/quartet.ogg"
+define audio.appear = "audio/bgm/gabriel_appears.ogg"
+define audio.gabrielr = "audio/bgm/gabriel_room.ogg"
+define audio.trouble = "audio/bgm/drum_beat.ogg"
 
 
 #endregion
@@ -226,7 +232,7 @@ define descriptor = ""
 # The game starts here.
 
 label start:
-    jump regularending
+
     python:
         name = renpy.input("Name the protagonist! (We recommend not giving him the name of someone or something you like.)")
         name = name.strip() or "Kevin"
@@ -252,11 +258,12 @@ label transform_tests:
 label gabeintro:
     #scene: Gabriel's room
     scene bg gabriel room
+    play music appear noloop
     mc_thought neutral "I did agree to meet thiss gabriel guy to set up these dates."
     mc_thought "so where is he?"
     mc_thought "all I see is a really tall woman wlaiking toward me..."
     show gabriel neutral at person_c with dissolve_fast
-
+    queue music trouble 
         
     gb "Hi. I'm Gabriel. You must be [mc]."
     menu:
@@ -285,9 +292,10 @@ label gabeintro:
     mc_thought rage "god"
     mc_thought "dammit"
     gb happy "Oh. So it's like that, huh..."
+    stop music
     show screen expression game_over_scene pass (False, True) with fade_near_instant
     #fake game over screen
-
+    play music trouble
     mc smug "Oh god. for a second there I thought I doied"
     gb annoyed "That was mercy."
     gb "Act up again and justice will come later."
@@ -317,7 +325,7 @@ label gabeintro:
     mc_thought conservative "oh."
     mc_thought "he vanished."
     mc_thought smug "well! I should get going."
-
+    stop music fadeout 1.0
 
     jump day_one
 
@@ -356,7 +364,7 @@ label interlude:
     mc rage "Gabriel!"
     show niecy happy at person_b with dissolve
     show gabriel neutral at person_d with dissolve
-
+    play music gabrielr
     nc "Hello white man!"
     mc conservative "Who's this?"
     gb "My assistant, Niecy."
@@ -407,6 +415,7 @@ label interlude:
     gb happy "But that's because I'm 6'6 :)"
     gb thinking "I can't think of a single person who matches that description."
     nc sad "..."
+    stop music fadeout 1.0
     nc "Gabriel, doesn't that sound like... like it could be..."
     gb "..."
 
@@ -416,6 +425,7 @@ label interlude:
     menu:
         "Answer":
             nc shocked "Tony don't answer that!"
+            play music trouble
             menu:
                 "Listen to Niecy and shut your yap":
                     pass
@@ -432,12 +442,14 @@ label interlude:
                             pass
 
         "Do not":
+            stop music fadeout 1.0
             pass
     
     mc smug "Uh you know uh normal stuff."
     mc neutral "I didn't say anything mean."
     mc smug "I was, like, super nice to her. And stuff."
     gb thinking "You hurt her feelings."
+    play music tony
     nc solemn "I'm more curious as to why you passed up on the opportunity to fuck his mom."
     nc "Even if you weren't interested."
     gb "You win some, you lose some, I guess."
@@ -445,6 +457,7 @@ label interlude:
     mc jawdrop"THat was your MOM?"
     nc shocked "💀" #skull emoji
     gb "You've still got more dates lined up, so don't-"
+    stop music
     gb tired "Don't fuck it up."
     gb thinking "I was going to say \"don't count yourself out just yet,\" but."
     gb annoyed closed "I have  no reason to say that."
@@ -462,6 +475,7 @@ label interlude:
 label afterq:
     
     show gabriel confused with dissolve_fast
+    queue music gabrielr fadein 1.0
     gb "What happened?"
     mc neutral "__ lost __ pronouns."
     gb "Oh wow."
@@ -545,7 +559,7 @@ label afterq:
         pause 0.8
     #gabriel leaves.
     hide gabriel
-
+    
 
     return
 
@@ -557,14 +571,18 @@ label afterq:
 #all of the days are in tony's room.
 label day_one:
     scene bg home with fade
+    play music tony noloop
+    queue music tony
     mc_thought smug "I'd better get ready for my first date."
     call where_to from _call_where_to
     jump jules
+    stop music fadeout 1.0
     return
 
 label night_one:
     $ alien = ""
     scene bg home with fade
+    play music tonyfail
     mc_thought conservative "man..."
     mc_thought "tonight was CRAZY."
     mc_thought "I never expected someone so tall to be unable to take a RESL intellectual conversation..."
@@ -579,12 +597,14 @@ label night_one:
     else:
         pass
     mc_thought "Sheesh... I should head to bed."
+
     jump day_two
     return
 
 
 label day_two:
     scene bg home with fade
+    queue music tony
     #it's the next day and tony's up bright and early because gabe 
     #said he has to show out and be gentle for the next date.
     mc_thought neutral "Another day?"
@@ -594,6 +614,7 @@ label day_two:
     mc_thought "I evemm have my yearbook superlative for gentlest guy..."
     mc_thought genius "Of cours,e I mean my middle shchool yearbook."
     mc_thought smug "This should be EASY!"
+    stop music fadeout 1.0
     jump ladybird
     return
 
@@ -601,6 +622,7 @@ label night_two:
     scene bg home with fade
     #tony's gonna plan to show up at gabriel's room angry, feeling set up.
     if bird_fail == True:
+        play music tonyfail
         $ renpy.notify("Mission failed!")
         mc_thought neutral "Gabriel was soooooo mad at me."
         mc_thought "Like wow gabe."
@@ -608,34 +630,41 @@ label night_two:
         mc_thought smug "Why don't you go after him yourself!"
         "Does he know!?"
     else:
+        play music tony
         mc_thought rage "Tuh. a MAN named LADYbird? riDICKulous."
         mc_thought "whose idea was that anyway!!?"
-
+    queue music tony
     mc_thought conservative "Tomorrow morning I'm gonna show Gabriel a pizza my mind."
     mc_thought "But first?"
     mc_thought sensitive "A MAN's man's gotta get to his 9pm bedtimies!"
     mc_thought "Nighty night!"
+    stop music fadeout 1.0
     jump interlude
 
     return
 
 label night_three:
     scene bg home with fade
+    play music tonyfail
+    queue music tony
     #return here after onyx. last time's a charm.
     mc_thought conservative "Another resounding... failuer tongiht."
     mc_thought "The girl could be cute, and __'ll JUST start to overlook her flaws..."
     mc_thought rage "And then there's always a catch!"
     mc_thought sensitive "The Universe is so CRUEL to __!!"
     mc_thought smug "guess __'ll just go to bed and try to prepare for tomorrow..."
+    stop music fadeout 1.0
     jump dragon
     return
 
 label night_four:
     scene bg home with None
+    play music trouble
     mc_thought conservative "So many women and not a single one of them dateable."
     mc_thought "Damn."
     mc_thought smug "I guess tomorrow I'm gonna have to tell Gabriel to send some more myway."
     mc_thought conservative "And to tell his assistant to stop ffffmucking it up for me..."
+    stop music fadeout 1.0
     jump endingcheck
     return
 
@@ -646,6 +675,7 @@ label night_four:
 
 label jules:
     scene bg mcdonalds with new_day
+    play music date
     #just a normal date from someone who can't get over her ex...
     show jules happy at person_c with dissolve_fast
     jl "Hey!"
@@ -768,6 +798,7 @@ label jules:
     jl sad "(Yeah I'm getting outta here.)"
     hide jules with dissolve_fast
     #jules leaves.
+    stop music fadeout 1.0
 
     jump mamad
     
@@ -776,18 +807,20 @@ label jules:
 label mamad:
     #mama from a distance cg
     $ leave_early = False
-
+    queue music trouble fadein 1.0
     mc_thought rage "Letting a broad walk out on me.. I woulda stopped her if she wasn't six feet tall."
     mc_thought "There's no way I'm going home without a proper date"
     mc_thought neutral "I gotta find someone else! So I don't let my time go to waste."
     #sees mama
     show mama neutral at right with dissolve
     mc_thought awooga "Hey, there's a looker!"
+    stop music fadeout 1.0
     mc_thought "damn she's thicc!"
     mc awooga "Hello? Hello? Hello beautiful woman?"
     "???" "Are you referring to me as a beautiful woman!?"
     mc "You wanna come over here?"
     "???" "WEll I must approach, if I am being summoned..."
+    play music date
     show mama:
         move_to_center
     mc_thought neutral "hm...."
@@ -813,6 +846,7 @@ label mamad:
         "Yeah":
             #premature date end
             mc conservative "It totally is."
+            stop music fadeout 1.0
             mama "Oh... I'm sorry!"
             mama "I thought... I thought... since you called out to me..."
             mc "Nah. I'm going home"
@@ -841,8 +875,10 @@ label mamad:
     mama happy"Wow! I am so happy, I could... I could..."
     show mama happy monster with alien_reveal
     #wing monster mama
+    stop music
     mc jawdrop "WOAH WHAT THE-"
     mc_thought jawdrop "what the HECK is that?"
+    play music trouble
     mc_thought "some kind of WING MONSTER?"
     mama worried "Ohhhh..."
     mama "I did it again..."
@@ -873,7 +909,7 @@ label mamad:
     mc rage "NUH-UH!!! NUH-UH!! NO U!!! NUH-UH!!"
     mc_thought rage "Oh no... my attacks! they're bouncung off!"
     mc_thought "I-I gotta get outta here!"
-
+    stop music fadeout 1.0
     jump night_one
 
     return
@@ -887,6 +923,7 @@ label ladybird:
     gb "The first step is for Tony to pick up Ladybird at his residence."
     nc "Easy stuff!"
     gb "Let's see how he does."
+    play sound knock
     mc_thought "*knock* *knock* *knock"
     mc neutral "Hellloooooooo!"
     #open door
@@ -919,6 +956,7 @@ label ladybird:
     mc neutral "uh."
     menu:
         "Clarify what you said":
+            play music trouble fadein 1.0
             mc "FOR your information, I wasn't talking about you."
             show ladybird shocked
             mc "YOU are FAR TOO TALL for my liking....."
@@ -944,6 +982,7 @@ label ladybird:
     lb thinking "I suppose..."
     mc "After you."
     scene bg mcdonalds with dissolve
+    play music date
     show ladybird happy at right with dissolve_fast
     mc "..."
     mc "What are you doing?"
@@ -954,6 +993,8 @@ label ladybird:
             mc_thought neutral "...who waits to be seated at a McDonald's?"
             pass
         "Who waits to be seated at a McDonald's!?":
+            stop music fadeout 1.0
+            queue music trouble
             mc smug "Ummmm Ladybird!"
             mc "This {i}fine establishment{/i} allows you to go directly to the counter to order your food!"
             mc genius "Everyone with a BRAIN knows that."
@@ -999,7 +1040,10 @@ label ladybird:
     mc_thought neutral "of how indecisive she is!!"
     menu: 
         "I'm gonna tell her what's up":
+            
             mc rage "WILL YOU HUrry up and pick something already!!"
+            stop music fadeout 1.0
+            queue music trouble
             show server:
                 linear 0.8 offscreenleft
             hide server with dissolve_fast
@@ -1019,6 +1063,8 @@ label ladybird:
     lb neutral "What are you getting?"
     menu:
         "One cheeseburger":
+            stop music fadeout 1.0
+            queue music trouble
             mc rage "ONE cheeseburger like a CIVILIZED HUMAN WHO CAN MODERATE THEIR POTIONS!!!"
             mc smug "I mean portions."
             lb sad "Oh..."
@@ -1028,6 +1074,8 @@ label ladybird:
             hide server with dissolve_fast
             jump ladybird_fail
         "Two cheeseburgers":
+            stop music fadeout 1.0
+            queue music trouble
             mc neutral "TWO cheeseburgers."
             mc "Because my stomach is GROWLING."
             lb "It is? Let's hurry up and eat, then!"
@@ -1043,6 +1091,8 @@ label ladybird:
             $ normal_points += 1
             pass
         "Four cheeseburgers":
+            stop music fadeout 1.0
+            queue music trouble
             mc  smug "Fffffour cheeseburgers."
             lb happy "Oh wow!"
             lb neutral "Do you usually get four cheeseburgers?"
@@ -1106,6 +1156,8 @@ label ladybird:
 
         "The ice cream machine is always broken":
             mc genius "The ice cream machine is always broken," 
+            stop music fadeout 1.0
+            queue music trouble
             mc rage "{w=0.5}IDIOT"
             show ladybird sad
             mc "NOBODY EVEN LIKES ICE CREAM LIKE THATANYWAY."
@@ -1136,7 +1188,8 @@ label ladybird:
     mc neutral "Big meal, huh"
     lb "Of course! I'm a growing boy, as they say."
     mc_thought neutral "\"Boy...\""
-
+    stop music fadeout 1.0
+    queue music trouble
     mc smug "Wait." 
     mc jawdrop "You're a man?"
     lb happy "I think so!"
@@ -1151,6 +1204,7 @@ label ladybird:
     lb "Girls and Ladybird. Has a nice ring to it."
     lb neutral "Do you at least find my personality attractive...?"
     mc "I-"
+    stop music fadeout 1.0
     mc sensitive "well"
     lb thinking "Aha... :)"
     lb happy "Good bye, Tony. I hope it works out for you someday."
@@ -1200,6 +1254,7 @@ label ladybird_fail:
     gb "I swear to god."
     mc_thought jawdrop "Yikes!"
     mc_thought "I'm outta here!"
+    stop music fadeout 1.0
     #tony skidaddles
     show gabriel neutral:
         linear 0.8 person_d
@@ -1223,6 +1278,7 @@ label ladybird_fail:
 #region Just Ash...
 label ash:
     scene bg mcdonalds with dissolve
+    play music trouble
     $ fav_soda = ""
     mc_thought neutral "I don't believe gabriel whe he says the dates falling thru are my fautl."
     if where != "":
@@ -1240,8 +1296,10 @@ label ash:
 
     ash happy "Oh hey! Are you Tony?"
     mc jawdrop "Wh- you're not even human!"
+    stop music fadeout 1.0
     ash annoyed "Get over it"
     mc conservative "ok."
+    play music date fadein 1.0
     mc "Yeah. I'm Tony."
     mc "That's my name, dont' wear it out."
     ash neutral "Ooookay."
@@ -1427,7 +1485,7 @@ label ash:
 
 label ashend:
 
-    mc_thought neutral "She's salmost doen with her meal. I have to make a decision soon..."
+    mc_thought neutral "She's salmost doen with her meal. I have to make a decision soon, but..."
     mc_thought "This is a tough decision."
     mc_thought sensitive "ON one hand she is atually very nice and sweet and cool and firendly."
     mc_thought neutral "On the other, hwer friendlyness reminfs me of a male friend, and not a woman..."
@@ -1457,8 +1515,9 @@ label ashend:
     return
 
 label why_pibb:
-
+    stop music fadeout 1.0
     ash shocked "What the..."
+    queue music trouble
     ash disgusted "Why would you drink a PiBB Xtra when Dr Pepper is right there...?"
     mc neutral "it's a cherry coola that was meant to compete with but not taste exactly like dr pepper"
     mc genius "You see the coca cola company (coke for short) understood, after the faliure of new coke, {nw=0.3}"
@@ -1480,6 +1539,7 @@ label why_pibb:
     mc_thought neutral "couldd..."
     mc_thought "..."
     mc_thought sleep "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+    stop music fadeout 2.0
     #fade to black
     jump qdate
     
@@ -1503,6 +1563,7 @@ label qdate:
     mc_thought "who goes there!?"
     #when he wakes up the mcdonald's looks a little strange.
     #Q stands in front of him, and it's a date?
+    play music dateq
     scene bg mcdonalds hazy with dissolve_slow
     show q neutral with dissolve_slow
     qt "i'm just gonna sit right here, if you don't mind."
@@ -1584,6 +1645,7 @@ label qdate:
     else:
         pass
     show bg mcdonalds with dissolve_slow
+    stop music fadeout 1.0
     jump onyx
 
 
@@ -1591,7 +1653,7 @@ label qdate:
 
 
 label onyx:
-
+    queue music date fadein 1.0
     #some of this is hidden if he meets gabriel after q
     if normal_points <7:
         mc jawdrop "Huh.. wait _ still can't talk about __self!"
@@ -1660,6 +1722,7 @@ label onyx:
     show bg black with dissolve
     "Tony buys Onyx a Big Mac. But the date is over before it even starts."
     "Crestfallen, Tony trudges back home..."
+    stop music fadeout 1.0
 
     jump night_three
 
@@ -1675,9 +1738,9 @@ label dragon:
     mc_thought "Sending __ a beautiful woman and there's alwasy somme trick..."
     mc_thought smug "__'m hoping the next one is a REAL catch this time."
     mc_thought neutral "Oh, that must be her."
-    
+    stop music fadeout 1.0
     show aizeer neutral at person_c with dissolve_fast
-
+    queue music date
     dg neutral "Hello!"
     mc smug "Hello beautiful woman."
     dg happy "How are __?"
@@ -1737,7 +1800,7 @@ label dragon:
     dg neutral "Oh, no catch!"
     dg worried "But I am technically a dragon."
     mc_thought jawdrop "..."   
-
+    stop music
     jump night_four
 
 
@@ -1768,6 +1831,8 @@ label endingcheck:
     mc rage "those girls... they were so WEIRD! "
     mc "And some of them weren't even girls!"
     mc "I TRUSTED you to bring me girls!!"
+    play music appear noloop
+    queue music gabrielr
     show gabriel neutral at center with dissolve_fast
     gb nervous "\"Girls?\" Like, children?"
     mc "Gabe!!! Obviously by \"girls,\" the English word for female children, I meant \"adult women.\""
@@ -1800,6 +1865,7 @@ label regularending:
     call killing_chant from _call_killing_chant
     mc neutral "What?"
     show cg death with dissolve_fast
+    stop music fadeout 1.0
     gb "You're going to hell."
     gb "Goodbye."
 
@@ -1834,11 +1900,13 @@ label earlyend:
     gb annoyed "You really showed my mother who's boss!"
     mc jawdrop "that was your mom?" #tiny
     nc sad "You're really in it now..."
+    stop music
     call screen expression game_over_scene pass (False, False) with fade_near_instant
     #you died
     return
 
 label sodaending:
+    stop music
 
     gb unamused "ok who the FUCK drinks mr pibb"
     mc genius "it is no longer called MISTRE PIBB it's called PiBB Xtra and it's a spiced cherry cola thats"
