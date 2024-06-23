@@ -232,7 +232,7 @@ define descriptor = ""
 # The game starts here.
 
 label start:
-
+    jump onyx
     python:
         name = renpy.input("Name the protagonist! (We recommend not giving him the name of someone or something you like.)")
         name = name.strip() or "Kevin"
@@ -475,7 +475,8 @@ label interlude:
 label afterq:
     
     show gabriel confused with dissolve_fast
-    queue music gabrielr fadein 1.0
+    stop music fadeout 1.0
+    queue music gabrielr
     gb "What happened?"
     mc neutral "__ lost __ pronouns."
     gb "Oh wow."
@@ -675,7 +676,7 @@ label night_four:
 
 label jules:
     scene bg mcdonalds with new_day
-    play music date
+    play music date volume 0.6
     #just a normal date from someone who can't get over her ex...
     show jules happy at person_c with dissolve_fast
     jl "Hey!"
@@ -807,7 +808,7 @@ label jules:
 label mamad:
     #mama from a distance cg
     $ leave_early = False
-    queue music trouble fadein 1.0
+    play music trouble fadein 1.0
     mc_thought rage "Letting a broad walk out on me.. I woulda stopped her if she wasn't six feet tall."
     mc_thought "There's no way I'm going home without a proper date"
     mc_thought neutral "I gotta find someone else! So I don't let my time go to waste."
@@ -820,7 +821,7 @@ label mamad:
     "???" "Are you referring to me as a beautiful woman!?"
     mc "You wanna come over here?"
     "???" "WEll I must approach, if I am being summoned..."
-    play music date
+    play music date volume 0.6
     show mama:
         move_to_center
     mc_thought neutral "hm...."
@@ -982,7 +983,7 @@ label ladybird:
     lb thinking "I suppose..."
     mc "After you."
     scene bg mcdonalds with dissolve
-    play music date
+    play music date volume 0.6
     show ladybird happy at right with dissolve_fast
     mc "..."
     mc "What are you doing?"
@@ -1299,7 +1300,7 @@ label ash:
     stop music fadeout 1.0
     ash annoyed "Get over it"
     mc conservative "ok."
-    play music date fadein 1.0
+    play music date fadein 1.0 volume 0.6
     mc "Yeah. I'm Tony."
     mc "That's my name, dont' wear it out."
     ash neutral "Ooookay."
@@ -1563,7 +1564,7 @@ label qdate:
     mc_thought "who goes there!?"
     #when he wakes up the mcdonald's looks a little strange.
     #Q stands in front of him, and it's a date?
-    play music dateq
+    play music dateq volume 0.7
     scene bg mcdonalds hazy with dissolve_slow
     show q neutral with dissolve_slow
     qt "i'm just gonna sit right here, if you don't mind."
@@ -1653,7 +1654,7 @@ label qdate:
 
 
 label onyx:
-    queue music date fadein 1.0
+    play music date fadein 1.0 volume 0.6
     #some of this is hidden if he meets gabriel after q
     if normal_points <7:
         mc jawdrop "Huh.. wait _ still can't talk about __self!"
@@ -1740,7 +1741,7 @@ label dragon:
     mc_thought neutral "Oh, that must be her."
     stop music fadeout 1.0
     show aizeer neutral at person_c with dissolve_fast
-    queue music date
+    queue music date volume 0.6
     dg neutral "Hello!"
     mc smug "Hello beautiful woman."
     dg happy "How are __?"
